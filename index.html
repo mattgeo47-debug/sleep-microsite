@@ -1185,7 +1185,7 @@ for (let i = 0; i < uploadedFiles.length; i++) {
 const f = uploadedFiles[i];
 const pct = Math.round(10 + (i / uploadedFiles.length) * 55);
 setProgress(pct, `⟳ Analysing screenshot ${i + 1} of ${uploadedFiles.length} — ${f.name}...`);
-const response = await fetch('/.netlify/functions/proxy', {
+const response = await fetch('/api/proxy', {
 method: 'POST',
 headers: { 'Content-Type': 'application/json' },
 body: JSON.stringify({
@@ -1267,7 +1267,7 @@ Respond ONLY with valid JSON, no markdown. Structure:
 ],
 "missing_fields": ["list metrics still missing after all sources"]
 }`;
-const scoreResp = await fetch('/.netlify/functions/proxy', {
+const scoreResp = await fetch('/api/proxy', {
 method: 'POST',
 headers: { 'Content-Type': 'application/json' },
 body: JSON.stringify({
