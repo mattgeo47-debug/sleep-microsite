@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sleep: The Code to Longevity | Satvik Jaitly × SnoOozebySJ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+<style>:root{--bg:#0a0807;--bg2:#100c0b;--surface:#161009;--surface2:#1e1510;--border:rgba(77,217,192,0.2);--teal:#4dd9c0;--teal2:#2eb8a0;--gold:#c9a84c;--gold2:#e8c46a;--text:#f0e8e0;--muted:#9a8070;--accent:#c9a84c;--danger:#ff6b6b;--font-display:'Cormorant Garamond',Georgia,serif;--font-body:'DM Sans',sans-serif;--font-mono:'DM Mono',monospace}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:#02050f;color:var(--text);font-family:var(--font-body);font-weight:300;min-height:100vh;overflow-x:hidden}#starfield{position:fixed;inset:0;z-index:0;pointer-events:none;width:100vw;height:100vh}nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(6,11,20,0.7);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}.nav-logo{font-family:var(--font-display);font-size:1.3rem;color:var(--teal);letter-spacing:0.04em;cursor:pointer}.nav-logo span{color:var(--gold);font-style:italic}.nav-links{display:flex;gap:2rem;list-style:none}.nav-links a{color:var(--muted);text-decoration:none;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s;cursor:pointer}.nav-links a:hover,.nav-links a.active{color:var(--teal)}.page{display:none;min-height:100vh;position:relative;z-index:2}.page.active{display:block}.hero{min-height:100vh;position:relative}.hero-eyebrow{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--teal);margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s 0.2s forwards}.hero-title{font-family:var(--font-display);font-size:clamp(3rem,8vw,7rem);font-weight:300;line-height:1.05;letter-spacing:-0.01em;max-width:900px;margin-bottom:1rem;opacity:0;animation:fadeUp 0.8s 0.4s forwards}.hero-title em{color:var(--gold);font-style:italic}.hero-subtitle{font-size:1.05rem;color:var(--muted);max-width:540px;line-height:1.7;margin-bottom:3rem;opacity:0;animation:fadeUp 0.8s 0.6s forwards}.glow-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:-1}.orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(77,217,192,0.12),transparent 70%);top:-10%;left:30%;transform:translateX(-50%)}.orb2{width:400px;height:400px;background:radial-gradient(circle,rgba(201,168,76,0.07),transparent 70%);top:50%;right:-5%}.speaker-section{max-width:900px;margin:0 auto 6rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:0 2rem;opacity:0;animation:fadeUp 0.8s 0.8s forwards}.speaker-img{position:relative}.speaker-avatar{width:100%;aspect-ratio:1;border-radius:50%;background:linear-gradient(135deg,var(--surface2) 0%,var(--surface) 100%);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:5rem;position:relative;overflow:hidden}.speaker-avatar::after{content:'';position:absolute;inset:-2px;border-radius:50%;background:conic-gradient(from 0deg,var(--teal),transparent 40%,var(--gold),transparent 80%,var(--teal));z-index:-1;animation:spin 6s linear infinite}.speaker-ring{position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(77,217,192,0.2);animation:pulse-ring 3s ease-in-out infinite}.speaker-info h3{font-family:var(--font-display);font-size:2rem;font-weight:300;margin-bottom:0.5rem}.speaker-info .title{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem}.speaker-info p{color:var(--muted);line-height:1.8;font-size:0.9rem}.challenge-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:5rem 2rem;text-align:center;margin-bottom:0}.section-label{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}.section-title{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.5rem);font-weight:300;margin-bottom:1.5rem}.challenge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:900px;margin:3rem auto 0}.challenge-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:2rem 1.5rem;text-align:left;transition:border-color 0.3s,transform 0.3s}.challenge-card:hover{border-color:rgba(77,217,192,0.3);transform:translateY(-4px)}.card-icon{font-size:2rem;margin-bottom:1rem}.card-title{font-family:var(--font-display);font-size:1.3rem;margin-bottom:0.5rem}.card-desc{color:var(--muted);font-size:0.85rem;line-height:1.7}.card-number{font-family:var(--font-mono);font-size:0.65rem;color:var(--teal);letter-spacing:0.1em;margin-bottom:0.5rem}.cta-section{padding:6rem 2rem;text-align:center;background:linear-gradient(to bottom,var(--surface) 0%,var(--bg) 100%)}.btn-primary{display:inline-flex;align-items:center;gap:0.75rem;background:linear-gradient(135deg,var(--teal) 0%,var(--teal2) 100%);color:var(--bg);font-family:var(--font-body);font-weight:500;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2.5rem;border:none;border-radius:4px;cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden}.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.2) 0%,transparent 100%);opacity:0;transition:opacity 0.3s}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(77,217,192,0.3)}.btn-primary:hover::before{opacity:1}.btn-secondary{display:inline-flex;align-items:center;gap:0.75rem;background:transparent;color:var(--teal);font-family:var(--font-body);font-weight:400;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.9rem 2rem;border:1px solid rgba(77,217,192,0.3);border-radius:4px;cursor:pointer;transition:all 0.3s;margin-left:1rem}.btn-secondary:hover{border-color:var(--teal);background:rgba(77,217,192,0.05)}.stats-bar{display:flex;justify-content:center;gap:4rem;padding:2.5rem;background:var(--bg2);border-top:1px solid var(--border)}.stat{text-align:center}.stat-num{font-family:var(--font-display);font-size:2.5rem;color:var(--teal);display:block}.stat-label{font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase}.form-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:8rem 2rem 4rem}.form-container{width:100%;max-width:600px}.form-header{margin-bottom:3rem}.form-header h2{font-family:var(--font-display);font-size:clamp(2rem,5vw,3rem);font-weight:300;margin-bottom:0.75rem}.form-header p{color:var(--muted);line-height:1.7}.field-group{margin-bottom:1.5rem}.field-label{display:block;font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}.field-label span{color:var(--teal);margin-left:0.25rem}input[type="text"],input[type="email"],input[type="tel"],select,textarea{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--font-body);font-size:0.95rem;padding:0.85rem 1.1rem;outline:none;transition:border-color 0.2s,box-shadow 0.2s;appearance:none}input:focus,select:focus,textarea:focus{border-color:rgba(77,217,192,0.4);box-shadow:0 0 0 3px rgba(77,217,192,0.08)}select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234dd9c0' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;cursor:pointer}select option{background:var(--bg2)}.device-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem}.device-option{display:flex;align-items:center;gap:0.75rem;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:0.75rem 1rem;cursor:pointer;transition:all 0.2s;font-size:0.85rem}.device-option input{display:none}.device-option.selected{border-color:var(--teal);background:rgba(77,217,192,0.05);color:var(--teal)}.device-icon{font-size:1.2rem}.optional-divider{display:flex;align-items:center;gap:1rem;margin:2rem 0}.optional-divider::before,.optional-divider::after{content:'';flex:1;height:1px;background:var(--border)}.optional-divider span{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase}.form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.progress-bar{height:3px;background:var(--border);border-radius:2px;margin-bottom:3rem;overflow:hidden}.progress-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:2px;transition:width 0.4s}.success-screen{text-align:center;padding:4rem 2rem;display:none}.success-icon{width:80px;height:80px;border-radius:50%;background:rgba(77,217,192,0.1);border:1px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 2rem;animation:pulse-ring 2s ease-in-out infinite}.upload-page{padding:8rem 2rem 4rem;max-width:700px;margin:0 auto}.upload-page h2{font-family:var(--font-display);font-size:2.5rem;font-weight:300;margin-bottom:0.5rem}.upload-page .subtitle{color:var(--muted);margin-bottom:2.5rem;line-height:1.7}.day-selector{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem}.day-pill{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.05em;padding:0.4rem 0.9rem;background:var(--surface);border:1px solid var(--border);border-radius:20px;cursor:pointer;transition:all 0.2s;color:var(--muted)}.day-pill.active,.day-pill:hover{background:rgba(77,217,192,0.1);border-color:var(--teal);color:var(--teal)}.day-locked{opacity:0.35;cursor:not-allowed !important;background:var(--surface) !important;border-color:transparent !important;color:var(--muted) !important}.day-submitted{background:rgba(77,217,192,0.08) !important;border-color:rgba(77,217,192,0.3) !important;color:var(--teal) !important;cursor:default !important}.upload-zone{border:2px dashed var(--border);border-radius:12px;padding:4rem 2rem;text-align:center;cursor:pointer;transition:all 0.3s;background:var(--surface);position:relative;margin-bottom:1.5rem}.upload-zone:hover{border-color:rgba(77,217,192,0.4);background:rgba(77,217,192,0.03)}.upload-zone.drag-over{border-color:var(--teal);background:rgba(77,217,192,0.07)}.upload-icon{font-size:3rem;margin-bottom:1rem;opacity:0.6}.upload-text{color:var(--muted);font-size:0.9rem}.upload-text strong{color:var(--text)}.upload-subtext{font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);margin-top:0.5rem;letter-spacing:0.05em}#upload-input{display:none}.upload-preview{display:none;background:var(--surface);border:1px solid rgba(77,217,192,0.3);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}.preview-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}.preview-filename{font-family:var(--font-mono);font-size:0.75rem;color:var(--teal)}.preview-img{width:100%;border-radius:8px;max-height:300px;object-fit:cover}.remove-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.2rem;transition:color 0.2s}.remove-btn:hover{color:var(--danger)}.source-badges{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:2rem}.source-badge{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.3rem 0.75rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;color:var(--muted)}.processing-bar{display:none;background:var(--surface);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem}.processing-label{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.1em;color:var(--teal);margin-bottom:0.75rem}.bar-track{height:4px;background:var(--border);border-radius:2px;overflow:hidden}.bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:2px;transition:width 0.1s linear}.dashboard-page{padding:8rem 2rem 4rem;max-width:1000px;margin:0 auto}.dashboard-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;flex-wrap:wrap;gap:1rem}.dashboard-header h2{font-family:var(--font-display);font-size:2.5rem;font-weight:300}.dashboard-header .day-badge{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.1em;padding:0.4rem 1rem;background:rgba(77,217,192,0.1);border:1px solid rgba(77,217,192,0.3);border-radius:20px;color:var(--teal)}.score-hero{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:3rem;text-align:center;margin-bottom:2rem;position:relative;overflow:hidden}.score-hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:300px;height:2px;background:linear-gradient(90deg,transparent,var(--teal),transparent)}.score-ring{width:160px;height:160px;margin:0 auto 1.5rem;position:relative}.score-ring svg{transform:rotate(-90deg)}.score-ring circle{fill:none;stroke-width:8;stroke-linecap:round}.score-ring .track{stroke:var(--border)}.score-ring .fill{stroke:url(#scoreGrad);stroke-dasharray:408;stroke-dashoffset:408;transition:stroke-dashoffset 1.5s cubic-bezier(0.34,1.56,0.64,1)}.score-number{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--font-display);font-size:2.8rem;font-weight:300;color:var(--teal)}.score-label{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)}.score-title{font-family:var(--font-display);font-size:1.5rem;font-weight:300;margin-bottom:0.5rem}.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}.metric-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color 0.3s}.metric-card:hover{border-color:rgba(77,217,192,0.25)}.metric-icon{font-size:1.5rem;margin-bottom:0.75rem}.metric-value{font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--text);margin-bottom:0.25rem}.metric-value.good{color:var(--teal)}.metric-value.warn{color:var(--gold)}.metric-name{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}.metric-delta{font-size:0.75rem;color:var(--teal);margin-top:0.25rem}.chart-section{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:2rem}.chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem}.chart-title{font-family:var(--font-display);font-size:1.3rem;font-weight:300}.chart-legend{display:flex;gap:1.5rem}.legend-item{display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--muted)}.legend-dot{width:8px;height:8px;border-radius:50%}.chart-area{height:180px;position:relative}.chart-svg{width:100%;height:100%;overflow:visible}.insights-section{margin-bottom:2rem}.insights-title{font-family:var(--font-display);font-size:1.5rem;font-weight:300;margin-bottom:1.5rem}.insight-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:0 12px 12px 0;padding:1.5rem;margin-bottom:1rem;display:flex;gap:1rem;animation:fadeUp 0.5s both}.insight-card.gold-accent{border-left-color:var(--gold)}.insight-emoji{font-size:1.5rem;flex-shrink:0}.insight-text{font-size:0.9rem;color:var(--muted);line-height:1.7}.insight-text strong{color:var(--text)}.leaderboard-section{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem}.leaderboard-title{font-family:var(--font-display);font-size:1.5rem;font-weight:300;margin-bottom:1.5rem}.leaderboard-item{display:flex;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--border);transition:all 0.2s}.leaderboard-item:last-child{border-bottom:none}.leaderboard-item:hover{padding-left:0.5rem}.rank{font-family:var(--font-display);font-size:1.5rem;color:var(--muted);width:2rem;text-align:center;flex-shrink:0}.rank.gold-rank{color:var(--gold)}.rank.silver-rank{color:#a8c0cc}.rank.bronze-rank{color:#cd7f32}.lb-avatar{width:40px;height:40px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}.lb-info{flex:1}.lb-name{font-weight:400;margin-bottom:0.2rem}.lb-badge{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.08em;color:var(--teal)}.lb-score{font-family:var(--font-display);font-size:1.5rem;color:var(--teal)}.lb-score-label{font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.08em}@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse-ring{0%,100%{opacity:0.3;transform:scale(1)}50%{opacity:0.6;transform:scale(1.03)}}@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}.separator{border:none;border-top:1px solid var(--border);margin:2rem 0}.text-teal{color:var(--teal)}.text-gold{color:var(--gold)}.mt-1{margin-top:0.5rem}.mt-2{margin-top:1rem}.mt-3{margin-top:1.5rem}.flex-center{display:flex;align-items:center;justify-content:center}.gap-1{gap:0.5rem}textarea{resize:vertical;min-height:80px}@media (max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}.speaker-section{grid-template-columns:1fr}.challenge-grid{grid-template-columns:1fr}.metrics-grid{grid-template-columns:repeat(2,1fr)}.form-grid-2{grid-template-columns:1fr}.device-grid{grid-template-columns:1fr}.stats-bar{gap:2rem;flex-wrap:wrap;justify-content:center}}.field-error{font-family:var(--font-mono);font-size:0.62rem;color:#e05c5c;margin-top:0.35rem;display:none;letter-spacing:0.03em}.field-error.visible{display:block}.input-invalid{border-color:rgba(224,92,92,0.6)!important}.input-valid{border-color:rgba(77,217,192,0.5)!important}.manual-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}@media(max-width:500px){.manual-grid{grid-template-columns:1fr}}.manual-field{display:flex;flex-direction:column;gap:0.35rem}.manual-label{font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase}.manual-input{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:0.6rem 0.85rem;color:var(--text);font-family:var(--font-mono);font-size:0.8rem;outline:none;transition:border-color 0.2s;width:100%;box-sizing:border-box}.manual-input:focus{border-color:rgba(77,217,192,0.5)}.manual-input::placeholder{color:var(--muted);opacity:0.5}.thumb-wrap{position:relative;width:90px;height:90px;border-radius:8px;overflow:hidden;border:1px solid var(--border);flex-shrink:0}.thumb-wrap img{width:100%;height:100%;object-fit:cover}.thumb-remove{position:absolute;top:3px;right:3px;background:rgba(0,0,0,0.65);border:none;border-radius:50%;width:18px;height:18px;font-size:10px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}.thumb-label{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.55);font-family:var(--font-mono);font-size:0.55rem;color:rgba(255,255,255,0.8);padding:2px 4px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}</style>
+</head>
+<body>
+<canvas id="starfield"></canvas>
+<!-- NAV -->
+<nav>
+ <div class="nav-logo" onclick="showPage('landing')">SnoOoze<span>bySJ</span> ◦ Longevity</div>
+ <ul class="nav-links">
+ <li><a onclick="showPage('landing')" id="nav-landing" class="active">The Challenge</a></li>
+ <li><a onclick="showPage('register')" id="nav-register">Register</a></li>
+ <li><a onclick="showPage('upload')" id="nav-upload">Upload Data</a></li>
+ <li><a onclick="showPage('dashboard')" id="nav-dashboard">Dashboard</a></li>
+ </ul>
+</nav>
+<!-- ══════════════ PAGE 1: LANDING ══════════════ -->
+<div class="page active" id="page-landing">
+ <div class="hero" style="display:flex;flex-direction:column;align-items:center;max-width:900px;margin:0 auto;padding:8rem 3rem 4rem;text-align:center">
+ <div style="position:relative">
+ <div class="glow-orb orb1"></div>
+ <div class="glow-orb orb2"></div>
+ <p class="hero-eyebrow" style="text-align:center">✦ YPO Kerala × Eureka — 14-Day Wellness Challenge ✦</p>
+ <h1 class="hero-title" style="text-align:center">Sleep: <em>The Code</em><br>to Longevity</h1>
+ <p style="font-size:0.85rem;color:var(--teal);margin-bottom:1.2rem;font-family:var(--font-mono);letter-spacing:0.15em;opacity:0;animation:fadeUp 0.8s 0.5s forwards">— 18 APRIL —</p>
+ <p class="hero-subtitle" style="opacity:0;animation:fadeUp 0.8s 0.6s forwards;text-align:left">Led by India's foremost Sleep Diplomat, <strong style="color:var(--text)">Satvik Jaitly</strong> — unlock the science of restorative sleep and discover how optimizing your nightly recovery can add years to your life, starting tonight.</p>
+ <div style="opacity:0;animation:fadeUp 0.8s 0.8s forwards;display:flex;flex-wrap:wrap;gap:1rem">
+ <button class="btn-primary" onclick="showPage('register')">
+ ◯ Join the 14-Day Sleep Code Challenge
+ </button>
+ <button class="btn-secondary" onclick="document.getElementById('speaker-anchor').scrollIntoView({behavior:'smooth'})">
+ Meet the Speaker
+ </button>
+ </div>
+ </div>
+ </div>
+ <style>
+ @media(max-width:900px){
+ .event-poster-wrap { display:none; }
+ .hero { grid-template-columns:1fr !important; text-align:center !important; padding:7rem 1.5rem 3rem !important; }
+ .hero-title, .hero-eyebrow, .hero-subtitle { text-align:center !important; }
+ }
+ .field-error{font-family:var(--font-mono);font-size:0.62rem;color:#e05c5c;margin-top:0.35rem;display:none;letter-spacing:0.03em}
+ .field-error.visible{display:block}
+ .input-invalid{border-color:rgba(224,92,92,0.6)!important}
+ .input-valid{border-color:rgba(77,217,192,0.5)!important}
+ .manual-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+ @media(max-width:500px){.manual-grid{grid-template-columns:1fr}}
+ .manual-field{display:flex;flex-direction:column;gap:0.35rem}
+ .manual-label{font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase}
+ .manual-input{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:0.6rem 0.85rem;color:var(--text);font-family:var(--font-mono);font-size:0.8rem;outline:none;transition:border-color 0.2s;width:100%;box-sizing:border-box}
+ .manual-input:focus{border-color:rgba(77,217,192,0.5)}
+ .manual-input::placeholder{color:var(--muted);opacity:0.5}
+ .thumb-wrap{position:relative;width:90px;height:90px;border-radius:8px;overflow:hidden;border:1px solid var(--border);flex-shrink:0}
+ .thumb-wrap img{width:100%;height:100%;object-fit:cover}
+ .thumb-remove{position:absolute;top:3px;right:3px;background:rgba(0,0,0,0.65);border:none;border-radius:50%;width:18px;height:18px;font-size:10px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+ .thumb-label{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.55);font-family:var(--font-mono);font-size:0.55rem;color:rgba(255,255,255,0.8);padding:2px 4px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+</style>
+ <!-- STATS -->
+ <div class="stats-bar">
+ <div class="stat"><span class="stat-num">18/04</span><span class="stat-label">Event Date</span></div>
+ <div class="stat"><span class="stat-num">14</span><span class="stat-label">Day Challenge</span></div>
+ <div class="stat"><span class="stat-num">YPO Kerala</span><span class="stat-label">× Eureka</span></div>
+ <div class="stat"><span class="stat-num">38%</span><span class="stat-label">Avg Improvement</span></div>
+ <div class="stat"><span class="stat-num">100</span><span class="stat-label">Max Longevity Score</span></div>
+ </div>
+ <!-- QUOTE BANNER (mirrors event poster) -->
+ <div style="max-width:860px;margin:3rem auto;padding:0 2rem;opacity:0;animation:fadeUp 0.8s 1s forwards">
+ <div style="border:1px solid rgba(77,217,192,0.3);border-radius:4px;padding:2.5rem 3rem;position:relative;text-align:center;background:rgba(77,217,192,0.04)">
+ <!-- corner decorations -->
+ <span style="position:absolute;top:12px;left:12px;width:20px;height:20px;border-top:1px solid rgba(77,217,192,0.5);border-left:1px solid rgba(77,217,192,0.5)"></span>
+ <span style="position:absolute;top:12px;right:12px;width:20px;height:20px;border-top:1px solid rgba(77,217,192,0.5);border-right:1px solid rgba(77,217,192,0.5)"></span>
+ <span style="position:absolute;bottom:12px;left:12px;width:20px;height:20px;border-bottom:1px solid rgba(77,217,192,0.5);border-left:1px solid rgba(77,217,192,0.5)"></span>
+ <span style="position:absolute;bottom:12px;right:12px;width:20px;height:20px;border-bottom:1px solid rgba(77,217,192,0.5);border-right:1px solid rgba(77,217,192,0.5)"></span>
+ <p style="font-family:var(--font-display);font-size:1.6rem;font-weight:300;color:var(--text);line-height:1.5;font-style:italic">
+ <span style="color:var(--teal);font-size:2rem;line-height:0;vertical-align:-0.3em;margin-right:0.25rem">"</span>You don't extend life by doing more.<br><strong style="font-style:normal;font-weight:600">You extend it by sleeping better.</strong><span style="color:var(--teal);font-size:2rem;line-height:0;vertical-align:-0.3em;margin-left:0.25rem">"</span>
+ </p>
+ <p style="margin-top:1rem;font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.15em;color:var(--muted)">— SATVIK JAITLY, SLEEP DIPLOMAT</p>
+ </div>
+ </div>
+ <!-- SPEAKER -->
+ <div id="speaker-anchor" style="max-width:1000px;margin:5rem auto 0;padding:0 2rem;opacity:0;animation:fadeUp 0.8s 0.9s forwards">
+ <div class="section-label" style="text-align:center;margin-bottom:3rem">Your Guide for the Challenge</div>
+ <div style="background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3rem;position:relative;overflow:hidden">
+ <!-- top accent line -->
+ <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--teal),var(--gold),transparent)"></div>
+ <div style="display:grid;grid-template-columns:280px 1fr;gap:3rem;align-items:start">
+ <!-- LEFT: photo + credentials -->
+ <div style="text-align:center">
+ <!-- SVG Portrait placeholder styled as real photo frame -->
+ <div style="position:relative;width:200px;height:200px;margin:0 auto 1.5rem">
+ <img src="data:image/jpeg;base64,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" width="200" height="200" alt="Satvik Jaitly" style="border-radius:50%;display:block;width:200px;height:200px;object-fit:cover;object-position:center top;" />
+ <!-- Glowing ring -->
+ <div style="position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(77,217,192,0.3);animation:pulse-ring 3s ease-in-out infinite;pointer-events:none"></div>
+ <div style="position:absolute;inset:-12px;border-radius:50%;border:1px dashed rgba(201,168,76,0.15);pointer-events:none"></div>
+ </div>
+ <h3 style="font-family:var(--font-display);font-size:1.8rem;font-weight:400;margin-bottom:0.25rem">Satvik Jaitly</h3>
+ <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem">Sleep Diplomat & Consultant</div>
+ <!-- ASA-WSS Badge -->
+ <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:0.35rem 0.9rem;margin-bottom:1.25rem">
+ <span style="color:var(--gold);font-size:0.9rem">✦</span>
+ <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;color:var(--gold)">ASA-WSS REGISTERED</span>
+ </div>
+ <!-- Degrees -->
+ <div style="text-align:left;border-top:1px solid var(--border);padding-top:1rem">
+ <div style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem">Qualifications</div>
+ <div style="font-size:0.78rem;color:var(--text);line-height:1.9;opacity:0.85">
+ M.Sc. Applied Psychology<br>
+ <span style="color:var(--muted);font-size:0.72rem">Banaras Hindu University</span><br>
+ M.Sc. Applied Biology<br>
+ <span style="color:var(--muted);font-size:0.72rem">Banaras Hindu University</span><br>
+ PGCBM Marketing & Brand Mgmt<br>
+ <span style="color:var(--muted);font-size:0.72rem">MICA Ahmedabad</span><br>
+ PGCBM Business Management<br>
+ <span style="color:var(--muted);font-size:0.72rem">XLRI</span>
+ </div>
+ </div>
+ </div>
+ <!-- RIGHT: bio details -->
+ <div>
+ <div style="font-family:var(--font-display);font-size:1.1rem;font-style:italic;color:var(--muted);margin-bottom:1.5rem;line-height:1.7;border-left:2px solid var(--teal);padding-left:1.25rem">
+ "India's foremost Sleep Diplomat — bridging the science of sleep with real-world innovation across hospitality, food, defence, and wellness."
+ </div>
+ <!-- Highlights -->
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.75rem">
+ <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem">
+ <div style="font-size:1.6rem;margin-bottom:0.4rem">🏆</div>
+ <div style="font-weight:500;font-size:0.85rem;margin-bottom:0.2rem">20+ Patents</div>
+ <div style="color:var(--muted);font-size:0.75rem;line-height:1.5">Sleep quantification, sleep foods, food technology, personal care & hospitality innovation</div>
+ </div>
+ <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem">
+ <div style="font-size:1.6rem;margin-bottom:0.4rem">🏨</div>
+ <div style="font-weight:500;font-size:0.85rem;margin-bottom:0.2rem">ITC Hotels SLEEEP Initiative</div>
+ <div style="color:var(--muted);font-size:0.75rem;line-height:1.5">Led 300+ consumer studies & 50+ sleep studies. Launched India's first Sleep Food & Beverage Menu</div>
+ </div>
+ <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem">
+ <div style="font-size:1.6rem;margin-bottom:0.4rem">🌏</div>
+ <div style="font-weight:500;font-size:0.85rem;margin-bottom:0.2rem">World's First</div>
+ <div style="color:var(--muted);font-size:0.75rem;line-height:1.5">Established the world's first Non-Invasive Sleep Lab inside a hotel</div>
+ </div>
+ <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem">
+ <div style="font-size:1.6rem;margin-bottom:0.4rem">📰</div>
+ <div style="font-weight:500;font-size:0.85rem;margin-bottom:0.2rem">Published Columnist</div>
+ <div style="color:var(--muted);font-size:0.75rem;line-height:1.5">Internationally recognised writer and innovator in Sleep & Mental Health</div>
+ </div>
+ </div>
+ <!-- Career timeline -->
+ <div style="margin-bottom:1.5rem">
+ <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem">Career Experience</div>
+ <div style="display:flex;flex-direction:column;gap:0.5rem">
+ <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.82rem">
+ <span style="color:var(--teal);font-family:var(--font-mono);font-size:0.65rem;width:5rem;flex-shrink:0">ITC</span>
+ <span style="color:var(--muted)">ITC Life Sciences & Technology Centre, Bangalore</span>
+ </div>
+ <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.82rem">
+ <span style="color:var(--teal);font-family:var(--font-mono);font-size:0.65rem;width:5rem;flex-shrink:0">F&S</span>
+ <span style="color:var(--muted)">Frost & Sullivan, Middle East & Africa</span>
+ </div>
+ <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.82rem">
+ <span style="color:var(--teal);font-family:var(--font-mono);font-size:0.65rem;width:5rem;flex-shrink:0">KPMG</span>
+ <span style="color:var(--muted)">KPMG Innovation</span>
+ </div>
+ <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.82rem">
+ <span style="color:var(--teal);font-family:var(--font-mono);font-size:0.65rem;width:5rem;flex-shrink:0">BHU</span>
+ <span style="color:var(--muted)">Institute of Medical Sciences, Banaras Hindu University</span>
+ </div>
+ <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.82rem">
+ <span style="color:var(--teal);font-family:var(--font-mono);font-size:0.65rem;width:5rem;flex-shrink:0">NCAOR</span>
+ <span style="color:var(--muted)">National Centre for Antarctica & Ocean Research, Goa</span>
+ </div>
+ </div>
+ </div>
+ <!-- Beneficiaries -->
+ <div>
+ <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem">Clients & Beneficiaries</div>
+ <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+ <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.06em;padding:0.28rem 0.7rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;color:var(--muted)">Indian Parliament</span>
+ <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.06em;padding:0.28rem 0.7rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;color:var(--muted)">Indian Army</span>
+ <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.06em;padding:0.28rem 0.7rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;color:var(--muted)">ITC Hotels</span>
+ <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.06em;padding:0.28rem 0.7rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;color:var(--muted)">KPMG</span>
+ <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.06em;padding:0.28rem 0.7rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;color:var(--muted)">Christ University</span>
+ <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.06em;padding:0.28rem 0.7rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;color:var(--muted)">World Food Security Forum</span>
+ <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.06em;padding:0.28rem 0.7rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;color:var(--muted)">Gulfood</span>
+ <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.06em;padding:0.28rem 0.7rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;color:var(--muted)">Cambridge Board of Education</span>
+ <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.06em;padding:0.28rem 0.7rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;color:var(--muted)">Dubai World Trade Centre</span>
+ <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.06em;padding:0.28rem 0.7rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;color:var(--muted)">Government of Oman</span>
+ <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.06em;padding:0.28rem 0.7rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;color:var(--muted)">Film & Television Institute of India</span>
+ </div>
+ </div>
+ </div>
+ </div>
+ <!-- SnoOoze brand footer inside card -->
+ <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+ <div style="display:flex;align-items:center;gap:0.75rem">
+ <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal2));display:flex;align-items:center;justify-content:center;font-size:1.2rem">🐨</div>
+ <div>
+ <div style="font-family:var(--font-display);font-size:1rem;font-weight:400">SnoOozebySJ™</div>
+ <div style="font-family:var(--font-mono);font-size:0.58rem;color:var(--muted);letter-spacing:0.08em">SLEEP & LONGEVITY PRACTICE</div>
+ </div>
+ </div>
+ <a href="https://www.linkedin.com/in/satvik-jaitly" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;color:var(--accent);text-decoration:none;font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.08em;border:1px solid rgba(110,198,255,0.25);border-radius:4px;padding:0.4rem 0.9rem;transition:all 0.2s" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='rgba(110,198,255,0.25)'">
+ <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+ View on LinkedIn
+ </a>
+ </div>
+ </div>
+ </div>
+ <!-- CHALLENGE SECTION -->
+ <div class="challenge-section">
+ <div class="section-label">The Method</div>
+ <h2 class="section-title">14 Days That Can Change<br>Your Biology</h2>
+ <p style="color:var(--muted);max-width:540px;margin:0 auto;line-height:1.8">Each day, you upload your sleep data. Our AI extracts key biomarkers and builds your personal Longevity Sleep Index — tracking your progress in real time.</p>
+ <div class="challenge-grid">
+ <div class="challenge-card">
+ <div class="card-number">// 01</div>
+ <div class="card-icon">📱</div>
+ <div class="card-title">Track Your Sleep</div>
+ <div class="card-desc">Use any sleep device — Apple Watch, Fitbit, Oura, Whoop, or Garmin. Screenshot your data each morning.</div>
+ </div>
+ <div class="challenge-card">
+ <div class="card-number">// 02</div>
+ <div class="card-icon">🤖</div>
+ <div class="card-title">AI Reads the Data</div>
+ <div class="card-desc">Our AI extracts sleep duration, deep sleep, REM, HRV, and sleep score — converting visuals into precise metrics.</div>
+ </div>
+ <div class="challenge-card">
+ <div class="card-number">// 03</div>
+ <div class="card-icon">📈</div>
+ <div class="card-title">Watch Yourself Improve</div>
+ <div class="card-desc">Your Longevity Sleep Index updates daily. Compete on the leaderboard. Receive personalized AI insights.</div>
+ </div>
+ </div>
+ </div>
+ <!-- SCORING BREAKDOWN -->
+ <div style="max-width:800px;margin:5rem auto;padding:0 2rem">
+ <div class="section-label" style="text-align:center;margin-bottom:1rem">Scoring System</div>
+ <h2 class="section-title" style="text-align:center;margin-bottom:3rem">Your Longevity Sleep Index</h2>
+ <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem">
+ <div class="challenge-card" style="display:flex;align-items:flex-start;gap:1rem">
+ <div style="font-family:var(--font-display);font-size:2rem;color:var(--teal);flex-shrink:0">30</div>
+ <div>
+ <div style="font-weight:500;margin-bottom:0.25rem">Sleep Duration</div>
+ <div style="color:var(--muted);font-size:0.8rem;line-height:1.6">7–8 hours = 30 pts · 6–7 hours = 20 pts</div>
+ </div>
+ </div>
+ <div class="challenge-card" style="display:flex;align-items:flex-start;gap:1rem">
+ <div style="font-family:var(--font-display);font-size:2rem;color:var(--teal);flex-shrink:0">25</div>
+ <div>
+ <div style="font-weight:500;margin-bottom:0.25rem">Consistency Score</div>
+ <div style="color:var(--muted);font-size:0.8rem;line-height:1.6">Same bedtime window each night = 25 pts</div>
+ </div>
+ </div>
+ <div class="challenge-card" style="display:flex;align-items:flex-start;gap:1rem">
+ <div style="font-family:var(--font-display);font-size:2rem;color:var(--gold);flex-shrink:0">25</div>
+ <div>
+ <div style="font-weight:500;margin-bottom:0.25rem">Sleep Quality Score</div>
+ <div style="color:var(--muted);font-size:0.8rem;line-height:1.6">Sleep score 80+ = 25 pts</div>
+ </div>
+ </div>
+ <div class="challenge-card" style="display:flex;align-items:flex-start;gap:1rem">
+ <div style="font-family:var(--font-display);font-size:2rem;color:var(--gold);flex-shrink:0">20</div>
+ <div>
+ <div style="font-weight:500;margin-bottom:0.25rem">Recovery (HRV)</div>
+ <div style="color:var(--muted);font-size:0.8rem;line-height:1.6">HRV improvement over baseline = 20 pts</div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <!-- CTA -->
+ <div class="cta-section">
+ <div class="section-label">Begin Your Journey</div>
+ <h2 class="section-title" style="margin-bottom:1rem">Ready to Decode Your Sleep?</h2>
+ <p style="color:var(--muted);margin-bottom:2.5rem;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7">Join 2,400+ participants transforming their longevity through the science of sleep.</p>
+ <button class="btn-primary" onclick="showPage('register')">
+ ◯ Join the 14-Day Sleep Code Challenge
+ </button>
+ </div>
+</div>
+<!-- ══════════════ PAGE 2: REGISTRATION ══════════════ -->
+<div class="page" id="page-register">
+ <div class="form-page">
+ <div class="form-container">
+ <div class="progress-bar"><div class="progress-fill" style="width:25%"></div></div>
+ <div class="form-header">
+ <div class="section-label">Step 1 of 4</div>
+ <h2>Create Your<br><em style="font-style:italic;color:var(--teal)">Sleep Profile</em></h2>
+ <p>Join the 14-Day Sleep Code Challenge and unlock your personal Longevity Sleep Index.</p>
+ </div>
+ <div id="reg-form">
+ <!-- REQUIRED FIELDS -->
+ <div class="field-group">
+ <label class="field-label">Full Name <span>*</span></label>
+ <input type="text" id="reg-name" placeholder="Your name" oninput="validateName(this)" onblur="validateName(this)" />
+ <span class="field-error" id="err-name">Please enter your full name (at least 2 characters)</span>
+ </div>
+ <div class="field-group">
+ <label class="field-label">Email Address <span>*</span></label>
+ <input type="email" id="reg-email" placeholder="you@example.com" oninput="validateEmail(this)" onblur="validateEmail(this)" />
+ <span class="field-error" id="err-email">Please enter a valid email address (e.g. you@example.com)</span>
+ </div>
+ <div class="field-group">
+ <label class="field-label">Phone Number <span>*</span></label>
+ <input type="tel" id="reg-phone" placeholder="+91 98765 43210" oninput="validatePhone(this)" onblur="validatePhone(this)" />
+ <span class="field-error" id="err-phone">Please enter a valid phone number (8–15 digits, optional + prefix)</span>
+ </div>
+ <!-- DEVICE SELECTOR -->
+ <div class="field-group">
+ <label class="field-label">Sleep Tracking Device <span>*</span></label>
+ <div class="device-grid">
+ <label class="device-option" onclick="selectDevice(this,'Apple Watch')">
+ <input type="radio" name="device" value="Apple Watch"/>
+ <span class="device-icon">⌚</span> Apple Watch
+ </label>
+ <label class="device-option" onclick="selectDevice(this,'Fitbit')">
+ <input type="radio" name="device" value="Fitbit"/>
+ <span class="device-icon">🏃</span> Fitbit
+ </label>
+ <label class="device-option" onclick="selectDevice(this,'None')">
+ <input type="radio" name="device" value="None"/>
+ <span class="device-icon">📵</span> No Device
+ </label>
+ <label class="device-option" onclick="selectDevice(this,'Other')">
+ <input type="radio" name="device" value="Other"/>
+ <span class="device-icon">🔮</span> Other
+ </label>
+ </div>
+ </div>
+ <!-- OPTIONAL -->
+ <div class="optional-divider"><span>Optional Details</span></div>
+ <div class="form-grid-2">
+ <div class="field-group">
+ <label class="field-label">Age Range</label>
+ <select id="reg-age">
+ <option value="">Select range</option>
+ <option>18–24</option>
+ <option>25–34</option>
+ <option>35–44</option>
+ <option>45–54</option>
+ <option>55–64</option>
+ <option>65+</option>
+ </select>
+ </div>
+ <div class="field-group">
+ <label class="field-label">Sleep Goal</label>
+ <select id="reg-goal">
+ <option value="">Select goal</option>
+ <option>Improve deep sleep</option>
+ <option>Fix sleep schedule</option>
+ <option>Boost HRV</option>
+ <option>Reduce fatigue</option>
+ <option>General longevity</option>
+ </select>
+ </div>
+ </div>
+ <button class="btn-primary" style="width:100%;justify-content:center;margin-top:1.5rem" onclick="submitRegistration()">
+ Activate My Challenge Dashboard →
+ </button>
+ </div>
+ <!-- SUCCESS -->
+ <div class="success-screen" id="reg-success">
+ <div class="success-icon">✓</div>
+ <h2 style="font-family:var(--font-display);font-size:2rem;font-weight:300;margin-bottom:0.75rem">You're In!</h2>
+ <p style="color:var(--muted);margin-bottom:2rem;line-height:1.7">Your Sleep Code Challenge dashboard is ready. Start uploading your sleep data to begin tracking your Longevity Sleep Index.</p>
+ <button class="btn-primary" onclick="showPage('upload')">Upload Day 1 Sleep Data →</button>
+ </div>
+ </div>
+ </div>
+</div>
+<!-- ══════════════ PAGE 3: UPLOAD ══════════════ -->
+<div class="page" id="page-upload">
+ <div class="upload-page">
+ <div class="section-label">Daily Data Entry</div>
+ <h2>Upload Sleep<br><span class="text-teal">Screenshots</span></h2>
+ <p class="subtitle">Upload one or more sleep screenshots — AI extracts all visible metrics automatically. Fill in anything missing manually below.</p>
+ <div class="field-group">
+ <label class="field-label">Day of Challenge</label>
+ <div class="day-selector" id="day-pills"></div>
+ </div>
+ <div class="field-group">
+ <label class="field-label">Accepted Screenshot Sources</label>
+ <div class="source-badges">
+ <span class="source-badge">Apple Health</span>
+ <span class="source-badge">Fitbit</span>
+ <span class="source-badge">Oura Ring</span>
+ <span class="source-badge">Whoop</span>
+ <span class="source-badge">Garmin</span>
+ </div>
+ </div>
+ <div class="upload-zone" id="drop-zone" onclick="document.getElementById('upload-input').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+ <div class="upload-icon">🌙</div>
+ <div class="upload-text"><strong>Drop screenshots here</strong> or click to browse</div>
+ <div class="upload-subtext">PNG · JPG · HEIC · Multiple files allowed · Max 10MB each</div>
+ </div>
+ <input type="file" id="upload-input" accept="image/*" multiple onchange="handleFileSelect(event)" />
+ <div id="multi-preview-grid" style="display:none;margin-bottom:1.5rem;">
+ <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
+ <span style="font-family:var(--font-mono);font-size:0.7rem;color:var(--teal)" id="upload-count-label">0 screenshots ready</span>
+ <div style="display:flex;gap:0.5rem;">
+ <button class="remove-btn" style="font-size:0.75rem;padding:0.3rem 0.75rem;border:1px solid var(--border);border-radius:6px;background:var(--surface2);color:var(--muted)" onclick="document.getElementById('upload-input').click()">+ Add more</button>
+ <button class="remove-btn" style="font-size:0.75rem;padding:0.3rem 0.75rem;border:1px solid var(--border);border-radius:6px;background:var(--surface2);color:var(--muted)" onclick="clearAllFiles()">✕ Clear all</button>
+ </div>
+ </div>
+ <div id="preview-thumbs" style="display:flex;flex-wrap:wrap;gap:0.75rem;"></div>
+ </div>
+ <div class="processing-bar" id="proc-bar">
+ <div class="processing-label" id="proc-label">⟳ Extracting sleep metrics with AI...</div>
+ <div class="bar-track"><div class="bar-fill" id="bar-fill"></div></div>
+ </div>
+ <div id="error-panel" style="display:none;background:rgba(224,92,92,0.07);border:1px solid rgba(224,92,92,0.35);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;">
+ <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1rem;">
+ <span style="font-size:1.2rem">⊗</span>
+ <span style="font-family:var(--font-mono);font-size:0.7rem;color:#e05c5c;letter-spacing:0.08em;text-transform:uppercase;">Analysis Error</span>
+ <button onclick="document.getElementById('error-panel').style.display='none'" style="margin-left:auto;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;">✕</button>
+ </div>
+ <div id="error-title" style="font-family:var(--font-display);font-size:1rem;color:var(--text);margin-bottom:0.5rem;"></div>
+ <div id="error-body" style="font-family:var(--font-mono);font-size:0.72rem;color:var(--muted);line-height:1.7;white-space:pre-wrap;"></div>
+ <div id="error-fix" style="display:none;margin-top:1rem;padding:0.9rem 1rem;background:rgba(77,217,192,0.06);border:1px solid rgba(77,217,192,0.2);border-radius:8px;font-family:var(--font-mono);font-size:0.68rem;color:var(--teal);line-height:1.8;white-space:pre-wrap;"></div>
+ </div>
+ <!-- DATA REVIEW PANEL -->
+ <div id="review-panel" style="display:none;background:var(--surface);border:1px solid rgba(77,217,192,0.3);border-radius:12px;padding:1.75rem;margin-bottom:1.5rem;">
+ <div style="margin-bottom:1.25rem;">
+ <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--teal);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;">◈ Review Extracted Data</div>
+ <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--muted);">AI extracted the values below. Edit anything incorrect or fill in missing fields, then confirm.</div>
+ </div>
+ <div id="review-captured" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.25rem;"></div>
+ <div id="review-missing" style="display:none;padding:0.75rem 1rem;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:8px;font-family:var(--font-mono);font-size:0.68rem;color:var(--gold);margin-bottom:1.25rem;line-height:1.7;"></div>
+ <div class="manual-grid" id="review-fields-grid"></div>
+ <div style="display:flex;gap:1rem;margin-top:1.5rem;">
+ <button onclick="confirmReview()" style="flex:1;padding:0.9rem;background:linear-gradient(135deg,var(--teal),var(--teal2));border:none;border-radius:10px;color:var(--bg);font-family:var(--font-mono);font-size:0.8rem;font-weight:600;cursor:pointer;letter-spacing:0.05em;">✓ Confirm &amp; Analyse</button>
+ <button onclick="cancelReview()" style="padding:0.9rem 1.5rem;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--muted);font-family:var(--font-mono);font-size:0.8rem;cursor:pointer;">✕ Cancel</button>
+ </div>
+ </div>
+ <div style="margin-bottom:1.5rem;">
+ <button id="manual-toggle-btn" onclick="toggleManualEntry()" style="width:100%;padding:0.9rem 1.5rem;background:var(--surface);border:1px dashed var(--border);border-radius:10px;color:var(--muted);font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.05em;cursor:pointer;transition:all 0.2s;text-align:left;">
+ ✎ &nbsp;Enter or edit metrics manually <span style="float:right;opacity:0.5" id="manual-toggle-arrow">▼</span>
+ </button>
+ </div>
+ <div id="manual-entry-form" style="display:none;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.75rem;margin-bottom:1.5rem;">
+ <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--teal);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.25rem;">◈ Manual Metric Entry</div>
+ <div class="manual-grid">
+ <div class="manual-field"><label class="manual-label">Total Sleep Duration</label><input class="manual-input" id="m_duration" placeholder="e.g. 7h 30m" /></div>
+ <div class="manual-field"><label class="manual-label">Deep Sleep</label><input class="manual-input" id="m_deep_sleep" placeholder="e.g. 1h 15m" /></div>
+ <div class="manual-field"><label class="manual-label">REM Sleep</label><input class="manual-input" id="m_rem_sleep" placeholder="e.g. 1h 30m" /></div>
+ <div class="manual-field"><label class="manual-label">Light Sleep</label><input class="manual-input" id="m_light_sleep" placeholder="e.g. 3h 45m" /></div>
+ <div class="manual-field"><label class="manual-label">Awake Time</label><input class="manual-input" id="m_awake_time" placeholder="e.g. 20m" /></div>
+ <div class="manual-field"><label class="manual-label">Sleep Efficiency</label><input class="manual-input" id="m_efficiency" placeholder="e.g. 88%" /></div>
+ <div class="manual-field"><label class="manual-label">HRV (ms)</label><input class="manual-input" id="m_hrv" placeholder="e.g. 62ms" /></div>
+ <div class="manual-field"><label class="manual-label">Resting Heart Rate</label><input class="manual-input" id="m_resting_hr" placeholder="e.g. 58 bpm" /></div>
+ <div class="manual-field"><label class="manual-label">SpO2</label><input class="manual-input" id="m_spo2" placeholder="e.g. 97%" /></div>
+ <div class="manual-field"><label class="manual-label">Respiratory Rate</label><input class="manual-input" id="m_respiratory_rate" placeholder="e.g. 15 rpm" /></div>
+ <div class="manual-field"><label class="manual-label">Bedtime</label><input class="manual-input" id="m_bedtime" placeholder="e.g. 10:30 PM" /></div>
+ <div class="manual-field"><label class="manual-label">Wake Time</label><input class="manual-input" id="m_wake_time" placeholder="e.g. 6:15 AM" /></div>
+ </div>
+ <div style="margin-top:1rem;"><label class="manual-label">Notes</label><textarea class="manual-input" id="m_notes" style="height:70px;resize:vertical" placeholder="Stress, caffeine, travel, unusual bedtime, alcohol..."></textarea></div>
+ <div style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);opacity:0.7">ⓘ Manual values are merged with AI-extracted data. Manual entries take priority.</div>
+ </div>
+ <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitUpload()" id="submit-upload-btn">◎ Analyse &amp; Build Dashboard</button>
+ </div>
+</div>
+<!-- ══════════════ PAGE 4: DASHBOARD ══════════════ -->
+<div class="page" id="page-dashboard">
+ <div class="dashboard-page">
+ <div class="dashboard-header">
+ <div>
+ <div class="section-label">Your Progress</div>
+ <h2>Sleep Longevity<br><em style="font-style:italic;color:var(--teal)">Dashboard</em></h2>
+ </div>
+ <div class="day-badge">Day 7 of 14</div>
+ </div>
+ <!-- SCORE RING -->
+ <div class="score-hero">
+ <div class="section-label" style="margin-bottom:1.5rem">Today's Longevity Sleep Index</div>
+ <div class="score-ring">
+ <svg viewBox="0 0 140 140" width="160" height="160">
+ <defs>
+ <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+ <stop offset="0%" stop-color="#4dd9c0"/>
+ <stop offset="100%" stop-color="#c9a84c"/>
+ </linearGradient>
+ </defs>
+ <circle class="track" cx="70" cy="70" r="65"/>
+ <circle class="fill" id="score-arc" cx="70" cy="70" r="65"/>
+ </svg>
+ <div class="score-number" id="score-num">0</div>
+ </div>
+ <div class="score-title">Longevity Sleep Index</div>
+ <div class="score-label">↑ +20 pts from Day 1 · Top 12% of participants</div>
+ </div>
+ <!-- METRICS -->
+ <div class="metrics-grid">
+ <div class="metric-card">
+ <div class="metric-icon">🌙</div>
+ <div class="metric-value good">7h 42m</div>
+ <div class="metric-name">Sleep Duration</div>
+ <div class="metric-delta">↑ +28min vs baseline</div>
+ </div>
+ <div class="metric-card">
+ <div class="metric-icon">🧠</div>
+ <div class="metric-value good">1h 18m</div>
+ <div class="metric-name">Deep Sleep</div>
+ <div class="metric-delta">↑ Optimal range</div>
+ </div>
+ <div class="metric-card">
+ <div class="metric-icon">💤</div>
+ <div class="metric-value warn">1h 04m</div>
+ <div class="metric-name">REM Sleep</div>
+ <div class="metric-delta">→ Building toward goal</div>
+ </div>
+ <div class="metric-card">
+ <div class="metric-icon">💓</div>
+ <div class="metric-value good">68ms</div>
+ <div class="metric-name">HRV</div>
+ <div class="metric-delta">↑ +14ms since Day 1</div>
+ </div>
+ </div>
+ <div id="extra-metrics-row" style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:2rem;justify-content:center"></div>
+ <!-- CHART -->
+ <div class="chart-section">
+ <div class="chart-header">
+ <div class="chart-title">14-Day Score Trajectory</div>
+ <div class="chart-legend">
+ <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>Longevity Score</div>
+ <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>Sleep Duration</div>
+ </div>
+ </div>
+ <div class="chart-area">
+ <svg class="chart-svg" id="trend-chart" viewBox="0 0 800 180" preserveAspectRatio="none"></svg>
+ </div>
+ </div>
+ <!-- AI INSIGHTS -->
+ <div class="insights-section">
+ <div class="insights-title">✦ AI Sleep Insights</div>
+ <div class="insight-card" style="animation-delay:0.1s">
+ <div class="insight-emoji">🎯</div>
+ <div class="insight-text"><strong>Your bedtime consistency improved by 42%.</strong> This is strongly associated with improved metabolic health and longevity. Maintaining a consistent sleep-wake window is one of the most powerful interventions for circadian health.</div>
+ </div>
+ <div class="insight-card gold-accent" style="animation-delay:0.2s">
+ <div class="insight-emoji">🧬</div>
+ <div class="insight-text"><strong>Your HRV has increased 14ms since Day 1.</strong> Higher HRV is a key biomarker of autonomic nervous system resilience and is strongly correlated with reduced all-cause mortality risk. You're trending in an excellent direction.</div>
+ </div>
+ <div class="insight-card" style="animation-delay:0.3s">
+ <div class="insight-emoji">🌊</div>
+ <div class="insight-text"><strong>Deep sleep duration is up 22 minutes vs your baseline.</strong> Deep (slow-wave) sleep is when cellular repair, memory consolidation, and growth hormone secretion peak. This improvement translates directly to cognitive performance and immune resilience.</div>
+ </div>
+ <div class="insight-card gold-accent" style="animation-delay:0.4s">
+ <div class="insight-emoji">💡</div>
+ <div class="insight-text"><strong>Recommendation:</strong> Your data shows a pattern of later bedtimes on evenings with screen exposure. Consider a 30-minute digital wind-down to advance your sleep phase and capture an additional 15–20 minutes of slow-wave sleep.</div>
+ </div>
+ </div>
+ <!-- SCORE HISTORY -->
+ <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:2rem">
+ <div style="font-family:var(--font-display);font-size:1.3rem;font-weight:300;margin-bottom:1.5rem">Score History</div>
+ <div style="display:flex;flex-direction:column;gap:0.75rem" id="score-history"></div>
+ </div>
+ <!-- LEADERBOARD -->
+ <div class="leaderboard-section">
+ <div class="leaderboard-title">🏆 Challenge Leaderboard</div>
+ <div id="leaderboard-body">
+ <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--muted);line-height:1.9;padding:0.5rem 0;">
+ <div style="margin-bottom:1rem;color:var(--text);font-size:0.8rem;">The leaderboard updates as participants submit their daily sleep data.</div>
+ <div id="lb-rows" style="display:flex;flex-direction:column;gap:0;"></div>
+ <div id="lb-empty" style="display:none;text-align:center;padding:2rem 0;opacity:0.5;">
+ No submissions yet — be the first to upload your sleep data!
+ </div>
+ </div>
+ </div>
+ </div>
+ <div style="text-align:center;margin-top:2rem">
+ <button class="btn-primary" onclick="showPage('upload')">Upload Today's Sleep Data →</button>
+ </div>
+ </div>
+</div>
+<script>const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [], shooters = [], t = 0;
+function resizeCanvas() {
+W = canvas.width = window.innerWidth;
+H = canvas.height = window.innerHeight;
+buildStars();
+}
+function buildStars() {
+stars = [];
+for (let i = 0; i < 40; i++) {
+stars.push({ x: Math.random()*W, y: Math.random()*H*0.85,
+r: Math.random()*1.6+0.9, base: Math.random()*0.5+0.5,
+twinkleSpeed: Math.random()*0.00015+0.00005, phase: Math.random()*Math.PI*2, type:'big' });
+}
+for (let i = 0; i < 140; i++) {
+stars.push({ x: Math.random()*W, y: Math.random()*H*0.88,
+r: Math.random()*0.9+0.4, base: Math.random()*0.4+0.3,
+twinkleSpeed: Math.random()*0.00012+0.00004, phase: Math.random()*Math.PI*2, type:'med' });
+}
+for (let i = 0; i < 300; i++) {
+stars.push({ x: Math.random()*W, y: Math.random()*H*0.90,
+r: Math.random()*0.5+0.2, base: Math.random()*0.3+0.1,
+twinkleSpeed: Math.random()*0.00010+0.00003, phase: Math.random()*Math.PI*2, type:'small' });
+}
+}
+function drawSky() {
+const g = ctx.createLinearGradient(0, 0, 0, H);
+g.addColorStop(0, '#00010a');
+g.addColorStop(0.35, '#00030e');
+g.addColorStop(0.65, '#000814');
+g.addColorStop(0.85, '#010c1a');
+g.addColorStop(1, '#021020');
+ctx.fillStyle = g;
+ctx.fillRect(0, 0, W, H);
+}
+function drawStars(time) {
+stars.forEach(s => {
+const twinkle = 0.88 + 0.12 * Math.sin(time * s.twinkleSpeed * 1000 + s.phase);
+const opacity = s.base * twinkle;
+if (s.type === 'big') {
+const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 5);
+glow.addColorStop(0, `rgba(200,220,255,${opacity * 0.25})`);
+glow.addColorStop(0.4, `rgba(180,210,255,${opacity * 0.08})`);
+glow.addColorStop(1, `rgba(160,200,255,0)`);
+ctx.beginPath(); ctx.arc(s.x, s.y, s.r*5, 0, Math.PI*2);
+ctx.fillStyle = glow; ctx.fill();
+if (s.base > 0.8) {
+ctx.save();
+ctx.globalAlpha = opacity * 0.4;
+ctx.strokeStyle = 'rgba(210,230,255,0.6)';
+ctx.lineWidth = 0.5;
+const cl = s.r * 6;
+ctx.beginPath(); ctx.moveTo(s.x-cl,s.y); ctx.lineTo(s.x+cl,s.y); ctx.stroke();
+ctx.beginPath(); ctx.moveTo(s.x,s.y-cl); ctx.lineTo(s.x,s.y+cl); ctx.stroke();
+ctx.restore();
+}
+}
+ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+const warm = s.phase % (Math.PI*2) < Math.PI;
+ctx.fillStyle = warm
+? `rgba(255,245,220,${opacity})`
+: `rgba(210,230,255,${opacity})`;
+ctx.fill();
+});
+}
+function drawMilkyWay() {
+ctx.save();
+ctx.filter = 'blur(18px)';
+const mw = ctx.createLinearGradient(W*0.1, H*0.05, W*0.9, H*0.55);
+mw.addColorStop(0, 'rgba(150,170,220,0)');
+mw.addColorStop(0.2, 'rgba(150,170,220,0.045)');
+mw.addColorStop(0.5, 'rgba(170,185,230,0.07)');
+mw.addColorStop(0.8, 'rgba(150,170,220,0.04)');
+mw.addColorStop(1, 'rgba(150,170,220,0)');
+ctx.fillStyle = mw;
+ctx.beginPath();
+ctx.moveTo(W*0.05, 0);
+ctx.lineTo(W*0.95, H*0.6);
+ctx.lineTo(W, H*0.6);
+ctx.lineTo(W*0.1, 0);
+ctx.closePath();
+ctx.fill();
+ctx.restore();
+}
+function drawHorizonGlow() {
+const g = ctx.createLinearGradient(0, H*0.75, 0, H);
+g.addColorStop(0, 'rgba(10,25,50,0)');
+g.addColorStop(0.6, 'rgba(8,20,42,0.5)');
+g.addColorStop(1, 'rgba(5,15,35,0.9)');
+ctx.fillStyle = g;
+ctx.fillRect(0, H*0.75, W, H*0.25);
+}
+function frame(ts) {
+t = ts;
+ctx.clearRect(0,0,W,H);
+drawSky();
+drawMilkyWay();
+drawStars(t);
+drawHorizonGlow();
+requestAnimationFrame(frame);
+}
+resizeCanvas();
+requestAnimationFrame(frame);
+window.addEventListener('resize', resizeCanvas);
+function showPage(id) {
+if (id === 'register' && localStorage.getItem('slc_name')) {
+id = 'upload';
+}
+document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+document.getElementById('page-' + id).classList.add('active');
+const navEl = document.getElementById('nav-' + id);
+if (navEl) navEl.classList.add('active');
+window.scrollTo({ top: 0, behavior: 'smooth' });
+if (id === 'dashboard') initDashboard();
+if (id === 'upload') initDayPills();
+}
+let selectedDevice = '';
+function selectDevice(el, val) {
+document.querySelectorAll('.device-option').forEach(d => d.classList.remove('selected'));
+el.classList.add('selected');
+selectedDevice = val;
+document.querySelector('.device-grid').style.outline = '';
+}
+function isValidEmail(v) {
+return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+}
+function isValidPhone(v) {
+const digits = v.replace(/\D/g, '');
+return digits.length >= 8 && digits.length <= 15;
+}
+function isValidName(v) { return v.trim().length >= 2; }
+function validateEmail(el) {
+const err = document.getElementById('err-email');
+if (!el.value.trim()) { clearFieldState(el, err); return; }
+if (isValidEmail(el.value.trim())) { setValid(el, err); } else { setInvalid(el, err); }
+}
+function validatePhone(el) {
+const err = document.getElementById('err-phone');
+if (!el.value.trim()) { clearFieldState(el, err); return; }
+if (isValidPhone(el.value.trim())) { setValid(el, err); } else { setInvalid(el, err); }
+}
+function validateName(el) {
+const err = document.getElementById('err-name');
+if (!el.value.trim()) { clearFieldState(el, err); return; }
+if (isValidName(el.value)) { setValid(el, err); } else { setInvalid(el, err); }
+}
+function setValid(el, errEl) { el.classList.add('input-valid'); el.classList.remove('input-invalid'); errEl.classList.remove('visible'); }
+function setInvalid(el, errEl) { el.classList.add('input-invalid'); el.classList.remove('input-valid'); errEl.classList.add('visible'); }
+function clearFieldState(el, errEl) { el.classList.remove('input-valid','input-invalid'); errEl.classList.remove('visible'); }
+function submitRegistration() {
+const nameEl = document.getElementById('reg-name');
+const emailEl = document.getElementById('reg-email');
+const phoneEl = document.getElementById('reg-phone');
+validateName(nameEl);
+validateEmail(emailEl);
+validatePhone(phoneEl);
+if (!isValidName(nameEl.value)) { nameEl.focus(); return; }
+if (!isValidEmail(emailEl.value.trim())) { emailEl.focus(); return; }
+if (!isValidPhone(phoneEl.value.trim())) { phoneEl.focus(); return; }
+if (!selectedDevice) {
+document.querySelector('.device-grid').style.outline = '1px solid rgba(224,92,92,0.5)';
+document.querySelector('.device-grid').style.borderRadius = '8px';
+setTimeout(() => document.querySelector('.device-grid').style.outline = '', 2000);
+return;
+}
+localStorage.setItem('slc_name', nameEl.value.trim());
+localStorage.setItem('slc_email', emailEl.value.trim());
+localStorage.setItem('slc_phone', phoneEl.value.trim());
+localStorage.setItem('slc_device', selectedDevice);
+document.getElementById('reg-form').style.display = 'none';
+document.getElementById('reg-success').style.display = 'block';
+document.querySelector('.progress-fill').style.width = '100%';
+}
+function loadSavedRegistration() {
+const name = localStorage.getItem('slc_name');
+const email = localStorage.getItem('slc_email');
+const phone = localStorage.getItem('slc_phone');
+const device = localStorage.getItem('slc_device');
+if (!name) return false;
+document.getElementById('reg-name').value = name;
+document.getElementById('reg-email').value = email;
+document.getElementById('reg-phone').value = phone;
+if (device) {
+selectedDevice = device;
+document.querySelectorAll('.device-option').forEach(el => {
+if (el.getAttribute('onclick') && el.getAttribute('onclick').includes(device)) {
+el.classList.add('selected');
+}
+});
+}
+return true;
+}
+let uploadedFiles = [];
+let selectedDay = 1;
+function getChallengeStartDate() {
+let start = localStorage.getItem('slc_start_date');
+if (!start) {
+const now = new Date();
+const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+start = midnight.toISOString();
+localStorage.setItem('slc_start_date', start);
+}
+return new Date(start);
+}
+function getCurrentUnlockedDay() {
+const start = getChallengeStartDate();
+const now = new Date();
+const msPerDay = 24 * 60 * 60 * 1000;
+const elapsed = Math.floor((now - start) / msPerDay);
+const hour = now.getHours();
+const todayDay = elapsed + 1;
+const unlockedDay = hour >= 5 ? todayDay : Math.max(1, todayDay - 1);
+return Math.min(14, Math.max(1, unlockedDay));
+}
+function isDaySubmitted(day) {
+return localStorage.getItem('slc_submitted_day_' + day) === 'true';
+}
+function markDaySubmitted(day) {
+localStorage.setItem('slc_submitted_day_' + day, 'true');
+}
+function initDayPills() {
+const container = document.getElementById('day-pills');
+const unlocked = getCurrentUnlockedDay();
+container.innerHTML = '';
+for (let i = 1; i <= 14; i++) {
+const pill = document.createElement('div');
+const submitted = isDaySubmitted(i);
+const isLocked = i > unlocked;
+const isActive = i === selectedDay;
+let cls = 'day-pill';
+if (isActive && !isLocked) cls += ' active';
+if (isLocked) cls += ' day-locked';
+if (submitted) cls += ' day-submitted';
+pill.className = cls;
+pill.innerHTML = isLocked
+? `Day ${i} 🔒`
+: submitted
+? `Day ${i} ✓`
+: `Day ${i}`;
+pill.onclick = () => {
+if (isLocked) {
+showDayLockedMsg(i, unlocked);
+return;
+}
+if (submitted) {
+showDayLockedMsg(i, unlocked, true);
+return;
+}
+document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active'));
+pill.classList.add('active');
+selectedDay = i;
+};
+container.appendChild(pill);
+}
+if (!isDaySubmitted(unlocked)) {
+selectedDay = unlocked;
+const activePill = container.children[unlocked - 1];
+if (activePill) {
+document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active'));
+activePill.classList.add('active');
+}
+}
+}
+function showDayLockedMsg(day, unlocked, isSubmitted) {
+const panel = document.getElementById('error-panel');
+const eTitle = document.getElementById('error-title');
+const eBody = document.getElementById('error-body');
+const eFix = document.getElementById('error-fix');
+if (isSubmitted) {
+eTitle.textContent = `Day ${day} is already submitted.`;
+eBody.textContent = 'Data for this day has been confirmed and locked. Submissions cannot be edited after confirmation.';
+eFix.style.display = 'block';
+eFix.textContent = 'If you believe there is an error in your submission, please contact the challenge administrator.';
+} else {
+const now = new Date();
+const hour = now.getHours();
+const nextUnlock = new Date();
+nextUnlock.setDate(nextUnlock.getDate() + (day - unlocked));
+nextUnlock.setHours(5, 0, 0, 0);
+eTitle.textContent = `Day ${day} is not yet available.`;
+eBody.textContent = `You can only upload data for one day at a time. Day ${day} will unlock after 5:00 AM on ${nextUnlock.toLocaleDateString('en-IN', {weekday:'long', day:'numeric', month:'long'})}.`;
+eFix.style.display = 'block';
+eFix.textContent = `Currently available: Day ${unlocked}${isDaySubmitted(unlocked) ? ' (already submitted)' : ' — ready to upload'}.`;
+}
+panel.style.display = 'block';
+panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+function handleDragOver(e) { e.preventDefault(); document.getElementById('drop-zone').classList.add('drag-over'); }
+function handleDragLeave(e) { document.getElementById('drop-zone').classList.remove('drag-over'); }
+function handleDrop(e) {
+e.preventDefault();
+document.getElementById('drop-zone').classList.remove('drag-over');
+if (e.dataTransfer.files.length) addFiles(e.dataTransfer.files);
+}
+function handleFileSelect(e) {
+if (e.target.files.length) addFiles(e.target.files);
+e.target.value = '';
+}
+function addFiles(fileList) {
+const promises = Array.from(fileList).map(file => new Promise(resolve => {
+const reader = new FileReader();
+reader.onload = ev => {
+const dataUrl = ev.target.result;
+const base64 = dataUrl.split(',')[1];
+const mediaType = dataUrl.match(/data:(image\/[^;]+);/)?.[1] || 'image/jpeg';
+uploadedFiles.push({ name: file.name, dataUrl, base64, mediaType });
+resolve();
+};
+reader.readAsDataURL(file);
+}));
+Promise.all(promises).then(renderThumbs);
+}
+function renderThumbs() {
+const grid = document.getElementById('multi-preview-grid');
+const thumbs = document.getElementById('preview-thumbs');
+const label = document.getElementById('upload-count-label');
+if (!uploadedFiles.length) { grid.style.display = 'none'; return; }
+grid.style.display = 'block';
+document.getElementById('drop-zone').style.display = 'none';
+label.textContent = uploadedFiles.length + ' screenshot' + (uploadedFiles.length > 1 ? 's' : '') + ' ready';
+thumbs.innerHTML = uploadedFiles.map((f, i) => `
+<div class="thumb-wrap">
+<img src="${f.dataUrl}" alt="${f.name}" />
+<button class="thumb-remove" onclick="removeThumb(${i})">✕</button>
+<div class="thumb-label">${f.name.replace(/\.[^.]+$/, '')}</div>
+</div>`).join('');
+}
+function removeThumb(idx) {
+uploadedFiles.splice(idx, 1);
+if (!uploadedFiles.length) {
+document.getElementById('multi-preview-grid').style.display = 'none';
+document.getElementById('drop-zone').style.display = 'flex';
+} else {
+renderThumbs();
+}
+}
+function clearAllFiles() {
+uploadedFiles = [];
+document.getElementById('multi-preview-grid').style.display = 'none';
+document.getElementById('drop-zone').style.display = 'flex';
+}
+function toggleManualEntry() {
+const form = document.getElementById('manual-entry-form');
+const arrow = document.getElementById('manual-toggle-arrow');
+const open = form.style.display === 'none';
+form.style.display = open ? 'block' : 'none';
+arrow.textContent = open ? '▲' : '▼';
+}
+function getManualValues() {
+const ids = ['duration','deep_sleep','rem_sleep','light_sleep','awake_time',
+'efficiency','hrv','resting_hr','spo2','respiratory_rate','bedtime','wake_time'];
+const vals = {};
+ids.forEach(id => {
+const el = document.getElementById('m_' + id);
+if (el && el.value.trim()) vals[id === 'efficiency' ? 'sleep_efficiency' : id] = el.value.trim();
+});
+const notes = document.getElementById('m_notes');
+if (notes && notes.value.trim()) vals._notes = notes.value.trim();
+return vals;
+}
+function prefillManualFromAI(metrics) {
+const map = {
+duration:'m_duration', deep_sleep:'m_deep_sleep', rem_sleep:'m_rem_sleep',
+light_sleep:'m_light_sleep', awake_time:'m_awake_time',
+sleep_efficiency:'m_efficiency', hrv:'m_hrv', resting_hr:'m_resting_hr',
+spo2:'m_spo2', respiratory_rate:'m_respiratory_rate',
+bedtime:'m_bedtime', wake_time:'m_wake_time'
+};
+Object.entries(map).forEach(([key, elId]) => {
+const el = document.getElementById(elId);
+if (el && metrics[key] && !el.value) el.value = metrics[key];
+});
+}
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+const ALL_METRICS = [
+{ key:'duration', label:'Sleep Duration', placeholder:'e.g. 7h 30m' },
+{ key:'deep_sleep', label:'Deep Sleep', placeholder:'e.g. 1h 15m' },
+{ key:'rem_sleep', label:'REM Sleep', placeholder:'e.g. 1h 30m' },
+{ key:'light_sleep', label:'Light Sleep', placeholder:'e.g. 3h 45m' },
+{ key:'awake_time', label:'Awake Time', placeholder:'e.g. 20m' },
+{ key:'sleep_efficiency', label:'Sleep Efficiency', placeholder:'e.g. 88%' },
+{ key:'hrv', label:'HRV', placeholder:'e.g. 42ms' },
+{ key:'resting_hr', label:'Resting HR', placeholder:'e.g. 58 bpm' },
+{ key:'spo2', label:'SpO2', placeholder:'e.g. 97%' },
+{ key:'respiratory_rate', label:'Resp. Rate', placeholder:'e.g. 15 rpm' },
+{ key:'bedtime', label:'Bedtime', placeholder:'e.g. 10:30 PM' },
+{ key:'wake_time', label:'Wake Time', placeholder:'e.g. 6:15 AM' },
+{ key:'recovery_score', label:'Recovery Score', placeholder:'e.g. 86' },
+];
+let _reviewResolve = null;
+function showReviewPanel(metrics) {
+return new Promise(resolve => {
+_reviewResolve = resolve;
+const panel = document.getElementById('review-panel');
+const captured = document.getElementById('review-captured');
+const missing = document.getElementById('review-missing');
+const grid = document.getElementById('review-fields-grid');
+const capturedKeys = ALL_METRICS.filter(m => metrics[m.key]);
+const missingMetrics = ALL_METRICS.filter(m => !metrics[m.key]);
+captured.innerHTML = capturedKeys.map(m =>
+`<div style="background:rgba(77,217,192,0.1);border:1px solid rgba(77,217,192,0.3);border-radius:6px;padding:0.35rem 0.7rem;font-family:var(--font-mono);font-size:0.62rem;">
+<span style="color:var(--teal)">✓</span> <span style="color:var(--muted)">${m.label}:</span> <span style="color:var(--text)">${metrics[m.key]}</span>
+</div>`
+).join('');
+if (missingMetrics.length) {
+missing.style.display = 'block';
+missing.innerHTML = '⚠ Missing fields — enter manually if available:<br>' +
+missingMetrics.map(m => `<strong>${m.label}</strong>`).join(' · ');
+} else {
+missing.style.display = 'none';
+}
+grid.innerHTML = ALL_METRICS.map(m => `
+<div class="manual-field">
+<label class="manual-label">${m.label}</label>
+<input class="manual-input" id="rv_${m.key}" value="${metrics[m.key] || ''}" placeholder="${m.placeholder}" />
+</div>`).join('');
+ALL_METRICS.forEach(m => {
+const rvEl = document.getElementById('rv_' + m.key);
+const manualId = m.key === 'sleep_efficiency' ? 'm_efficiency' : 'm_' + m.key;
+const manualEl = document.getElementById(manualId);
+if (rvEl && manualEl && metrics[m.key]) manualEl.value = metrics[m.key];
+});
+panel.style.display = 'block';
+panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+}
+function confirmReview() {
+ALL_METRICS.forEach(m => {
+const rvEl = document.getElementById('rv_' + m.key);
+const manualId = m.key === 'sleep_efficiency' ? 'm_efficiency' : 'm_' + m.key;
+const manualEl = document.getElementById(manualId);
+if (rvEl && manualEl) manualEl.value = rvEl.value;
+});
+document.getElementById('review-panel').style.display = 'none';
+if (_reviewResolve) { _reviewResolve(true); _reviewResolve = null; }
+}
+function cancelReview() {
+document.getElementById('review-panel').style.display = 'none';
+if (_reviewResolve) { _reviewResolve(false); _reviewResolve = null; }
+}
+async function updateLeaderboard() {
+const lbRows = document.getElementById('lb-rows');
+const lbEmpty = document.getElementById('lb-empty');
+if (!lbRows) return;
+if (!SHEETS_URL) return;
+try {
+const resp = await fetch(SHEETS_URL + '?action=leaderboard', { method: 'GET', mode: 'no-cors' });
+} catch(e) {}
+const name = localStorage.getItem('slc_name') || 'You';
+const scores = scoreHistory;
+if (!scores.length) { lbEmpty.style.display = 'block'; return; }
+const avg = Math.round(scores.reduce((a,b) => a+b, 0) / scores.length);
+const best = Math.max(...scores);
+lbEmpty.style.display = 'none';
+lbRows.innerHTML = `
+<div class="leaderboard-item" style="background:rgba(77,217,192,0.04);border-radius:8px;padding:1rem;border:1px solid rgba(77,217,192,0.15);">
+<div class="rank" style="color:var(--teal)">★</div>
+<div class="lb-avatar">🌙</div>
+<div class="lb-info">
+<div class="lb-name">${name}</div>
+<div class="lb-badge">
+</div>
+<div style="text-align:right">
+<div class="lb-score">${avg}</div>
+<div class="lb-score-label">avg score</div>
+</div>
+</div>
+<div style="margin-top:1.25rem;padding:1rem;background:var(--surface2);border-radius:10px;font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);line-height:1.8;">
+<div style="color:var(--teal);margin-bottom:0.4rem;">ⓘ Group leaderboard</div>
+The full group leaderboard across all participants is maintained in the challenge Google Sheet.
+Your administrator can share the group rankings at the end of each day.
+</div>`;
+}
+function renderLeaderboardOnDashboard() {
+updateLeaderboard();
+}
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwvgqwj498e4QbBEhg6oXSATWBFIUDCgYkB_8-19HdLMXyLaIHuLOpabkjXe8h-cd3wBg/exec';
+async function saveToGoogleSheets(data) {
+if (!SHEETS_URL) return;
+const m = data.metrics || {};
+const insights = data.insights
+? data.insights.map(i => i.title + ': ' + i.body).join(' | ')
+: '';
+const name = document.getElementById('reg-name')?.value || '';
+const email = document.getElementById('reg-email')?.value || '';
+const phone = document.getElementById('reg-phone')?.value || '';
+const payload = {
+name, email, phone,
+device: selectedDevice || '',
+day: selectedDay || 1,
+duration: m.duration || '',
+deep_sleep: m.deep_sleep || '',
+rem_sleep: m.rem_sleep || '',
+light_sleep: m.light_sleep || '',
+awake_time: m.awake_time || '',
+sleep_efficiency: m.sleep_efficiency || '',
+hrv: m.hrv || '',
+resting_hr: m.resting_hr || '',
+spo2: m.spo2 || '',
+respiratory_rate: m.respiratory_rate || '',
+bedtime: m.bedtime || '',
+wake_time: m.wake_time || '',
+score: data.score || '',
+device_detected: data.device_detected || '',
+notes: document.getElementById('m_notes')?.value || '',
+insights
+};
+await fetch(SHEETS_URL, {
+method: 'POST',
+mode: 'no-cors',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify(payload)
+});
+}
+function extractJSON(text, context) {
+let s = text.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+const start = s.indexOf('{');
+const end = s.lastIndexOf('}');
+if (start === -1 || end === -1 || end <= start) {
+const err = new Error('NO_JSON');
+err.context = context; err.raw = text.slice(0, 300);
+throw err;
+}
+s = s.slice(start, end + 1);
+try {
+return JSON.parse(s);
+} catch(e) {
+const fixed = s.replace(/,\s*([}\]])/g, '$1');
+try {
+return JSON.parse(fixed);
+} catch(e2) {
+const err = new Error('INVALID_JSON');
+err.context = context; err.syntaxMsg = e2.message; err.raw = s.slice(0, 300);
+throw err;
+}
+}
+}
+function showErrorPanel(err) {
+const panel = document.getElementById('error-panel');
+const eTitle = document.getElementById('error-title');
+const eBody = document.getElementById('error-body');
+const eFix = document.getElementById('error-fix');
+const ctx = err.context || '';
+const isShot = ctx.startsWith('screenshot_');
+const imgNum = isShot ? ctx.replace('screenshot_', '') : null;
+let title = 'Something went wrong during analysis.';
+let body = '';
+let fix = '';
+if (err.message === 'NO_JSON') {
+title = isShot
+? `Screenshot ${imgNum}: AI did not return readable data.`
+: 'Scoring step: AI did not return a valid score.';
+body = 'The AI responded with plain text instead of structured sleep data. This usually means the screenshot does not contain a recognisable sleep summary screen.';
+fix = isShot
+? `What to do:\n• Make sure the screenshot shows a sleep summary screen (not a home screen or app menu).\n• Try cropping the image to just the sleep data section.\n• Accepted apps: Apple Health · Fitbit · Oura · Whoop · Garmin.\n• If the image is low-resolution, export a higher-quality version.\n• You can skip the screenshot and enter your metrics manually in the panel below.`
+: `What to do:\n• Re-submit — this is usually a temporary issue.\n• If it keeps failing, enter all metrics manually and submit without a screenshot.`;
+} else if (err.message === 'INVALID_JSON') {
+title = isShot
+? `Screenshot ${imgNum}: AI returned malformed data.`
+: 'Scoring step: AI returned a malformed response.';
+body = `The AI response could not be parsed as structured data.\nTechnical detail: ${err.syntaxMsg || 'JSON syntax error'}.`;
+fix = `What to do:\n• Re-submit — this almost always resolves on a second attempt.\n• If Screenshot ${imgNum || ''} keeps failing, remove it and re-upload a clearer crop.\n• Use the manual entry panel to fill in values directly and bypass the screenshot.`;
+} else if (err.message && err.message.includes('API error')) {
+title = 'API connection error.';
+body = 'Could not reach the AI analysis service. This is a network or authentication issue, not a problem with your screenshot.';
+fix = `What to do:\n• Check your internet connection and try again.\n• If you are on a VPN or corporate network, try disabling it.\n• Wait 30 seconds and re-submit.`;
+} else {
+title = 'Unexpected error.';
+body = err.message || 'An unknown error occurred.';
+fix = 'What to do:\n• Re-submit the form.\n• If the problem continues, clear all screenshots and enter your data manually.';
+}
+eTitle.textContent = title;
+eBody.textContent = body;
+if (fix) { eFix.style.display = 'block'; eFix.textContent = fix; }
+else { eFix.style.display = 'none'; }
+panel.style.display = 'block';
+panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+let aiSleepData = null;
+async function submitUpload() {
+const bar = document.getElementById('proc-bar');
+const fill = document.getElementById('bar-fill');
+const label = document.getElementById('proc-label');
+const btn = document.getElementById('submit-upload-btn');
+const errorPanel = document.getElementById('error-panel');
+const manualVals = getManualValues();
+const hasImages = uploadedFiles.length > 0;
+const hasManual = Object.keys(manualVals).filter(k => k !== '_notes').length > 0;
+if (!hasImages && !hasManual) {
+alert('Please upload at least one screenshot, or enter metrics manually.');
+return;
+}
+errorPanel.style.display = 'none';
+bar.style.display = 'block';
+btn.disabled = true; btn.style.opacity = '0.5';
+function setProgress(pct, text) {
+fill.style.width = pct + '%';
+label.textContent = text;
+}
+try {
+let mergedMetrics = {};
+if (hasImages) {
+for (let i = 0; i < uploadedFiles.length; i++) {
+const f = uploadedFiles[i];
+const pct = Math.round(10 + (i / uploadedFiles.length) * 55);
+setProgress(pct, `⟳ Analysing screenshot ${i + 1} of ${uploadedFiles.length} — ${f.name}...`);
+const response = await fetch('/.netlify/functions/proxy', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({
+model: 'claude-sonnet-4-20250514',
+max_tokens: 1000,
+messages: [{
+role: 'user',
+content: [
+{ type: 'image', source: { type: 'base64', media_type: f.mediaType, data: f.base64 } },
+{ type: 'text', text: `You are a sleep health AI. Extract every metric visible in this sleep tracker screenshot.
+Important extraction rules:
+- HRV: If shown as a range (e.g. "36-48ms"), use the midpoint (e.g. "42ms"). If shown as a single value, use that directly.
+- Recovery score: If a score like "86" is shown at the top (common in Whoop), capture it as "recovery_score".
+- Resting HR: Use the lowest or average heart rate shown during sleep.
+- Duration: Look for total sleep time, may be labelled "Time in Bed" or "Sleep Duration".
+- Device: Identify from UI style — Whoop has dark teal theme, Oura is dark minimal, Garmin has blue/green, Apple Health is white, Fitbit is teal/white.
+Respond ONLY with a valid JSON object, no markdown or backticks. Structure:
+{
+"duration": "7h 42m",
+"deep_sleep": "1h 18m",
+"rem_sleep": "1h 04m",
+"light_sleep": "3h 20m",
+"awake_time": "18m",
+"sleep_efficiency": "91%",
+"hrv": "42ms",
+"resting_hr": "51 bpm",
+"bedtime": "10:27 PM",
+"wake_time": "5:33 AM",
+"respiratory_rate": "15 rpm",
+"spo2": "97%",
+"recovery_score": "86",
+"device_detected": "Whoop / Oura / Garmin / Apple Health / Fitbit / Unknown"
+}
+Only include fields actually visible. Omit fields you cannot see.` }
+]
+}]
+})
+});
+if (!response.ok) throw new Error('API error on screenshot ' + (i + 1));
+const data = await response.json();
+const raw = data.content.map(b => b.text || '').join('');
+const parsed = extractJSON(raw, 'screenshot_' + (i + 1));
+Object.entries(parsed).forEach(([k, v]) => {
+if (!mergedMetrics[k]) mergedMetrics[k] = v;
+});
+}
+prefillManualFromAI(mergedMetrics);
+}
+setProgress(72, '⟳ Merging data sources...');
+await delay(300);
+const { _notes, ...manualMetrics } = manualVals;
+Object.entries(manualMetrics).forEach(([k, v]) => { mergedMetrics[k] = v; });
+setProgress(72, '⟳ Merging data — please review...');
+await delay(300);
+bar.style.display = 'none';
+const proceed = await showReviewPanel(mergedMetrics);
+if (!proceed) {
+btn.disabled = false; btn.style.opacity = '1';
+return;
+}
+const reviewedManual = getManualValues();
+const { _notes: reviewNotes, ...reviewMetrics } = reviewedManual;
+Object.entries(reviewMetrics).forEach(([k, v]) => { mergedMetrics[k] = v; });
+bar.style.display = 'block';
+setProgress(82, '⟳ Computing Longevity Score & insights...');
+const summaryPrompt = `You are a sleep longevity expert. Here are a participant's merged sleep metrics:
+${JSON.stringify(mergedMetrics, null, 2)}
+${_notes ? 'Participant notes: ' + _notes : ''}
+Compute a Longevity Sleep Index score (0-100) and generate personalised insights.
+Respond ONLY with valid JSON, no markdown. Structure:
+{
+"score": 78,
+"score_breakdown": { "duration": 20, "deep_sleep": 18, "rem_sleep": 14, "efficiency": 16, "hrv": 10 },
+"insights": [
+{ "emoji": "🎯", "title": "Short title", "body": "2-3 sentence longevity-focused interpretation.", "accent": false },
+{ "emoji": "🧬", "title": "Short title", "body": "2-3 sentences.", "accent": true },
+{ "emoji": "🌊", "title": "Short title", "body": "2-3 sentences.", "accent": false },
+{ "emoji": "💡", "title": "Recommendation", "body": "One actionable recommendation.", "accent": true }
+],
+"missing_fields": ["list metrics still missing after all sources"]
+}`;
+const scoreResp = await fetch('/.netlify/functions/proxy', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({
+model: 'claude-sonnet-4-20250514',
+max_tokens: 1000,
+messages: [{ role: 'user', content: summaryPrompt }]
+})
+});
+if (!scoreResp.ok) throw new Error('API error on scoring');
+const scoreData = await scoreResp.json();
+const scoreRaw = scoreData.content.map(b => b.text || '').join('');
+const scoreResult = extractJSON(scoreRaw, 'scoring');
+aiSleepData = { metrics: mergedMetrics, ...scoreResult, device_detected: mergedMetrics.device_detected };
+setProgress(100, '✓ Analysis complete!');
+await delay(700);
+markDaySubmitted(selectedDay);
+updateLeaderboard();
+saveToGoogleSheets(aiSleepData).catch(e => console.warn('Sheet save failed:', e));
+showPage('dashboard');
+btn.disabled = false; btn.style.opacity = '1';
+bar.style.display = 'none'; fill.style.width = '0';
+} catch (err) {
+console.error('Analysis failed:', err);
+bar.style.display = 'none'; fill.style.width = '0';
+btn.disabled = false; btn.style.opacity = '1';
+showErrorPanel(err);
+}
+}
+let scoreHistory = [];
+let durationHistory = [];
+function parseDurationToHours(str) {
+if (!str) return null;
+const h = str.match(/(\d+)\s*h/);
+const m = str.match(/(\d+)\s*m/);
+return (h ? parseInt(h[1]) : 0) + (m ? parseInt(m[1]) / 60 : 0);
+}
+function initDashboard() {
+const d = aiSleepData;
+if (d) {
+const score = d.score || 0;
+const m = d.metrics || {};
+if (!d._recorded) {
+scoreHistory.push(score);
+durationHistory.push(parseDurationToHours(m.duration) || 0);
+d._recorded = true;
+}
+const dayBadge = document.querySelector('.day-badge');
+if (dayBadge) dayBadge.textContent = 'Day ' + scoreHistory.length + ' of 14';
+const arc = document.getElementById('score-arc');
+const numEl = document.getElementById('score-num');
+const circumference = 408;
+setTimeout(() => { arc.style.strokeDashoffset = circumference - (score / 100) * circumference; }, 200);
+let n = 0;
+const countUp = setInterval(() => {
+n = Math.min(n + 2, score);
+numEl.textContent = n;
+if (n >= score) clearInterval(countUp);
+}, 20);
+const scoreLabel = document.querySelector('.score-label');
+if (scoreLabel) {
+const delta = scoreHistory.length > 1 ? score - scoreHistory[0] : null;
+scoreLabel.textContent = delta !== null
+? (delta >= 0 ? '↑ +' : '↓ ') + delta + ' pts from Day 1'
+: 'Based on your uploaded sleep data';
+}
+const cards = document.querySelectorAll('.metric-card');
+const metricDefs = [
+{ icon:'🌙', label:'Sleep Duration', value: m.duration || '—', delta: m.sleep_efficiency ? 'Efficiency: ' + m.sleep_efficiency : '—', good: parseDurationToHours(m.duration) >= 7 },
+{ icon:'🧠', label:'Deep Sleep', value: m.deep_sleep || '—', delta: parseDurationToHours(m.deep_sleep) >= 1 ? '↑ Optimal range' : '→ Below optimal', good: parseDurationToHours(m.deep_sleep) >= 1 },
+{ icon:'💤', label:'REM Sleep', value: m.rem_sleep || '—', delta: parseDurationToHours(m.rem_sleep) >= 1.5 ? '↑ Excellent' : '→ Building toward goal', good: parseDurationToHours(m.rem_sleep) >= 1.5 },
+{ icon:'💓', label:'HRV', value: m.hrv || m.resting_hr || '—', delta: m.hrv ? 'Heart Rate Variability' : (m.resting_hr ? 'Resting Heart Rate' : '—'), good: true }
+];
+cards.forEach((card, i) => {
+const def = metricDefs[i];
+card.querySelector('.metric-icon').textContent = def.icon;
+card.querySelector('.metric-value').textContent = def.value;
+card.querySelector('.metric-value').className = 'metric-value ' + (def.good ? 'good' : 'warn');
+card.querySelector('.metric-name').textContent = def.label;
+card.querySelector('.metric-delta').textContent = def.delta;
+});
+const extraRow = document.getElementById('extra-metrics-row');
+if (extraRow) {
+extraRow.innerHTML = '';
+const extras = [
+{ icon:'🛏️', label:'Bedtime', value: m.bedtime || '—' },
+{ icon:'⏰', label:'Wake Time', value: m.wake_time || '—' },
+{ icon:'🫁', label:'SpO2', value: m.spo2 || '—' },
+{ icon:'❤️', label:'Resting HR', value: m.resting_hr || '—' },
+{ icon:'💨', label:'Resp. Rate', value: m.respiratory_rate || '—' },
+{ icon:'📱', label:'Device', value: d.device_detected || '—' }
+].filter(e => e.value !== '—');
+extras.forEach(e => {
+extraRow.innerHTML += `<div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center;min-width:100px"><div style="font-size:1.4rem;margin-bottom:0.4rem">${e.icon}</div><div style="font-family:var(--font-display);font-size:1rem;color:var(--teal)">${e.value}</div><div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);margin-top:0.2rem">${e.label}</div></div>`;
+});
+}
+const insightsContainer = document.querySelector('.insights-section');
+if (insightsContainer && d.insights && d.insights.length) {
+insightsContainer.innerHTML = '<div class="insights-title">✦ AI Sleep Insights</div>';
+d.insights.forEach((ins, i) => {
+insightsContainer.innerHTML += `<div class="insight-card ${ins.accent ? 'gold-accent' : ''}" style="animation-delay:${i * 0.1}s"><div class="insight-emoji">${ins.emoji}</div><div class="insight-text"><strong>${ins.title}.</strong> ${ins.body}</div></div>`;
+});
+if (d.missing_fields && d.missing_fields.length) {
+insightsContainer.innerHTML += `<div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);margin-top:1rem;padding:0.75rem 1rem;border:1px solid var(--border);border-radius:8px;opacity:0.7">⚠ Metrics not found in screenshots: ${d.missing_fields.join(', ')}</div>`;
+}
+}
+} else {
+document.getElementById('score-num').textContent = '—';
+document.querySelector('.score-label').textContent = 'Upload a sleep screenshot to see your score';
+}
+const hist = document.getElementById('score-history');
+hist.innerHTML = '';
+const histScores = scoreHistory.length ? scoreHistory : [0];
+histScores.forEach((score, i) => {
+hist.innerHTML += `<div style="display:flex;align-items:center;gap:1rem"><span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);width:3.5rem">Day ${i+1}</span><div style="flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:${(score/100)*100}%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:3px;transition:width 1s ${i*0.1}s both"></div></div><span style="font-family:var(--font-display);font-size:1.1rem;color:var(--teal);width:2.5rem;text-align:right">${score}</span></div>`;
+});
+drawChart();
+renderLeaderboardOnDashboard();
+}
+function drawChart() {
+const svg = document.getElementById('trend-chart');
+const W = 800, H = 180, pad = 30;
+const scores = scoreHistory.length ? scoreHistory : [0];
+const durations = durationHistory.length ? durationHistory : [0];
+const days = scores.length;
+function xPos(i) { return days === 1 ? W/2 : pad + (i/(days-1))*(W-pad*2); }
+function yScore(v){ return H-pad-((v/100))*(H-pad*2); }
+function yDur(v) { return H-pad-((v/10))*(H-pad*2); }
+let grid = '';
+for (let y = 0; y <= 4; y++) {
+const yy = pad + (y/4)*(H-pad*2);
+grid += `<line x1="${pad}" y1="${yy}" x2="${W-pad}" y2="${yy}" stroke="rgba(100,150,200,0.08)" stroke-width="1"/>`;
+}
+const areaPath = `M${xPos(0)},${yScore(scores[0])} ` + scores.map((v,i) => `L${xPos(i)},${yScore(v)}`).join(' ') + ` L${xPos(days-1)},${H-pad} L${xPos(0)},${H-pad} Z`;
+const scorePath = 'M' + scores.map((v,i) => `${xPos(i)},${yScore(v)}`).join(' L');
+const durPath = 'M' + durations.map((v,i) => `${xPos(i)},${yDur(v)}`).join(' L');
+let dots = '';
+scores.forEach((v,i) => { dots += `<circle cx="${xPos(i)}" cy="${yScore(v)}" r="4" fill="var(--teal)" stroke="var(--bg)" stroke-width="2"/>`; });
+durations.forEach((v,i) => { dots += `<circle cx="${xPos(i)}" cy="${yDur(v)}" r="3" fill="var(--gold)" stroke="var(--bg)" stroke-width="2" opacity="0.7"/>`; });
+let labels = '';
+scores.forEach((v,i) => { labels += `<text x="${xPos(i)}" y="${H-5}" text-anchor="middle" fill="rgba(122,148,180,0.6)" font-size="9" font-family="DM Mono">D${i+1}</text>`; });
+svg.innerHTML = `<defs><linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(77,217,192,0.15)"/><stop offset="100%" stop-color="rgba(77,217,192,0)"/></linearGradient></defs>${grid}<path d="${areaPath}" fill="url(#areaGrad)"/><path d="${scorePath}" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="${durPath}" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5,3" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>${dots}${labels}`;
+}
+initDayPills();
+loadSavedRegistration();</script>
+</body>
+</html>
