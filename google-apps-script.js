@@ -207,10 +207,84 @@ function getOrCreateSheet() {
 }
 
 /**
+ * Creates or updates the "Scoring Logic" documentation sheet
+ * Run this once to add clear scoring methodology to the spreadsheet
+ */
+function createScoringDocSheet() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheetName = 'Scoring Logic';
+  var sheet = ss.getSheetByName(sheetName);
+  if (!sheet) {
+    sheet = ss.insertSheet(sheetName);
+  } else {
+    sheet.clear();
+  }
+
+  var data = [
+    ['SLEEP CHALLENGE — LEADERBOARD SCORING LOGIC', '', ''],
+    ['', '', ''],
+    ['OVERVIEW', '', ''],
+    ['The leaderboard ranks participants by their TOTAL CUMULATIVE score across all days submitted.', '', ''],
+    ['Missing a day = 0 points for that day = lower total = lower leaderboard position.', '', ''],
+    ['', '', ''],
+    ['SCORING METHOD', '', ''],
+    ['Metric', 'Description', 'How It Works'],
+    ['Longevity Sleep Index', 'AI-computed score (0-100) per day', 'Based on sleep duration, deep sleep, REM, efficiency, HRV'],
+    ['Total Score', 'Sum of all daily scores', 'Total = Day 1 + Day 2 + ... + Day N'],
+    ['Average Score', 'Mean of submitted days', 'Average = Total / Days Submitted (shown for reference)'],
+    ['Best Score', 'Highest single-day score', 'Personal best across all days'],
+    ['Days Submitted', 'Number of days with data', 'Out of 14 total challenge days'],
+    ['', '', ''],
+    ['LEADERBOARD RANKING', '', ''],
+    ['Primary sort: Total Score (descending)', '', ''],
+    ['Participants with more days submitted will naturally have higher totals.', '', ''],
+    ['This incentivises daily participation — miss a day, lose ground.', '', ''],
+    ['', '', ''],
+    ['SCORE BREAKDOWN (per day, 0-100)', '', ''],
+    ['Component', 'Max Points', 'What It Measures'],
+    ['Sleep Duration', '25', 'Optimal: 7-9 hours'],
+    ['Deep Sleep', '20', 'Target: 1.5-2 hours (20-25% of total)'],
+    ['REM Sleep', '15', 'Target: 1.5-2 hours (20-25% of total)'],
+    ['Sleep Efficiency', '20', 'Target: >90%'],
+    ['HRV', '10', 'Higher is better (age-dependent)'],
+    ['Other Metrics', '10', 'SpO2, resting HR, respiratory rate'],
+    ['', '', ''],
+    ['CHALLENGE RULES', '', ''],
+    ['• Challenge runs for 14 days starting April 18, 2025', '', ''],
+    ['• Participants can enter data for any past day (not just sequentially)', '', ''],
+    ['• Future days are locked until they occur', '', ''],
+    ['• Only today\'s submission can be edited; past submissions are final', '', ''],
+    ['• Data can be entered via screenshot upload (AI-analysed) or manual entry', '', ''],
+    ['', '', ''],
+    ['Last updated: ' + new Date().toLocaleDateString('en-IN'), '', '']
+  ];
+
+  sheet.getRange(1, 1, data.length, 3).setValues(data);
+
+  // Formatting
+  sheet.getRange(1, 1, 1, 3).setFontWeight('bold').setFontSize(14).setBackground('#1a1a2e').setFontColor('#4dd9c0');
+  sheet.getRange(3, 1).setFontWeight('bold').setFontSize(11);
+  sheet.getRange(7, 1).setFontWeight('bold').setFontSize(11);
+  sheet.getRange(8, 1, 1, 3).setFontWeight('bold').setBackground('#2a2a3e').setFontColor('#f5e6a3');
+  sheet.getRange(15, 1).setFontWeight('bold').setFontSize(11);
+  sheet.getRange(20, 1).setFontWeight('bold').setFontSize(11);
+  sheet.getRange(21, 1, 1, 3).setFontWeight('bold').setBackground('#2a2a3e').setFontColor('#f5e6a3');
+  sheet.getRange(29, 1).setFontWeight('bold').setFontSize(11);
+
+  sheet.setColumnWidth(1, 300);
+  sheet.setColumnWidth(2, 250);
+  sheet.setColumnWidth(3, 350);
+  sheet.setFrozenRows(1);
+
+  Logger.log('Scoring Logic sheet created!');
+}
+
+/**
  * One-time setup: run this manually to create the sheet structure
  * Go to Apps Script → select this function → Run
  */
 function setup() {
   getOrCreateSheet();
+  createScoringDocSheet();
   Logger.log('Sheet "' + SHEET_NAME + '" is ready!');
 }
