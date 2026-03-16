@@ -1166,13 +1166,29 @@ function handleFileSelect(e) {
 if (e.target.files.length) addFiles(e.target.files);
 e.target.value = '';
 }
+function compressImage(dataUrl, maxW, quality) {
+return new Promise(resolve => {
+const img = new Image();
+img.onload = () => {
+let w = img.width, h = img.height;
+if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
+const c = document.createElement('canvas');
+c.width = w; c.height = h;
+c.getContext('2d').drawImage(img, 0, 0, w, h);
+const compressed = c.toDataURL('image/jpeg', quality);
+resolve(compressed);
+};
+img.src = dataUrl;
+});
+}
 function addFiles(fileList) {
 const promises = Array.from(fileList).map(file => new Promise(resolve => {
 const reader = new FileReader();
-reader.onload = ev => {
-const dataUrl = ev.target.result;
+reader.onload = async ev => {
+const rawDataUrl = ev.target.result;
+const dataUrl = await compressImage(rawDataUrl, 1200, 0.7);
 const base64 = dataUrl.split(',')[1];
-const mediaType = dataUrl.match(/data:(image\/[^;]+);/)?.[1] || 'image/jpeg';
+const mediaType = 'image/jpeg';
 uploadedFiles.push({ name: file.name, dataUrl, base64, mediaType });
 resolve();
 };
@@ -1542,7 +1558,10 @@ Only include fields actually visible. Omit fields you cannot see.` }
 }]
 })
 });
-if (!response.ok) throw new Error('API error on screenshot ' + (i + 1));
+if (!response.ok) {
+const errBody = await response.json().catch(() => ({}));
+throw new Error('API error on screenshot ' + (i + 1) + ': ' + (errBody.error?.message || errBody.error || response.status));
+}
 const data = await response.json();
 const raw = data.content.map(b => b.text || '').join('');
 const parsed = extractJSON(raw, 'screenshot_' + (i + 1));
@@ -1594,7 +1613,10 @@ max_tokens: 1000,
 messages: [{ role: 'user', content: summaryPrompt }]
 })
 });
-if (!scoreResp.ok) throw new Error('API error on scoring');
+if (!scoreResp.ok) {
+const errBody = await scoreResp.json().catch(() => ({}));
+throw new Error('API error on scoring: ' + (errBody.error?.message || errBody.error || scoreResp.status));
+}
 const scoreData = await scoreResp.json();
 const scoreRaw = scoreData.content.map(b => b.text || '').join('');
 const scoreResult = extractJSON(scoreRaw, 'scoring');
