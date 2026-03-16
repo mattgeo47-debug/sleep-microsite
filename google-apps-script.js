@@ -28,6 +28,13 @@ function doGet(e) {
     return getLeaderboard();
   }
 
+  if (action === 'setup') {
+    createScoringDocSheet();
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'ok', message: 'Scoring Logic sheet created' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
   // Default response
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok', message: 'Sleep Challenge API' }))

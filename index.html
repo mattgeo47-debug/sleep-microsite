@@ -1057,6 +1057,19 @@ const goal = document.getElementById('signup-goal').value;
 if (age) localStorage.setItem('slc_age', age);
 if (goal) localStorage.setItem('slc_goal', goal);
 selectedDevice = signupSelectedDevice;
+// Push registration to Google Sheets so user appears even before uploading data
+if (SHEETS_URL) {
+fetch(SHEETS_URL, {
+method: 'POST',
+headers: { 'Content-Type': 'text/plain' },
+body: JSON.stringify({
+name, email, phone,
+device: signupSelectedDevice,
+day: '',
+notes: 'Registration only — no sleep data yet'
+})
+}).catch(() => {}); // silent fail
+}
 updateNavForAuth();
 showPage('landing');
 }
@@ -1497,7 +1510,7 @@ const insights = data.insights
 : '';
 const name = localStorage.getItem('slc_name') || document.getElementById('reg-name')?.value || '';
 const email = localStorage.getItem('slc_email') || document.getElementById('reg-email')?.value || '';
-const phone = document.getElementById('reg-phone')?.value || '';
+const phone = localStorage.getItem('slc_phone') || document.getElementById('reg-phone')?.value || '';
 const payload = {
 name, email, phone,
 device: selectedDevice || '',
