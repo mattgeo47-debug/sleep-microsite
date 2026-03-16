@@ -116,14 +116,38 @@
  </div>
  <div class="field-group">
  <label class="field-label">Sleep Tracking Device <span>*</span></label>
- <div class="device-grid" id="signup-device-grid">
+ <div class="device-grid" id="signup-device-grid" style="grid-template-columns:repeat(2,1fr)">
  <label class="device-option" onclick="selectSignupDevice(this,'Apple Watch')">
  <input type="radio" name="signup-device" value="Apple Watch"/>
  <span class="device-icon">⌚</span> Apple Watch
  </label>
+ <label class="device-option" onclick="selectSignupDevice(this,'Oura Ring')">
+ <input type="radio" name="signup-device" value="Oura Ring"/>
+ <span class="device-icon">💍</span> Oura Ring
+ </label>
+ <label class="device-option" onclick="selectSignupDevice(this,'WHOOP')">
+ <input type="radio" name="signup-device" value="WHOOP"/>
+ <span class="device-icon">🔋</span> WHOOP
+ </label>
  <label class="device-option" onclick="selectSignupDevice(this,'Fitbit')">
  <input type="radio" name="signup-device" value="Fitbit"/>
  <span class="device-icon">🏃</span> Fitbit
+ </label>
+ <label class="device-option" onclick="selectSignupDevice(this,'Samsung Galaxy Watch')">
+ <input type="radio" name="signup-device" value="Samsung Galaxy Watch"/>
+ <span class="device-icon">📱</span> Samsung Galaxy Watch
+ </label>
+ <label class="device-option" onclick="selectSignupDevice(this,'Garmin')">
+ <input type="radio" name="signup-device" value="Garmin"/>
+ <span class="device-icon">🧭</span> Garmin
+ </label>
+ <label class="device-option" onclick="selectSignupDevice(this,'Withings')">
+ <input type="radio" name="signup-device" value="Withings"/>
+ <span class="device-icon">🩺</span> Withings
+ </label>
+ <label class="device-option" onclick="selectSignupDevice(this,'Amazfit')">
+ <input type="radio" name="signup-device" value="Amazfit"/>
+ <span class="device-icon">⚡</span> Amazfit
  </label>
  <label class="device-option" onclick="selectSignupDevice(this,'None')">
  <input type="radio" name="signup-device" value="None"/>
@@ -169,7 +193,7 @@
  <p class="hero-eyebrow" style="text-align:center">✦ YPO Kerala × Eureka — 14-Day Wellness Challenge ✦</p>
  <h1 class="hero-title" style="text-align:center">Sleep: <em>The Code</em><br>to Longevity</h1>
  <p style="font-size:0.85rem;color:var(--teal);margin-bottom:1.2rem;font-family:var(--font-mono);letter-spacing:0.15em;opacity:0;animation:fadeUp 0.8s 0.5s forwards">— 18 APRIL —</p>
- <p class="hero-subtitle" style="opacity:0;animation:fadeUp 0.8s 0.6s forwards;text-align:left">Led by India's foremost Sleep Diplomat, <strong style="color:var(--text)">Satvik Jaitly</strong> — unlock the science of restorative sleep and discover how optimizing your nightly recovery can add years to your life, starting tonight.</p>
+ <p class="hero-subtitle" style="opacity:0;animation:fadeUp 0.8s 0.6s forwards;text-align:center;margin-left:auto;margin-right:auto">Led by India's foremost Sleep Diplomat, <strong style="color:var(--text)">Satvik Jaitly</strong> — unlock the science of restorative sleep and discover how optimizing your nightly recovery can add years to your life, starting tonight.</p>
  <div style="opacity:0;animation:fadeUp 0.8s 0.8s forwards;display:flex;flex-wrap:wrap;gap:1rem">
  <button class="btn-primary" onclick="showPage('register')">
  ◯ Join the 14-Day Sleep Code Challenge
@@ -390,6 +414,27 @@
  </div>
  </div>
  </div>
+ <!-- DATA PRIVACY & DISCLAIMER -->
+ <div style="max-width:800px;margin:0 auto 0;padding:3rem 2rem">
+ <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem">
+ <div class="glass" style="padding:2rem">
+ <div style="font-family:var(--font-mono);font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem">🔒 Data Privacy & Security</div>
+ <div style="color:var(--muted);font-size:0.88rem;line-height:1.8">
+ <p style="margin-bottom:0.75rem">Your sleep data is treated with the highest level of care. All uploaded screenshots are processed using encrypted connections and are <strong style="color:var(--text)">not stored permanently</strong> on any server. Analysis is performed in real-time and results are stored locally on your device.</p>
+ <p style="margin-bottom:0.75rem">Aggregated, anonymised scores may be shared on the challenge leaderboard. No raw health data, screenshots, or personally identifiable health metrics are ever shared with other participants or third parties.</p>
+ <p>By participating, you consent to the processing of your uploaded sleep data solely for the purpose of generating your personal Longevity Sleep Index during this challenge.</p>
+ </div>
+ </div>
+ <div class="glass" style="padding:2rem">
+ <div style="font-family:var(--font-mono);font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem">⚕ Medical Disclaimer</div>
+ <div style="color:var(--muted);font-size:0.88rem;line-height:1.8">
+ <p style="margin-bottom:0.75rem">This challenge and the Longevity Sleep Index are designed for <strong style="color:var(--text)">educational and wellness purposes only</strong>. The scores, insights, and recommendations provided are not medical advice and should not be used to diagnose, treat, or manage any health condition.</p>
+ <p style="margin-bottom:0.75rem">The AI-generated analysis is based on consumer wearable data and does not replace professional sleep studies (polysomnography) or clinical evaluation.</p>
+ <p>If you have concerns about your sleep health, please consult a qualified healthcare professional or sleep specialist. Never disregard professional medical advice based on information from this platform.</p>
+ </div>
+ </div>
+ </div>
+ </div>
  <!-- CTA -->
  <div class="cta-section">
  <div class="section-label">Begin Your Journey</div>
@@ -430,14 +475,38 @@
  <!-- DEVICE SELECTOR -->
  <div class="field-group">
  <label class="field-label">Sleep Tracking Device <span>*</span></label>
- <div class="device-grid">
+ <div class="device-grid" style="grid-template-columns:repeat(2,1fr)">
  <label class="device-option" onclick="selectDevice(this,'Apple Watch')">
  <input type="radio" name="device" value="Apple Watch"/>
  <span class="device-icon">⌚</span> Apple Watch
  </label>
+ <label class="device-option" onclick="selectDevice(this,'Oura Ring')">
+ <input type="radio" name="device" value="Oura Ring"/>
+ <span class="device-icon">💍</span> Oura Ring
+ </label>
+ <label class="device-option" onclick="selectDevice(this,'WHOOP')">
+ <input type="radio" name="device" value="WHOOP"/>
+ <span class="device-icon">🔋</span> WHOOP
+ </label>
  <label class="device-option" onclick="selectDevice(this,'Fitbit')">
  <input type="radio" name="device" value="Fitbit"/>
  <span class="device-icon">🏃</span> Fitbit
+ </label>
+ <label class="device-option" onclick="selectDevice(this,'Samsung Galaxy Watch')">
+ <input type="radio" name="device" value="Samsung Galaxy Watch"/>
+ <span class="device-icon">📱</span> Samsung Galaxy Watch
+ </label>
+ <label class="device-option" onclick="selectDevice(this,'Garmin')">
+ <input type="radio" name="device" value="Garmin"/>
+ <span class="device-icon">🧭</span> Garmin
+ </label>
+ <label class="device-option" onclick="selectDevice(this,'Withings')">
+ <input type="radio" name="device" value="Withings"/>
+ <span class="device-icon">🩺</span> Withings
+ </label>
+ <label class="device-option" onclick="selectDevice(this,'Amazfit')">
+ <input type="radio" name="device" value="Amazfit"/>
+ <span class="device-icon">⚡</span> Amazfit
  </label>
  <label class="device-option" onclick="selectDevice(this,'None')">
  <input type="radio" name="device" value="None"/>
@@ -1258,33 +1327,61 @@ async function updateLeaderboard() {
 const lbRows = document.getElementById('lb-rows');
 const lbEmpty = document.getElementById('lb-empty');
 if (!lbRows) return;
-if (!SHEETS_URL) return;
+const myName = localStorage.getItem('slc_name') || 'You';
+const myScores = scoreHistory.filter(s => s !== undefined && s !== null);
+let leaderboardData = [];
+// Try fetching group leaderboard from Google Sheets
+if (SHEETS_URL) {
 try {
-const resp = await fetch(SHEETS_URL + '?action=leaderboard', { method: 'GET', mode: 'no-cors' });
-} catch(e) {}
-const name = localStorage.getItem('slc_name') || 'You';
-const scores = scoreHistory.filter(s => s !== undefined && s !== null);
-if (!scores.length) { lbEmpty.style.display = 'block'; return; }
-const avg = Math.round(scores.reduce((a,b) => a+b, 0) / scores.length);
-const best = Math.max(...scores);
+const resp = await fetch(SHEETS_URL + '?action=leaderboard');
+if (resp.ok) {
+const json = await resp.json();
+if (json && json.leaderboard && json.leaderboard.length) {
+leaderboardData = json.leaderboard;
+}
+}
+} catch(e) { /* fallback to local only */ }
+}
+// Always ensure current user is in the list with latest local data
+if (myScores.length) {
+const myAvg = Math.round(myScores.reduce((a,b) => a+b, 0) / myScores.length);
+const myBest = Math.max(...myScores);
+const myIdx = leaderboardData.findIndex(p => p.name && p.name.toLowerCase() === myName.toLowerCase());
+if (myIdx >= 0) {
+leaderboardData[myIdx].avg = Math.max(leaderboardData[myIdx].avg || 0, myAvg);
+leaderboardData[myIdx].best = Math.max(leaderboardData[myIdx].best || 0, myBest);
+leaderboardData[myIdx].days = Math.max(leaderboardData[myIdx].days || 0, myScores.length);
+leaderboardData[myIdx].isMe = true;
+} else {
+leaderboardData.push({ name: myName, avg: myAvg, best: myBest, days: myScores.length, isMe: true });
+}
+}
+if (!leaderboardData.length) { lbEmpty.style.display = 'block'; lbRows.innerHTML = ''; return; }
+// Sort by avg score descending
+leaderboardData.sort((a, b) => (b.avg || 0) - (a.avg || 0));
 lbEmpty.style.display = 'none';
-lbRows.innerHTML = `
-<div class="leaderboard-item" style="background:rgba(77,217,192,0.04);border-radius:8px;padding:1rem;border:1px solid rgba(77,217,192,0.15);">
-<div class="rank" style="color:var(--teal)">★</div>
-<div class="lb-avatar">🌙</div>
+const rankIcons = ['🥇', '🥈', '🥉'];
+const rankClasses = ['gold-rank', 'silver-rank', 'bronze-rank'];
+lbRows.innerHTML = leaderboardData.slice(0, 20).map((p, i) => {
+const isMe = p.isMe || (p.name && p.name.toLowerCase() === myName.toLowerCase());
+const highlightStyle = isMe ? 'background:rgba(77,217,192,0.04);border:1px solid rgba(77,217,192,0.15);border-radius:8px;' : '';
+const rankDisplay = i < 3 ? rankIcons[i] : (i + 1);
+const rankClass = i < 3 ? rankClasses[i] : '';
+return `<div class="leaderboard-item" style="${highlightStyle}">
+<div class="rank ${rankClass}">${rankDisplay}</div>
+<div class="lb-avatar">${isMe ? '⭐' : '🌙'}</div>
 <div class="lb-info">
-<div class="lb-name">${name}</div>
-<div class="lb-badge">
+<div class="lb-name">${p.name}${isMe ? ' <span style="font-size:0.7rem;color:var(--teal)">(you)</span>' : ''}</div>
+<div class="lb-badge">${p.days || 0} day${(p.days||0) !== 1 ? 's' : ''} submitted</div>
 </div>
 <div style="text-align:right">
-<div class="lb-score">${avg}</div>
+<div class="lb-score">${p.avg || 0}</div>
 <div class="lb-score-label">avg score</div>
 </div>
-</div>
-<div style="margin-top:1.25rem;padding:1rem;background:var(--surface2);border-radius:10px;font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);line-height:1.8;">
-<div style="color:var(--teal);margin-bottom:0.4rem;">ⓘ Group leaderboard</div>
-The full group leaderboard across all participants is maintained in the challenge Google Sheet.
-Your administrator can share the group rankings at the end of each day.
+</div>`;
+}).join('');
+lbRows.innerHTML += `<div style="margin-top:1rem;padding:0.75rem;background:var(--surface2);border-radius:10px;font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);line-height:1.8;text-align:center">
+Leaderboard updates in real-time as participants submit their sleep data.
 </div>`;
 }
 function renderLeaderboardOnDashboard() {
