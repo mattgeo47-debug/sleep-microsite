@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sleep: The Code to Longevity | Satvik Jaitly × SnoOozebySJ</title>
+<title>Sleep: The Code to Longevity | Satvik Jaitly √ó SnoOozebySJ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -37,7 +37,7 @@
 </svg>
 <!-- NAV -->
 <nav>
- <div class="nav-logo" onclick="showPage('landing')">SnoOoze<span>bySJ</span> ◦ Longevity</div>
+ <div class="nav-logo" onclick="showPage('landing')">SnoOoze<span>bySJ</span> ‚ó¶ Longevity</div>
  <ul class="nav-links">
  <li><a onclick="showPage('landing')" id="nav-landing" class="active">The Challenge</a></li>
  <li id="nav-li-register"><a onclick="showPage('register')" id="nav-register">Register</a></li>
@@ -50,8 +50,8 @@
  <span class="nav-user-name" id="nav-user-name"></span>
  <button class="btn-logout" onclick="logoutUser()">Logout</button>
  </div>
- <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" style="background:var(--surface2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:var(--glass-border);border-radius:50%;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--muted);transition:all 0.2s;box-shadow:inset 0 1px 0 var(--border-hi)" title="Toggle light/dark theme">☀</button>
- <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu" style="display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;padding:0.25rem">☰</button>
+ <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" style="background:var(--surface2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:var(--glass-border);border-radius:50%;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--muted);transition:all 0.2s;box-shadow:inset 0 1px 0 var(--border-hi)" title="Toggle light/dark theme">‚òÄ</button>
+ <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu" style="display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;padding:0.25rem">‚ò∞</button>
  </div>
 </nav>
 <div id="mobile-nav" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:99;background:var(--surface);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);padding:5rem 2rem 2rem;flex-direction:column;gap:1.5rem">
@@ -62,12 +62,12 @@
  <a id="mob-login" onclick="showPage('login');closeMobileNav()" style="font-family:var(--font-mono);font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;cursor:pointer;padding:0.75rem 0;border-bottom:1px solid var(--border)">Login</a>
  <a id="mob-logout" onclick="logoutUser();closeMobileNav()" style="font-family:var(--font-mono);font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--danger);text-decoration:none;cursor:pointer;padding:0.75rem 0;border-bottom:1px solid var(--border);display:none">Logout</a>
 </div>
-<!-- ══════════════ PAGE 0: LOGIN ══════════════ -->
+<!-- ‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê PAGE 0: LOGIN ‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê -->
 <div class="page" id="page-login">
  <div class="login-page">
  <div class="login-container">
  <div class="form-header" style="text-align:center;margin-bottom:2rem">
- <p class="hero-eyebrow" style="text-align:center;opacity:1;animation:none">✦ YPO Kerala × Eureka ✦</p>
+ <p class="hero-eyebrow" style="text-align:center;opacity:1;animation:none">‚ú¶ YPO Kerala √ó Eureka ‚ú¶</p>
  <h2 style="font-family:var(--font-display);font-size:clamp(2rem,5vw,2.8rem);font-weight:300">Sleep: <em style="color:var(--gold);font-style:italic">The Code</em> to Longevity</h2>
  <p style="color:var(--muted);margin-top:0.5rem">Sign in to continue your 14-day challenge</p>
  </div>
@@ -87,7 +87,7 @@
  <input type="password" id="login-password" placeholder="Enter your password" />
  </div>
  <button class="btn-primary" style="width:100%;justify-content:center;margin-top:1rem" onclick="loginUser()">
- Sign In →
+ Sign In ‚Üí
  </button>
  <p style="text-align:center;color:var(--muted);font-size:0.85rem;margin-top:1.5rem">Don't have an account? <a style="color:var(--teal);cursor:pointer;text-decoration:none" onclick="switchLoginTab('signup')">Register here</a></p>
  </div>
@@ -119,19 +119,19 @@
  <div class="device-grid" id="signup-device-grid">
  <label class="device-option" onclick="selectSignupDevice(this,'Apple Watch')">
  <input type="radio" name="signup-device" value="Apple Watch"/>
- <span class="device-icon">⌚</span> Apple Watch
+ <span class="device-icon">‚åö</span> Apple Watch
  </label>
  <label class="device-option" onclick="selectSignupDevice(this,'Fitbit')">
  <input type="radio" name="signup-device" value="Fitbit"/>
- <span class="device-icon">🏃</span> Fitbit
+ <span class="device-icon">üèÉ</span> Fitbit
  </label>
  <label class="device-option" onclick="selectSignupDevice(this,'None')">
  <input type="radio" name="signup-device" value="None"/>
- <span class="device-icon">📵</span> No Device
+ <span class="device-icon">üìµ</span> No Device
  </label>
  <label class="device-option" onclick="selectSignupDevice(this,'Other')">
  <input type="radio" name="signup-device" value="Other"/>
- <span class="device-icon">🔮</span> Other
+ <span class="device-icon">üîÆ</span> Other
  </label>
  </div>
  </div>
@@ -153,26 +153,26 @@
  </div>
  </div>
  <button class="btn-primary" style="width:100%;justify-content:center;margin-top:1.5rem" onclick="registerUser()">
- Create Account & Join Challenge →
+ Create Account & Join Challenge ‚Üí
  </button>
  <p style="text-align:center;color:var(--muted);font-size:0.85rem;margin-top:1.5rem">Already registered? <a style="color:var(--teal);cursor:pointer;text-decoration:none" onclick="switchLoginTab('signin')">Sign in</a></p>
  </div>
  </div>
  </div>
 </div>
-<!-- ══════════════ PAGE 1: LANDING ══════════════ -->
+<!-- ‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê PAGE 1: LANDING ‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê -->
 <div class="page active" id="page-landing">
  <div class="hero" style="display:flex;flex-direction:column;align-items:center;max-width:900px;margin:0 auto;padding:8rem 3rem 4rem;text-align:center">
  <div style="position:relative">
  <div class="glow-orb orb1"></div>
  <div class="glow-orb orb2"></div>
- <p class="hero-eyebrow" style="text-align:center">✦ YPO Kerala × Eureka — 14-Day Wellness Challenge ✦</p>
+ <p class="hero-eyebrow" style="text-align:center">‚ú¶ YPO Kerala √ó Eureka ‚Äî 14-Day Wellness Challenge ‚ú¶</p>
  <h1 class="hero-title" style="text-align:center">Sleep: <em>The Code</em><br>to Longevity</h1>
- <p style="font-size:0.85rem;color:var(--teal);margin-bottom:1.2rem;font-family:var(--font-mono);letter-spacing:0.15em;opacity:0;animation:fadeUp 0.8s 0.5s forwards">— 18 APRIL —</p>
- <p class="hero-subtitle" style="opacity:0;animation:fadeUp 0.8s 0.6s forwards;text-align:left">Led by India's foremost Sleep Diplomat, <strong style="color:var(--text)">Satvik Jaitly</strong> — unlock the science of restorative sleep and discover how optimizing your nightly recovery can add years to your life, starting tonight.</p>
+ <p style="font-size:0.85rem;color:var(--teal);margin-bottom:1.2rem;font-family:var(--font-mono);letter-spacing:0.15em;opacity:0;animation:fadeUp 0.8s 0.5s forwards">‚Äî 18 APRIL ‚Äî</p>
+ <p class="hero-subtitle" style="opacity:0;animation:fadeUp 0.8s 0.6s forwards;text-align:left">Led by India's foremost Sleep Diplomat, <strong style="color:var(--text)">Satvik Jaitly</strong> ‚Äî unlock the science of restorative sleep and discover how optimizing your nightly recovery can add years to your life, starting tonight.</p>
  <div style="opacity:0;animation:fadeUp 0.8s 0.8s forwards;display:flex;flex-wrap:wrap;gap:1rem">
  <button class="btn-primary" onclick="showPage('register')">
- ◯ Join the 14-Day Sleep Code Challenge
+ ‚óØ Join the 14-Day Sleep Code Challenge
  </button>
  <button class="btn-secondary" onclick="document.getElementById('speaker-anchor').scrollIntoView({behavior:'smooth'})">
  Meet the Speaker
@@ -184,7 +184,7 @@
  <div class="stats-bar">
  <div class="stat"><span class="stat-num">18/04</span><span class="stat-label">Event Date</span></div>
  <div class="stat"><span class="stat-num">14</span><span class="stat-label">Day Challenge</span></div>
- <div class="stat"><span class="stat-num">YPO Kerala</span><span class="stat-label">× Eureka</span></div>
+ <div class="stat"><span class="stat-num">YPO Kerala</span><span class="stat-label">√ó Eureka</span></div>
  <div class="stat"><span class="stat-num">38%</span><span class="stat-label">Avg Improvement</span></div>
  <div class="stat"><span class="stat-num">100</span><span class="stat-label">Max Longevity Score</span></div>
  </div>
@@ -199,7 +199,7 @@
  <p style="font-family:var(--font-display);font-size:1.6rem;font-weight:300;color:var(--text);line-height:1.5;font-style:italic">
  <span style="color:var(--teal);font-size:2rem;line-height:0;vertical-align:-0.3em;margin-right:0.25rem">"</span>You don't extend life by doing more.<br><strong style="font-style:normal;font-weight:600">You extend it by sleeping better.</strong><span style="color:var(--teal);font-size:2rem;line-height:0;vertical-align:-0.3em;margin-left:0.25rem">"</span>
  </p>
- <p style="margin-top:1rem;font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.15em;color:var(--muted)">— SATVIK JAITLY, SLEEP DIPLOMAT</p>
+ <p style="margin-top:1rem;font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.15em;color:var(--muted)">‚Äî SATVIK JAITLY, SLEEP DIPLOMAT</p>
  </div>
  </div>
  <!-- SPEAKER -->
@@ -222,7 +222,7 @@
  <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem">Sleep Diplomat & Consultant</div>
  <!-- ASA-WSS Badge -->
  <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:0.35rem 0.9rem;margin-bottom:1.25rem">
- <span style="color:var(--gold);font-size:0.9rem">✦</span>
+ <span style="color:var(--gold);font-size:0.9rem">‚ú¶</span>
  <span style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;color:var(--gold)">ASA-WSS REGISTERED</span>
  </div>
  <!-- Degrees -->
@@ -243,27 +243,27 @@
  <!-- RIGHT: bio details -->
  <div>
  <div style="font-family:var(--font-display);font-size:1.1rem;font-style:italic;color:var(--muted);margin-bottom:1.5rem;line-height:1.7;border-left:2px solid var(--teal);padding-left:1.25rem">
- "India's foremost Sleep Diplomat — bridging the science of sleep with real-world innovation across hospitality, food, defence, and wellness."
+ "India's foremost Sleep Diplomat ‚Äî bridging the science of sleep with real-world innovation across hospitality, food, defence, and wellness."
  </div>
  <!-- Highlights -->
  <div class="speaker-highlights-grid">
  <div style="background:var(--surface2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:var(--glass-border);border-radius:14px;padding:1rem;box-shadow:inset 0 1px 0 var(--border-hi)">
- <div style="font-size:1.6rem;margin-bottom:0.4rem">🏆</div>
+ <div style="font-size:1.6rem;margin-bottom:0.4rem">üèÜ</div>
  <div style="font-weight:500;font-size:0.85rem;margin-bottom:0.2rem">20+ Patents</div>
  <div style="color:var(--muted);font-size:0.75rem;line-height:1.5">Sleep quantification, sleep foods, food technology, personal care & hospitality innovation</div>
  </div>
  <div style="background:var(--surface2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:var(--glass-border);border-radius:14px;padding:1rem;box-shadow:inset 0 1px 0 var(--border-hi)">
- <div style="font-size:1.6rem;margin-bottom:0.4rem">🏨</div>
+ <div style="font-size:1.6rem;margin-bottom:0.4rem">üè®</div>
  <div style="font-weight:500;font-size:0.85rem;margin-bottom:0.2rem">ITC Hotels SLEEEP Initiative</div>
  <div style="color:var(--muted);font-size:0.75rem;line-height:1.5">Led 300+ consumer studies & 50+ sleep studies. Launched India's first Sleep Food & Beverage Menu</div>
  </div>
  <div style="background:var(--surface2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:var(--glass-border);border-radius:14px;padding:1rem;box-shadow:inset 0 1px 0 var(--border-hi)">
- <div style="font-size:1.6rem;margin-bottom:0.4rem">🌏</div>
+ <div style="font-size:1.6rem;margin-bottom:0.4rem">üåè</div>
  <div style="font-weight:500;font-size:0.85rem;margin-bottom:0.2rem">World's First</div>
  <div style="color:var(--muted);font-size:0.75rem;line-height:1.5">Established the world's first Non-Invasive Sleep Lab inside a hotel</div>
  </div>
  <div style="background:var(--surface2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:var(--glass-border);border-radius:14px;padding:1rem;box-shadow:inset 0 1px 0 var(--border-hi)">
- <div style="font-size:1.6rem;margin-bottom:0.4rem">📰</div>
+ <div style="font-size:1.6rem;margin-bottom:0.4rem">üì∞</div>
  <div style="font-weight:500;font-size:0.85rem;margin-bottom:0.2rem">Published Columnist</div>
  <div style="color:var(--muted);font-size:0.75rem;line-height:1.5">Internationally recognised writer and innovator in Sleep & Mental Health</div>
  </div>
@@ -316,9 +316,9 @@
  <!-- SnoOoze brand footer inside card -->
  <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
  <div style="display:flex;align-items:center;gap:0.75rem">
- <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal2));display:flex;align-items:center;justify-content:center;font-size:1.2rem">🐨</div>
+ <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal2));display:flex;align-items:center;justify-content:center;font-size:1.2rem">üê®</div>
  <div>
- <div style="font-family:var(--font-display);font-size:1rem;font-weight:400">SnoOozebySJ™</div>
+ <div style="font-family:var(--font-display);font-size:1rem;font-weight:400">SnoOozebySJ‚Ñ¢</div>
  <div style="font-family:var(--font-mono);font-size:0.58rem;color:var(--muted);letter-spacing:0.08em">SLEEP & LONGEVITY PRACTICE</div>
  </div>
  </div>
@@ -333,23 +333,23 @@
  <div class="challenge-section">
  <div class="section-label">The Method</div>
  <h2 class="section-title">14 Days That Can Change<br>Your Biology</h2>
- <p style="color:var(--muted);max-width:540px;margin:0 auto;line-height:1.8">Each day, you upload your sleep data. Our AI extracts key biomarkers and builds your personal Longevity Sleep Index — tracking your progress in real time.</p>
+ <p style="color:var(--muted);max-width:540px;margin:0 auto;line-height:1.8">Each day, you upload your sleep data. Our AI extracts key biomarkers and builds your personal Longevity Sleep Index ‚Äî tracking your progress in real time.</p>
  <div class="challenge-grid">
  <div class="challenge-card">
  <div class="card-number">// 01</div>
- <div class="card-icon">📱</div>
+ <div class="card-icon">üì±</div>
  <div class="card-title">Track Your Sleep</div>
- <div class="card-desc">Use any sleep device — Apple Watch, Fitbit, Oura, Whoop, or Garmin. Screenshot your data each morning.</div>
+ <div class="card-desc">Use any sleep device ‚Äî Apple Watch, Fitbit, Oura, Whoop, or Garmin. Screenshot your data each morning.</div>
  </div>
  <div class="challenge-card">
  <div class="card-number">// 02</div>
- <div class="card-icon">🤖</div>
+ <div class="card-icon">ü§ñ</div>
  <div class="card-title">AI Reads the Data</div>
- <div class="card-desc">Our AI extracts sleep duration, deep sleep, REM, HRV, and sleep score — converting visuals into precise metrics.</div>
+ <div class="card-desc">Our AI extracts sleep duration, deep sleep, REM, HRV, and sleep score ‚Äî converting visuals into precise metrics.</div>
  </div>
  <div class="challenge-card">
  <div class="card-number">// 03</div>
- <div class="card-icon">📈</div>
+ <div class="card-icon">üìà</div>
  <div class="card-title">Watch Yourself Improve</div>
  <div class="card-desc">Your Longevity Sleep Index updates daily. Compete on the leaderboard. Receive personalized AI insights.</div>
  </div>
@@ -364,7 +364,7 @@
  <div style="font-family:var(--font-display);font-size:2rem;color:var(--teal);flex-shrink:0">30</div>
  <div>
  <div style="font-weight:500;margin-bottom:0.25rem">Sleep Duration</div>
- <div style="color:var(--muted);font-size:0.8rem;line-height:1.6">7–8 hours = 30 pts · 6–7 hours = 20 pts</div>
+ <div style="color:var(--muted);font-size:0.8rem;line-height:1.6">7‚Äì8 hours = 30 pts ¬∑ 6‚Äì7 hours = 20 pts</div>
  </div>
  </div>
  <div class="challenge-card" style="display:flex;align-items:flex-start;gap:1rem">
@@ -396,11 +396,11 @@
  <h2 class="section-title" style="margin-bottom:1rem">Ready to Decode Your Sleep?</h2>
  <p style="color:var(--muted);margin-bottom:2.5rem;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7">Join 2,400+ participants transforming their longevity through the science of sleep.</p>
  <button class="btn-primary" onclick="showPage('register')">
- ◯ Join the 14-Day Sleep Code Challenge
+ ‚óØ Join the 14-Day Sleep Code Challenge
  </button>
  </div>
 </div>
-<!-- ══════════════ PAGE 2: REGISTRATION ══════════════ -->
+<!-- ‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê PAGE 2: REGISTRATION ‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê -->
 <div class="page" id="page-register">
  <div class="form-page">
  <div class="form-container">
@@ -425,7 +425,7 @@
  <div class="field-group">
  <label class="field-label">Phone Number <span>*</span></label>
  <input type="tel" id="reg-phone" placeholder="+91 98765 43210" oninput="validatePhone(this)" onblur="validatePhone(this)" />
- <span class="field-error" id="err-phone">Please enter a valid phone number (8–15 digits, optional + prefix)</span>
+ <span class="field-error" id="err-phone">Please enter a valid phone number (8‚Äì15 digits, optional + prefix)</span>
  </div>
  <!-- DEVICE SELECTOR -->
  <div class="field-group">
@@ -433,19 +433,19 @@
  <div class="device-grid">
  <label class="device-option" onclick="selectDevice(this,'Apple Watch')">
  <input type="radio" name="device" value="Apple Watch"/>
- <span class="device-icon">⌚</span> Apple Watch
+ <span class="device-icon">‚åö</span> Apple Watch
  </label>
  <label class="device-option" onclick="selectDevice(this,'Fitbit')">
  <input type="radio" name="device" value="Fitbit"/>
- <span class="device-icon">🏃</span> Fitbit
+ <span class="device-icon">üèÉ</span> Fitbit
  </label>
  <label class="device-option" onclick="selectDevice(this,'None')">
  <input type="radio" name="device" value="None"/>
- <span class="device-icon">📵</span> No Device
+ <span class="device-icon">üìµ</span> No Device
  </label>
  <label class="device-option" onclick="selectDevice(this,'Other')">
  <input type="radio" name="device" value="Other"/>
- <span class="device-icon">🔮</span> Other
+ <span class="device-icon">üîÆ</span> Other
  </label>
  </div>
  </div>
@@ -456,11 +456,11 @@
  <label class="field-label">Age Range</label>
  <select id="reg-age">
  <option value="">Select range</option>
- <option>18–24</option>
- <option>25–34</option>
- <option>35–44</option>
- <option>45–54</option>
- <option>55–64</option>
+ <option>18‚Äì24</option>
+ <option>25‚Äì34</option>
+ <option>35‚Äì44</option>
+ <option>45‚Äì54</option>
+ <option>55‚Äì64</option>
  <option>65+</option>
  </select>
  </div>
@@ -477,25 +477,25 @@
  </div>
  </div>
  <button class="btn-primary" style="width:100%;justify-content:center;margin-top:1.5rem" onclick="submitRegistration()">
- Activate My Challenge Dashboard →
+ Activate My Challenge Dashboard ‚Üí
  </button>
  </div>
  <!-- SUCCESS -->
  <div class="success-screen" id="reg-success">
- <div class="success-icon">✓</div>
+ <div class="success-icon">‚úì</div>
  <h2 style="font-family:var(--font-display);font-size:2rem;font-weight:300;margin-bottom:0.75rem">You're In!</h2>
  <p style="color:var(--muted);margin-bottom:2rem;line-height:1.7">Your Sleep Code Challenge dashboard is ready. Start uploading your sleep data to begin tracking your Longevity Sleep Index.</p>
- <button class="btn-primary" onclick="showPage('upload')">Upload Day 1 Sleep Data →</button>
+ <button class="btn-primary" onclick="showPage('upload')">Upload Day 1 Sleep Data ‚Üí</button>
  </div>
  </div>
  </div>
 </div>
-<!-- ══════════════ PAGE 3: UPLOAD ══════════════ -->
+<!-- ‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê PAGE 3: UPLOAD ‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê -->
 <div class="page" id="page-upload">
  <div class="upload-page">
  <div class="section-label">Daily Data Entry</div>
  <h2>Upload Sleep<br><span class="text-teal">Screenshots</span></h2>
- <p class="subtitle">Upload one or more sleep screenshots — AI extracts all visible metrics automatically. Fill in anything missing manually below.</p>
+ <p class="subtitle">Upload one or more sleep screenshots ‚Äî AI extracts all visible metrics automatically. Fill in anything missing manually below.</p>
  <div class="field-group">
  <label class="field-label">Day of Challenge</label>
  <div class="day-selector" id="day-pills"></div>
@@ -511,9 +511,9 @@
  </div>
  </div>
  <div class="upload-zone" id="drop-zone" onclick="document.getElementById('upload-input').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
- <div class="upload-icon">🌙</div>
+ <div class="upload-icon">üåô</div>
  <div class="upload-text"><strong>Drop screenshots here</strong> or click to browse</div>
- <div class="upload-subtext">PNG · JPG · HEIC · Multiple files allowed · Max 10MB each</div>
+ <div class="upload-subtext">PNG ¬∑ JPG ¬∑ HEIC ¬∑ Multiple files allowed ¬∑ Max 10MB each</div>
  </div>
  <input type="file" id="upload-input" accept="image/*" multiple onchange="handleFileSelect(event)" />
  <div id="multi-preview-grid" style="display:none;margin-bottom:1.5rem;">
@@ -521,20 +521,20 @@
  <span style="font-family:var(--font-mono);font-size:0.7rem;color:var(--teal)" id="upload-count-label">0 screenshots ready</span>
  <div style="display:flex;gap:0.5rem;">
  <button class="remove-btn" style="font-size:0.75rem;padding:0.3rem 0.75rem;border:1px solid var(--border);border-radius:6px;background:var(--surface2);color:var(--muted)" onclick="document.getElementById('upload-input').click()">+ Add more</button>
- <button class="remove-btn" style="font-size:0.75rem;padding:0.3rem 0.75rem;border:1px solid var(--border);border-radius:6px;background:var(--surface2);color:var(--muted)" onclick="clearAllFiles()">✕ Clear all</button>
+ <button class="remove-btn" style="font-size:0.75rem;padding:0.3rem 0.75rem;border:1px solid var(--border);border-radius:6px;background:var(--surface2);color:var(--muted)" onclick="clearAllFiles()">‚úï Clear all</button>
  </div>
  </div>
  <div id="preview-thumbs" style="display:flex;flex-wrap:wrap;gap:0.75rem;"></div>
  </div>
  <div class="processing-bar" id="proc-bar">
- <div class="processing-label" id="proc-label">⟳ Extracting sleep metrics with AI...</div>
+ <div class="processing-label" id="proc-label">‚ü≥ Extracting sleep metrics with AI...</div>
  <div class="bar-track"><div class="bar-fill" id="bar-fill"></div></div>
  </div>
  <div id="error-panel" style="display:none;background:rgba(224,92,92,0.07);border:1px solid rgba(224,92,92,0.35);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;">
  <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1rem;">
- <span style="font-size:1.2rem">⊗</span>
+ <span style="font-size:1.2rem">‚äó</span>
  <span style="font-family:var(--font-mono);font-size:0.7rem;color:#e05c5c;letter-spacing:0.08em;text-transform:uppercase;">Analysis Error</span>
- <button onclick="document.getElementById('error-panel').style.display='none'" style="margin-left:auto;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;">✕</button>
+ <button onclick="document.getElementById('error-panel').style.display='none'" style="margin-left:auto;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;">‚úï</button>
  </div>
  <div id="error-title" style="font-family:var(--font-display);font-size:1rem;color:var(--text);margin-bottom:0.5rem;"></div>
  <div id="error-body" style="font-family:var(--font-mono);font-size:0.72rem;color:var(--muted);line-height:1.7;white-space:pre-wrap;"></div>
@@ -543,24 +543,24 @@
  <!-- DATA REVIEW PANEL -->
  <div id="review-panel" style="display:none;background:var(--surface);border:1px solid rgba(77,217,192,0.3);border-radius:12px;padding:1.75rem;margin-bottom:1.5rem;">
  <div style="margin-bottom:1.25rem;">
- <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--teal);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;">◈ Review Extracted Data</div>
+ <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--teal);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;">‚óà Review Extracted Data</div>
  <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--muted);">AI extracted the values below. Edit anything incorrect or fill in missing fields, then confirm.</div>
  </div>
  <div id="review-captured" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.25rem;"></div>
  <div id="review-missing" style="display:none;padding:0.75rem 1rem;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:8px;font-family:var(--font-mono);font-size:0.68rem;color:var(--gold);margin-bottom:1.25rem;line-height:1.7;"></div>
  <div class="manual-grid" id="review-fields-grid"></div>
  <div style="display:flex;gap:1rem;margin-top:1.5rem;">
- <button onclick="confirmReview()" style="flex:1;padding:0.9rem;background:linear-gradient(135deg,var(--teal),var(--teal2));border:none;border-radius:10px;color:var(--bg);font-family:var(--font-mono);font-size:0.8rem;font-weight:600;cursor:pointer;letter-spacing:0.05em;">✓ Confirm &amp; Analyse</button>
- <button onclick="cancelReview()" style="padding:0.9rem 1.5rem;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--muted);font-family:var(--font-mono);font-size:0.8rem;cursor:pointer;">✕ Cancel</button>
+ <button onclick="confirmReview()" style="flex:1;padding:0.9rem;background:linear-gradient(135deg,var(--teal),var(--teal2));border:none;border-radius:10px;color:var(--bg);font-family:var(--font-mono);font-size:0.8rem;font-weight:600;cursor:pointer;letter-spacing:0.05em;">‚úì Confirm &amp; Analyse</button>
+ <button onclick="cancelReview()" style="padding:0.9rem 1.5rem;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--muted);font-family:var(--font-mono);font-size:0.8rem;cursor:pointer;">‚úï Cancel</button>
  </div>
  </div>
  <div style="margin-bottom:1.5rem;">
  <button id="manual-toggle-btn" onclick="toggleManualEntry()" style="width:100%;padding:0.9rem 1.5rem;background:var(--surface);border:1px dashed var(--border);border-radius:10px;color:var(--muted);font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.05em;cursor:pointer;transition:all 0.2s;text-align:left;">
- ✎ &nbsp;Enter or edit metrics manually <span style="float:right;opacity:0.5" id="manual-toggle-arrow">▼</span>
+ ‚úé &nbsp;Enter or edit metrics manually <span style="float:right;opacity:0.5" id="manual-toggle-arrow">‚ñº</span>
  </button>
  </div>
  <div id="manual-entry-form" style="display:none;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.75rem;margin-bottom:1.5rem;">
- <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--teal);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.25rem;">◈ Manual Metric Entry</div>
+ <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--teal);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.25rem;">‚óà Manual Metric Entry</div>
  <div class="manual-grid">
  <div class="manual-field"><label class="manual-label">Total Sleep Duration</label><input class="manual-input" id="m_duration" placeholder="e.g. 7h 30m" /></div>
  <div class="manual-field"><label class="manual-label">Deep Sleep</label><input class="manual-input" id="m_deep_sleep" placeholder="e.g. 1h 15m" /></div>
@@ -576,12 +576,12 @@
  <div class="manual-field"><label class="manual-label">Wake Time</label><input class="manual-input" id="m_wake_time" placeholder="e.g. 6:15 AM" /></div>
  </div>
  <div style="margin-top:1rem;"><label class="manual-label">Notes</label><textarea class="manual-input" id="m_notes" style="height:70px;resize:vertical" placeholder="Stress, caffeine, travel, unusual bedtime, alcohol..."></textarea></div>
- <div style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);opacity:0.7">ⓘ Manual values are merged with AI-extracted data. Manual entries take priority.</div>
+ <div style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);opacity:0.7">‚ìò Manual values are merged with AI-extracted data. Manual entries take priority.</div>
  </div>
- <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitUpload()" id="submit-upload-btn">◎ Analyse &amp; Build Dashboard</button>
+ <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitUpload()" id="submit-upload-btn">‚óé Analyse &amp; Build Dashboard</button>
  </div>
 </div>
-<!-- ══════════════ PAGE 4: DASHBOARD ══════════════ -->
+<!-- ‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê PAGE 4: DASHBOARD ‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê -->
 <div class="page" id="page-dashboard">
  <div class="dashboard-page">
  <div class="dashboard-header">
@@ -589,7 +589,10 @@
  <div class="section-label">Your Progress</div>
  <h2>Sleep Longevity<br><em style="font-style:italic;color:var(--teal)">Dashboard</em></h2>
  </div>
- <div class="day-badge">Day 7 of 14</div>
+ <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap">
+  <div class="day-badge">Day 7 of 14</div>
+  <button id="edit-day-btn" class="btn-secondary" style="margin-left:0;padding:0.5rem 1rem;font-size:0.75rem;display:none" onclick="editCurrentDay()">‚úèÔ∏è Edit Day</button>
+ </div>
  </div>
  <!-- SCORE RING -->
  <div class="score-hero">
@@ -608,33 +611,33 @@
  <div class="score-number" id="score-num">0</div>
  </div>
  <div class="score-title">Longevity Sleep Index</div>
- <div class="score-label">↑ +20 pts from Day 1 · Top 12% of participants</div>
+ <div class="score-label">‚Üë +20 pts from Day 1 ¬∑ Top 12% of participants</div>
  </div>
  <!-- METRICS -->
  <div class="metrics-grid">
  <div class="metric-card">
- <div class="metric-icon">🌙</div>
+ <div class="metric-icon">üåô</div>
  <div class="metric-value good">7h 42m</div>
  <div class="metric-name">Sleep Duration</div>
- <div class="metric-delta">↑ +28min vs baseline</div>
+ <div class="metric-delta">‚Üë +28min vs baseline</div>
  </div>
  <div class="metric-card">
- <div class="metric-icon">🧠</div>
+ <div class="metric-icon">üß†</div>
  <div class="metric-value good">1h 18m</div>
  <div class="metric-name">Deep Sleep</div>
- <div class="metric-delta">↑ Optimal range</div>
+ <div class="metric-delta">‚Üë Optimal range</div>
  </div>
  <div class="metric-card">
- <div class="metric-icon">💤</div>
+ <div class="metric-icon">üí§</div>
  <div class="metric-value warn">1h 04m</div>
  <div class="metric-name">REM Sleep</div>
- <div class="metric-delta">→ Building toward goal</div>
+ <div class="metric-delta">‚Üí Building toward goal</div>
  </div>
  <div class="metric-card">
- <div class="metric-icon">💓</div>
+ <div class="metric-icon">üíì</div>
  <div class="metric-value good">68ms</div>
  <div class="metric-name">HRV</div>
- <div class="metric-delta">↑ +14ms since Day 1</div>
+ <div class="metric-delta">‚Üë +14ms since Day 1</div>
  </div>
  </div>
  <div id="extra-metrics-row" style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:2rem;justify-content:center"></div>
@@ -653,22 +656,22 @@
  </div>
  <!-- AI INSIGHTS -->
  <div class="insights-section">
- <div class="insights-title">✦ AI Sleep Insights</div>
+ <div class="insights-title">‚ú¶ AI Sleep Insights</div>
  <div class="insight-card" style="animation-delay:0.1s">
- <div class="insight-emoji">🎯</div>
+ <div class="insight-emoji">üéØ</div>
  <div class="insight-text"><strong>Your bedtime consistency improved by 42%.</strong> This is strongly associated with improved metabolic health and longevity. Maintaining a consistent sleep-wake window is one of the most powerful interventions for circadian health.</div>
  </div>
  <div class="insight-card gold-accent" style="animation-delay:0.2s">
- <div class="insight-emoji">🧬</div>
+ <div class="insight-emoji">üß¨</div>
  <div class="insight-text"><strong>Your HRV has increased 14ms since Day 1.</strong> Higher HRV is a key biomarker of autonomic nervous system resilience and is strongly correlated with reduced all-cause mortality risk. You're trending in an excellent direction.</div>
  </div>
  <div class="insight-card" style="animation-delay:0.3s">
- <div class="insight-emoji">🌊</div>
+ <div class="insight-emoji">üåä</div>
  <div class="insight-text"><strong>Deep sleep duration is up 22 minutes vs your baseline.</strong> Deep (slow-wave) sleep is when cellular repair, memory consolidation, and growth hormone secretion peak. This improvement translates directly to cognitive performance and immune resilience.</div>
  </div>
  <div class="insight-card gold-accent" style="animation-delay:0.4s">
- <div class="insight-emoji">💡</div>
- <div class="insight-text"><strong>Recommendation:</strong> Your data shows a pattern of later bedtimes on evenings with screen exposure. Consider a 30-minute digital wind-down to advance your sleep phase and capture an additional 15–20 minutes of slow-wave sleep.</div>
+ <div class="insight-emoji">üí°</div>
+ <div class="insight-text"><strong>Recommendation:</strong> Your data shows a pattern of later bedtimes on evenings with screen exposure. Consider a 30-minute digital wind-down to advance your sleep phase and capture an additional 15‚Äì20 minutes of slow-wave sleep.</div>
  </div>
  </div>
  <!-- SCORE HISTORY -->
@@ -678,19 +681,19 @@
  </div>
  <!-- LEADERBOARD -->
  <div class="leaderboard-section">
- <div class="leaderboard-title">🏆 Challenge Leaderboard</div>
+ <div class="leaderboard-title">üèÜ Challenge Leaderboard</div>
  <div id="leaderboard-body">
  <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--muted);line-height:1.9;padding:0.5rem 0;">
  <div style="margin-bottom:1rem;color:var(--text);font-size:0.8rem;">The leaderboard updates as participants submit their daily sleep data.</div>
  <div id="lb-rows" style="display:flex;flex-direction:column;gap:0;"></div>
  <div id="lb-empty" style="display:none;text-align:center;padding:2rem 0;opacity:0.5;">
- No submissions yet — be the first to upload your sleep data!
+ No submissions yet ‚Äî be the first to upload your sleep data!
  </div>
  </div>
  </div>
  </div>
  <div style="text-align:center;margin-top:2rem">
- <button class="btn-primary" onclick="showPage('upload')">Upload Today's Sleep Data →</button>
+ <button class="btn-primary" onclick="showPage('upload')">Upload Today's Sleep Data ‚Üí</button>
  </div>
  </div>
 </div>
@@ -799,7 +802,7 @@ requestAnimationFrame(frame);
 resizeCanvas();
 requestAnimationFrame(frame);
 window.addEventListener('resize', resizeCanvas);
-// ── AUTH HELPERS ──
+// ‚îÄ‚îÄ AUTH HELPERS ‚îÄ‚îÄ
 async function hashPassword(pw) {
 const enc = new TextEncoder();
 const buf = await crypto.subtle.digest('SHA-256', enc.encode(pw));
@@ -1035,18 +1038,29 @@ if (isLocked) cls += ' day-locked';
 if (submitted) cls += ' day-submitted';
 pill.className = cls;
 pill.innerHTML = isLocked
-? `Day ${i} 🔒`
+? `Day ${i} üîí`
+: (submitted && i < unlocked)
+? `Day ${i} ‚úì`
 : submitted
-? `Day ${i} ✓`
+? `Day ${i} ‚úèÔ∏è`
 : `Day ${i}`;
 pill.onclick = () => {
 if (isLocked) {
 showDayLockedMsg(i, unlocked);
 return;
 }
-if (submitted) {
+if (submitted && i < unlocked) {
 showDayLockedMsg(i, unlocked, true);
 return;
+}
+if (submitted && i === unlocked) {
+// Editing a submitted day ‚Äî reset upload form for re-submission
+uploadedFiles = [];
+renderThumbs();
+document.getElementById('drop-zone').style.display = '';
+document.getElementById('multi-preview-grid').style.display = 'none';
+const manualPanel = document.getElementById('manual-entry-panel');
+if (manualPanel) manualPanel.style.display = 'none';
 }
 document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active'));
 pill.classList.add('active');
@@ -1082,7 +1096,7 @@ nextUnlock.setHours(5, 0, 0, 0);
 eTitle.textContent = `Day ${day} is not yet available.`;
 eBody.textContent = `You can only upload data for one day at a time. Day ${day} will unlock after 5:00 AM on ${nextUnlock.toLocaleDateString('en-IN', {weekday:'long', day:'numeric', month:'long'})}.`;
 eFix.style.display = 'block';
-eFix.textContent = `Currently available: Day ${unlocked}${isDaySubmitted(unlocked) ? ' (already submitted)' : ' — ready to upload'}.`;
+eFix.textContent = `Currently available: Day ${unlocked}${isDaySubmitted(unlocked) ? ' (already submitted)' : ' ‚Äî ready to upload'}.`;
 }
 panel.style.display = 'block';
 panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -1123,7 +1137,7 @@ label.textContent = uploadedFiles.length + ' screenshot' + (uploadedFiles.length
 thumbs.innerHTML = uploadedFiles.map((f, i) => `
 <div class="thumb-wrap">
 <img src="${f.dataUrl}" alt="${f.name}" />
-<button class="thumb-remove" onclick="removeThumb(${i})">✕</button>
+<button class="thumb-remove" onclick="removeThumb(${i})">‚úï</button>
 <div class="thumb-label">${f.name.replace(/\.[^.]+$/, '')}</div>
 </div>`).join('');
 }
@@ -1146,7 +1160,7 @@ const form = document.getElementById('manual-entry-form');
 const arrow = document.getElementById('manual-toggle-arrow');
 const open = form.style.display === 'none';
 form.style.display = open ? 'block' : 'none';
-arrow.textContent = open ? '▲' : '▼';
+arrow.textContent = open ? '‚ñ≤' : '‚ñº';
 }
 function getManualValues() {
 const ids = ['duration','deep_sleep','rem_sleep','light_sleep','awake_time',
@@ -1201,13 +1215,13 @@ const capturedKeys = ALL_METRICS.filter(m => metrics[m.key]);
 const missingMetrics = ALL_METRICS.filter(m => !metrics[m.key]);
 captured.innerHTML = capturedKeys.map(m =>
 `<div style="background:rgba(77,217,192,0.1);border:1px solid rgba(77,217,192,0.3);border-radius:6px;padding:0.35rem 0.7rem;font-family:var(--font-mono);font-size:0.62rem;">
-<span style="color:var(--teal)">✓</span> <span style="color:var(--muted)">${m.label}:</span> <span style="color:var(--text)">${metrics[m.key]}</span>
+<span style="color:var(--teal)">‚úì</span> <span style="color:var(--muted)">${m.label}:</span> <span style="color:var(--text)">${metrics[m.key]}</span>
 </div>`
 ).join('');
 if (missingMetrics.length) {
 missing.style.display = 'block';
-missing.innerHTML = '⚠ Missing fields — enter manually if available:<br>' +
-missingMetrics.map(m => `<strong>${m.label}</strong>`).join(' · ');
+missing.innerHTML = '‚ö† Missing fields ‚Äî enter manually if available:<br>' +
+missingMetrics.map(m => `<strong>${m.label}</strong>`).join(' ¬∑ ');
 } else {
 missing.style.display = 'none';
 }
@@ -1249,15 +1263,15 @@ try {
 const resp = await fetch(SHEETS_URL + '?action=leaderboard', { method: 'GET', mode: 'no-cors' });
 } catch(e) {}
 const name = localStorage.getItem('slc_name') || 'You';
-const scores = scoreHistory;
+const scores = scoreHistory.filter(s => s !== undefined && s !== null);
 if (!scores.length) { lbEmpty.style.display = 'block'; return; }
 const avg = Math.round(scores.reduce((a,b) => a+b, 0) / scores.length);
 const best = Math.max(...scores);
 lbEmpty.style.display = 'none';
 lbRows.innerHTML = `
 <div class="leaderboard-item" style="background:rgba(77,217,192,0.04);border-radius:8px;padding:1rem;border:1px solid rgba(77,217,192,0.15);">
-<div class="rank" style="color:var(--teal)">★</div>
-<div class="lb-avatar">🌙</div>
+<div class="rank" style="color:var(--teal)">‚òÖ</div>
+<div class="lb-avatar">üåô</div>
 <div class="lb-info">
 <div class="lb-name">${name}</div>
 <div class="lb-badge">
@@ -1268,7 +1282,7 @@ lbRows.innerHTML = `
 </div>
 </div>
 <div style="margin-top:1.25rem;padding:1rem;background:var(--surface2);border-radius:10px;font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);line-height:1.8;">
-<div style="color:var(--teal);margin-bottom:0.4rem;">ⓘ Group leaderboard</div>
+<div style="color:var(--teal);margin-bottom:0.4rem;">‚ìò Group leaderboard</div>
 The full group leaderboard across all participants is maintained in the challenge Google Sheet.
 Your administrator can share the group rankings at the end of each day.
 </div>`;
@@ -1354,22 +1368,22 @@ title = isShot
 : 'Scoring step: AI did not return a valid score.';
 body = 'The AI responded with plain text instead of structured sleep data. This usually means the screenshot does not contain a recognisable sleep summary screen.';
 fix = isShot
-? `What to do:\n• Make sure the screenshot shows a sleep summary screen (not a home screen or app menu).\n• Try cropping the image to just the sleep data section.\n• Accepted apps: Apple Health · Fitbit · Oura · Whoop · Garmin.\n• If the image is low-resolution, export a higher-quality version.\n• You can skip the screenshot and enter your metrics manually in the panel below.`
-: `What to do:\n• Re-submit — this is usually a temporary issue.\n• If it keeps failing, enter all metrics manually and submit without a screenshot.`;
+? `What to do:\n‚Ä¢ Make sure the screenshot shows a sleep summary screen (not a home screen or app menu).\n‚Ä¢ Try cropping the image to just the sleep data section.\n‚Ä¢ Accepted apps: Apple Health ¬∑ Fitbit ¬∑ Oura ¬∑ Whoop ¬∑ Garmin.\n‚Ä¢ If the image is low-resolution, export a higher-quality version.\n‚Ä¢ You can skip the screenshot and enter your metrics manually in the panel below.`
+: `What to do:\n‚Ä¢ Re-submit ‚Äî this is usually a temporary issue.\n‚Ä¢ If it keeps failing, enter all metrics manually and submit without a screenshot.`;
 } else if (err.message === 'INVALID_JSON') {
 title = isShot
 ? `Screenshot ${imgNum}: AI returned malformed data.`
 : 'Scoring step: AI returned a malformed response.';
 body = `The AI response could not be parsed as structured data.\nTechnical detail: ${err.syntaxMsg || 'JSON syntax error'}.`;
-fix = `What to do:\n• Re-submit — this almost always resolves on a second attempt.\n• If Screenshot ${imgNum || ''} keeps failing, remove it and re-upload a clearer crop.\n• Use the manual entry panel to fill in values directly and bypass the screenshot.`;
+fix = `What to do:\n‚Ä¢ Re-submit ‚Äî this almost always resolves on a second attempt.\n‚Ä¢ If Screenshot ${imgNum || ''} keeps failing, remove it and re-upload a clearer crop.\n‚Ä¢ Use the manual entry panel to fill in values directly and bypass the screenshot.`;
 } else if (err.message && err.message.includes('API error')) {
 title = 'API connection error.';
 body = 'Could not reach the AI analysis service. This is a network or authentication issue, not a problem with your screenshot.';
-fix = `What to do:\n• Check your internet connection and try again.\n• If you are on a VPN or corporate network, try disabling it.\n• Wait 30 seconds and re-submit.`;
+fix = `What to do:\n‚Ä¢ Check your internet connection and try again.\n‚Ä¢ If you are on a VPN or corporate network, try disabling it.\n‚Ä¢ Wait 30 seconds and re-submit.`;
 } else {
 title = 'Unexpected error.';
 body = err.message || 'An unknown error occurred.';
-fix = 'What to do:\n• Re-submit the form.\n• If the problem continues, clear all screenshots and enter your data manually.';
+fix = 'What to do:\n‚Ä¢ Re-submit the form.\n‚Ä¢ If the problem continues, clear all screenshots and enter your data manually.';
 }
 eTitle.textContent = title;
 eBody.textContent = body;
@@ -1405,7 +1419,7 @@ if (hasImages) {
 for (let i = 0; i < uploadedFiles.length; i++) {
 const f = uploadedFiles[i];
 const pct = Math.round(10 + (i / uploadedFiles.length) * 55);
-setProgress(pct, `⟳ Analysing screenshot ${i + 1} of ${uploadedFiles.length} — ${f.name}...`);
+setProgress(pct, `‚ü≥ Analysing screenshot ${i + 1} of ${uploadedFiles.length} ‚Äî ${f.name}...`);
 const response = await fetch('/api/proxy', {
 method: 'POST',
 headers: { 'Content-Type': 'application/json' },
@@ -1422,7 +1436,7 @@ Important extraction rules:
 - Recovery score: If a score like "86" is shown at the top (common in Whoop), capture it as "recovery_score".
 - Resting HR: Use the lowest or average heart rate shown during sleep.
 - Duration: Look for total sleep time, may be labelled "Time in Bed" or "Sleep Duration".
-- Device: Identify from UI style — Whoop has dark teal theme, Oura is dark minimal, Garmin has blue/green, Apple Health is white, Fitbit is teal/white.
+- Device: Identify from UI style ‚Äî Whoop has dark teal theme, Oura is dark minimal, Garmin has blue/green, Apple Health is white, Fitbit is teal/white.
 Respond ONLY with a valid JSON object, no markdown or backticks. Structure:
 {
 "duration": "7h 42m",
@@ -1455,11 +1469,11 @@ if (!mergedMetrics[k]) mergedMetrics[k] = v;
 }
 prefillManualFromAI(mergedMetrics);
 }
-setProgress(72, '⟳ Merging data sources...');
+setProgress(72, '‚ü≥ Merging data sources...');
 await delay(300);
 const { _notes, ...manualMetrics } = manualVals;
 Object.entries(manualMetrics).forEach(([k, v]) => { mergedMetrics[k] = v; });
-setProgress(72, '⟳ Merging data — please review...');
+setProgress(72, '‚ü≥ Merging data ‚Äî please review...');
 await delay(300);
 bar.style.display = 'none';
 const proceed = await showReviewPanel(mergedMetrics);
@@ -1471,7 +1485,7 @@ const reviewedManual = getManualValues();
 const { _notes: reviewNotes, ...reviewMetrics } = reviewedManual;
 Object.entries(reviewMetrics).forEach(([k, v]) => { mergedMetrics[k] = v; });
 bar.style.display = 'block';
-setProgress(82, '⟳ Computing Longevity Score & insights...');
+setProgress(82, '‚ü≥ Computing Longevity Score & insights...');
 const summaryPrompt = `You are a sleep longevity expert. Here are a participant's merged sleep metrics:
 ${JSON.stringify(mergedMetrics, null, 2)}
 ${_notes ? 'Participant notes: ' + _notes : ''}
@@ -1481,10 +1495,10 @@ Respond ONLY with valid JSON, no markdown. Structure:
 "score": 78,
 "score_breakdown": { "duration": 20, "deep_sleep": 18, "rem_sleep": 14, "efficiency": 16, "hrv": 10 },
 "insights": [
-{ "emoji": "🎯", "title": "Short title", "body": "2-3 sentence longevity-focused interpretation.", "accent": false },
-{ "emoji": "🧬", "title": "Short title", "body": "2-3 sentences.", "accent": true },
-{ "emoji": "🌊", "title": "Short title", "body": "2-3 sentences.", "accent": false },
-{ "emoji": "💡", "title": "Recommendation", "body": "One actionable recommendation.", "accent": true }
+{ "emoji": "üéØ", "title": "Short title", "body": "2-3 sentence longevity-focused interpretation.", "accent": false },
+{ "emoji": "üß¨", "title": "Short title", "body": "2-3 sentences.", "accent": true },
+{ "emoji": "üåä", "title": "Short title", "body": "2-3 sentences.", "accent": false },
+{ "emoji": "üí°", "title": "Recommendation", "body": "One actionable recommendation.", "accent": true }
 ],
 "missing_fields": ["list metrics still missing after all sources"]
 }`;
@@ -1502,7 +1516,7 @@ const scoreData = await scoreResp.json();
 const scoreRaw = scoreData.content.map(b => b.text || '').join('');
 const scoreResult = extractJSON(scoreRaw, 'scoring');
 aiSleepData = { metrics: mergedMetrics, ...scoreResult, device_detected: mergedMetrics.device_detected };
-setProgress(100, '✓ Analysis complete!');
+setProgress(100, '‚úì Analysis complete!');
 await delay(700);
 markDaySubmitted(selectedDay);
 updateLeaderboard();
@@ -1517,8 +1531,12 @@ btn.disabled = false; btn.style.opacity = '1';
 showErrorPanel(err);
 }
 }
-let scoreHistory = [];
-let durationHistory = [];
+let scoreHistory = JSON.parse(localStorage.getItem('slc_scoreHistory') || '[]');
+let durationHistory = JSON.parse(localStorage.getItem('slc_durationHistory') || '[]');
+function saveHistories() {
+localStorage.setItem('slc_scoreHistory', JSON.stringify(scoreHistory));
+localStorage.setItem('slc_durationHistory', JSON.stringify(durationHistory));
+}
 function parseDurationToHours(str) {
 if (!str) return null;
 const h = str.match(/(\d+)\s*h/);
@@ -1530,13 +1548,17 @@ const d = aiSleepData;
 if (d) {
 const score = d.score || 0;
 const m = d.metrics || {};
-if (!d._recorded) {
-scoreHistory.push(score);
-durationHistory.push(parseDurationToHours(m.duration) || 0);
+if (!d._recorded || d._editMode) {
+const dayIdx = selectedDay - 1;
+scoreHistory[dayIdx] = score;
+durationHistory[dayIdx] = parseDurationToHours(m.duration) || 0;
+saveHistories();
 d._recorded = true;
+d._editMode = false;
 }
+const submittedDays = scoreHistory.filter(s => s !== undefined && s !== null).length;
 const dayBadge = document.querySelector('.day-badge');
-if (dayBadge) dayBadge.textContent = 'Day ' + scoreHistory.length + ' of 14';
+if (dayBadge) dayBadge.textContent = 'Day ' + submittedDays + ' of 14';
 const arc = document.getElementById('score-arc');
 const numEl = document.getElementById('score-num');
 const circumference = 408;
@@ -1551,15 +1573,15 @@ const scoreLabel = document.querySelector('.score-label');
 if (scoreLabel) {
 const delta = scoreHistory.length > 1 ? score - scoreHistory[0] : null;
 scoreLabel.textContent = delta !== null
-? (delta >= 0 ? '↑ +' : '↓ ') + delta + ' pts from Day 1'
+? (delta >= 0 ? '‚Üë +' : '‚Üì ') + delta + ' pts from Day 1'
 : 'Based on your uploaded sleep data';
 }
 const cards = document.querySelectorAll('.metric-card');
 const metricDefs = [
-{ icon:'🌙', label:'Sleep Duration', value: m.duration || '—', delta: m.sleep_efficiency ? 'Efficiency: ' + m.sleep_efficiency : '—', good: parseDurationToHours(m.duration) >= 7 },
-{ icon:'🧠', label:'Deep Sleep', value: m.deep_sleep || '—', delta: parseDurationToHours(m.deep_sleep) >= 1 ? '↑ Optimal range' : '→ Below optimal', good: parseDurationToHours(m.deep_sleep) >= 1 },
-{ icon:'💤', label:'REM Sleep', value: m.rem_sleep || '—', delta: parseDurationToHours(m.rem_sleep) >= 1.5 ? '↑ Excellent' : '→ Building toward goal', good: parseDurationToHours(m.rem_sleep) >= 1.5 },
-{ icon:'💓', label:'HRV', value: m.hrv || m.resting_hr || '—', delta: m.hrv ? 'Heart Rate Variability' : (m.resting_hr ? 'Resting Heart Rate' : '—'), good: true }
+{ icon:'üåô', label:'Sleep Duration', value: m.duration || '‚Äî', delta: m.sleep_efficiency ? 'Efficiency: ' + m.sleep_efficiency : '‚Äî', good: parseDurationToHours(m.duration) >= 7 },
+{ icon:'üß†', label:'Deep Sleep', value: m.deep_sleep || '‚Äî', delta: parseDurationToHours(m.deep_sleep) >= 1 ? '‚Üë Optimal range' : '‚Üí Below optimal', good: parseDurationToHours(m.deep_sleep) >= 1 },
+{ icon:'üí§', label:'REM Sleep', value: m.rem_sleep || '‚Äî', delta: parseDurationToHours(m.rem_sleep) >= 1.5 ? '‚Üë Excellent' : '‚Üí Building toward goal', good: parseDurationToHours(m.rem_sleep) >= 1.5 },
+{ icon:'üíì', label:'HRV', value: m.hrv || m.resting_hr || '‚Äî', delta: m.hrv ? 'Heart Rate Variability' : (m.resting_hr ? 'Resting Heart Rate' : '‚Äî'), good: true }
 ];
 cards.forEach((card, i) => {
 const def = metricDefs[i];
@@ -1573,45 +1595,71 @@ const extraRow = document.getElementById('extra-metrics-row');
 if (extraRow) {
 extraRow.innerHTML = '';
 const extras = [
-{ icon:'🛏️', label:'Bedtime', value: m.bedtime || '—' },
-{ icon:'⏰', label:'Wake Time', value: m.wake_time || '—' },
-{ icon:'🫁', label:'SpO2', value: m.spo2 || '—' },
-{ icon:'❤️', label:'Resting HR', value: m.resting_hr || '—' },
-{ icon:'💨', label:'Resp. Rate', value: m.respiratory_rate || '—' },
-{ icon:'📱', label:'Device', value: d.device_detected || '—' }
-].filter(e => e.value !== '—');
+{ icon:'üõèÔ∏è', label:'Bedtime', value: m.bedtime || '‚Äî' },
+{ icon:'‚è∞', label:'Wake Time', value: m.wake_time || '‚Äî' },
+{ icon:'ü´Å', label:'SpO2', value: m.spo2 || '‚Äî' },
+{ icon:'‚ù§Ô∏è', label:'Resting HR', value: m.resting_hr || '‚Äî' },
+{ icon:'üí®', label:'Resp. Rate', value: m.respiratory_rate || '‚Äî' },
+{ icon:'üì±', label:'Device', value: d.device_detected || '‚Äî' }
+].filter(e => e.value !== '‚Äî');
 extras.forEach(e => {
 extraRow.innerHTML += `<div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center;min-width:100px"><div style="font-size:1.4rem;margin-bottom:0.4rem">${e.icon}</div><div style="font-family:var(--font-display);font-size:1rem;color:var(--teal)">${e.value}</div><div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);margin-top:0.2rem">${e.label}</div></div>`;
 });
 }
 const insightsContainer = document.querySelector('.insights-section');
 if (insightsContainer && d.insights && d.insights.length) {
-insightsContainer.innerHTML = '<div class="insights-title">✦ AI Sleep Insights</div>';
+insightsContainer.innerHTML = '<div class="insights-title">‚ú¶ AI Sleep Insights</div>';
 d.insights.forEach((ins, i) => {
 insightsContainer.innerHTML += `<div class="insight-card ${ins.accent ? 'gold-accent' : ''}" style="animation-delay:${i * 0.1}s"><div class="insight-emoji">${ins.emoji}</div><div class="insight-text"><strong>${ins.title}.</strong> ${ins.body}</div></div>`;
 });
 if (d.missing_fields && d.missing_fields.length) {
-insightsContainer.innerHTML += `<div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);margin-top:1rem;padding:0.75rem 1rem;border:1px solid var(--border);border-radius:8px;opacity:0.7">⚠ Metrics not found in screenshots: ${d.missing_fields.join(', ')}</div>`;
+insightsContainer.innerHTML += `<div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);margin-top:1rem;padding:0.75rem 1rem;border:1px solid var(--border);border-radius:8px;opacity:0.7">‚ö† Metrics not found in screenshots: ${d.missing_fields.join(', ')}</div>`;
 }
 }
 } else {
-document.getElementById('score-num').textContent = '—';
+document.getElementById('score-num').textContent = '‚Äî';
 document.querySelector('.score-label').textContent = 'Upload a sleep screenshot to see your score';
 }
 const hist = document.getElementById('score-history');
 hist.innerHTML = '';
-const histScores = scoreHistory.length ? scoreHistory : [0];
-histScores.forEach((score, i) => {
-hist.innerHTML += `<div style="display:flex;align-items:center;gap:1rem"><span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);width:3.5rem">Day ${i+1}</span><div style="flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:${(score/100)*100}%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:3px;transition:width 1s ${i*0.1}s both"></div></div><span style="font-family:var(--font-display);font-size:1.1rem;color:var(--teal);width:2.5rem;text-align:right">${score}</span></div>`;
-});
+let histIdx = 0;
+for (let i = 0; i < scoreHistory.length; i++) {
+if (scoreHistory[i] !== undefined && scoreHistory[i] !== null) {
+const s = scoreHistory[i];
+hist.innerHTML += `<div style="display:flex;align-items:center;gap:1rem"><span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);width:3.5rem">Day ${i+1}</span><div style="flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:${(s/100)*100}%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:3px;transition:width 1s ${histIdx*0.1}s both"></div></div><span style="font-family:var(--font-display);font-size:1.1rem;color:var(--teal);width:2.5rem;text-align:right">${s}</span></div>`;
+histIdx++;
+}
+}
+if (histIdx === 0) {
+hist.innerHTML = '<div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);text-align:center;padding:1rem">No data submitted yet</div>';
+}
 drawChart();
 renderLeaderboardOnDashboard();
+// Show Edit Day button if today's data has been submitted but day isn't over yet
+const editBtn = document.getElementById('edit-day-btn');
+if (editBtn) {
+const unlocked = getCurrentUnlockedDay();
+editBtn.style.display = isDaySubmitted(unlocked) ? 'inline-flex' : 'none';
+editBtn.textContent = '‚úèÔ∏è Edit Day ' + unlocked;
+}
 }
 function drawChart() {
 const svg = document.getElementById('trend-chart');
 const W = 800, H = 180, pad = 30;
-const scores = scoreHistory.length ? scoreHistory : [0];
-const durations = durationHistory.length ? durationHistory : [0];
+// Only include days that have actual submitted data
+const chartScores = [];
+const chartDurations = [];
+const chartDayLabels = [];
+for (let i = 0; i < scoreHistory.length; i++) {
+if (scoreHistory[i] !== undefined && scoreHistory[i] !== null) {
+chartScores.push(scoreHistory[i]);
+chartDurations.push(durationHistory[i] || 0);
+chartDayLabels.push('D' + (i + 1));
+}
+}
+const scores = chartScores.length ? chartScores : [0];
+const durations = chartDurations.length ? chartDurations : [0];
+const dayLabels = chartDayLabels.length ? chartDayLabels : ['D1'];
 const days = scores.length;
 function xPos(i) { return days === 1 ? W/2 : pad + (i/(days-1))*(W-pad*2); }
 function yScore(v){ return H-pad-((v/100))*(H-pad*2); }
@@ -1628,12 +1676,26 @@ let dots = '';
 scores.forEach((v,i) => { dots += `<circle cx="${xPos(i)}" cy="${yScore(v)}" r="4" fill="var(--teal)" stroke="var(--bg)" stroke-width="2"/>`; });
 durations.forEach((v,i) => { dots += `<circle cx="${xPos(i)}" cy="${yDur(v)}" r="3" fill="var(--gold)" stroke="var(--bg)" stroke-width="2" opacity="0.7"/>`; });
 let labels = '';
-scores.forEach((v,i) => { labels += `<text x="${xPos(i)}" y="${H-5}" text-anchor="middle" fill="rgba(122,148,180,0.6)" font-size="9" font-family="DM Mono">D${i+1}</text>`; });
+dayLabels.forEach((lbl,i) => { labels += `<text x="${xPos(i)}" y="${H-5}" text-anchor="middle" fill="rgba(122,148,180,0.6)" font-size="9" font-family="DM Mono">${lbl}</text>`; });
 svg.innerHTML = `<defs><linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(77,217,192,0.15)"/><stop offset="100%" stop-color="rgba(77,217,192,0)"/></linearGradient></defs>${grid}<path d="${areaPath}" fill="url(#areaGrad)"/><path d="${scorePath}" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="${durPath}" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5,3" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>${dots}${labels}`;
+}
+function editCurrentDay() {
+const unlocked = getCurrentUnlockedDay();
+if (isDaySubmitted(unlocked)) {
+selectedDay = unlocked;
+uploadedFiles = [];
+renderThumbs();
+document.getElementById('drop-zone').style.display = '';
+document.getElementById('multi-preview-grid').style.display = 'none';
+const manualPanel = document.getElementById('manual-entry-panel');
+if (manualPanel) manualPanel.style.display = 'none';
+showPage('upload');
+initDayPills();
+}
 }
 initDayPills();
 loadSavedRegistration();
-// ── AUTH INIT ──
+// ‚îÄ‚îÄ AUTH INIT ‚îÄ‚îÄ
 updateNavForAuth();
 if (!isLoggedIn()) {
 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1646,24 +1708,24 @@ function toggleTheme() {
 const html = document.documentElement;
 const isLight = html.classList.toggle('light');
 localStorage.setItem('slc_theme', isLight ? 'light' : 'dark');
-document.getElementById('theme-toggle').textContent = isLight ? '🌙' : '☀';
+document.getElementById('theme-toggle').textContent = isLight ? 'üåô' : '‚òÄ';
 }
 (function() {
 const saved = localStorage.getItem('slc_theme');
 if (saved === 'light') {
 document.documentElement.classList.add('light');
-document.getElementById('theme-toggle').textContent = '🌙';
+document.getElementById('theme-toggle').textContent = 'üåô';
 }
 })();
 function toggleMobileNav() {
 const nav = document.getElementById('mobile-nav');
 const open = nav.style.display === 'flex';
 nav.style.display = open ? 'none' : 'flex';
-document.querySelector('.hamburger').textContent = open ? '☰' : '✕';
+document.querySelector('.hamburger').textContent = open ? '‚ò∞' : '‚úï';
 }
 function closeMobileNav() {
 document.getElementById('mobile-nav').style.display = 'none';
-document.querySelector('.hamburger').textContent = '☰';
+document.querySelector('.hamburger').textContent = '‚ò∞';
 }</script>
 </body>
 </html>
