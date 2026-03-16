@@ -1027,6 +1027,7 @@ if (email.toLowerCase() !== storedEmail.toLowerCase()) { errEl.textContent = 'Em
 const hash = await hashPassword(pw);
 if (hash !== storedHash) { errEl.textContent = 'Incorrect password. Please try again.'; errEl.classList.add('visible'); return; }
 localStorage.setItem('slc_logged_in', 'true');
+loadHistories(); // load this user's data
 updateNavForAuth();
 showPage('landing');
 }
@@ -1075,6 +1076,11 @@ showPage('landing');
 }
 function logoutUser() {
 localStorage.removeItem('slc_logged_in');
+// Reset in-memory state so next user starts fresh
+scoreHistory = [];
+durationHistory = [];
+aiSleepData = null;
+selectedDay = 1;
 updateNavForAuth();
 showPage('login');
 }
@@ -1182,11 +1188,15 @@ const todayDay = elapsed + 1;
 if (todayDay < 1) return 0;
 return Math.min(14, todayDay);
 }
+function getUserKey(key) {
+const email = (localStorage.getItem('slc_email') || 'anon').toLowerCase().replace(/[^a-z0-9]/g, '_');
+return 'slc_' + email + '_' + key;
+}
 function isDaySubmitted(day) {
-return localStorage.getItem('slc_submitted_day_' + day) === 'true';
+return localStorage.getItem(getUserKey('day_' + day)) === 'true';
 }
 function markDaySubmitted(day) {
-localStorage.setItem('slc_submitted_day_' + day, 'true');
+localStorage.setItem(getUserKey('day_' + day), 'true');
 }
 function initDayPills() {
 const container = document.getElementById('day-pills');
@@ -1747,11 +1757,15 @@ btn.disabled = false; btn.style.opacity = '1';
 showErrorPanel(err);
 }
 }
-let scoreHistory = JSON.parse(localStorage.getItem('slc_scoreHistory') || '[]');
-let durationHistory = JSON.parse(localStorage.getItem('slc_durationHistory') || '[]');
+function loadHistories() {
+scoreHistory = JSON.parse(localStorage.getItem(getUserKey('scoreHistory')) || '[]');
+durationHistory = JSON.parse(localStorage.getItem(getUserKey('durationHistory')) || '[]');
+}
+let scoreHistory = [];
+let durationHistory = [];
 function saveHistories() {
-localStorage.setItem('slc_scoreHistory', JSON.stringify(scoreHistory));
-localStorage.setItem('slc_durationHistory', JSON.stringify(durationHistory));
+localStorage.setItem(getUserKey('scoreHistory'), JSON.stringify(scoreHistory));
+localStorage.setItem(getUserKey('durationHistory'), JSON.stringify(durationHistory));
 }
 function parseDurationToHours(str) {
 if (!str) return null;
@@ -1760,6 +1774,7 @@ const m = str.match(/(\d+)\s*m/);
 return (h ? parseInt(h[1]) : 0) + (m ? parseInt(m[1]) / 60 : 0);
 }
 function initDashboard() {
+loadHistories();
 const d = aiSleepData;
 if (d) {
 const score = d.score || 0;
@@ -1910,6 +1925,7 @@ initDayPills();
 }
 }
 initDayPills();
+loadHistories();
 loadSavedRegistration();
 // ── AUTH INIT ──
 updateNavForAuth();
