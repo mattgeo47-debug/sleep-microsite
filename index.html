@@ -1394,8 +1394,8 @@ const m = data.metrics || {};
 const insights = data.insights
 ? data.insights.map(i => i.title + ': ' + i.body).join(' | ')
 : '';
-const name = document.getElementById('reg-name')?.value || '';
-const email = document.getElementById('reg-email')?.value || '';
+const name = localStorage.getItem('slc_name') || document.getElementById('reg-name')?.value || '';
+const email = localStorage.getItem('slc_email') || document.getElementById('reg-email')?.value || '';
 const phone = document.getElementById('reg-phone')?.value || '';
 const payload = {
 name, email, phone,
@@ -1420,8 +1420,7 @@ insights
 };
 await fetch(SHEETS_URL, {
 method: 'POST',
-mode: 'no-cors',
-headers: { 'Content-Type': 'application/json' },
+headers: { 'Content-Type': 'text/plain' },
 body: JSON.stringify(payload)
 });
 }
