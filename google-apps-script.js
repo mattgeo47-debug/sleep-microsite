@@ -42,7 +42,7 @@ function doGet(e) {
 }
 
 /**
- * Handles POST requests — saves sleep data to the sheet
+ * Handles POST requests — routes to sleep data or registration
  */
 function doPost(e) {
   try {
@@ -57,6 +57,12 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
 
+    // Route: registration data goes to "Registrations" sheet
+    if (data.action === 'register') {
+      return saveRegistration(data);
+    }
+
+    // Default: sleep data goes to "Sleep Data" sheet
     var sheet = getOrCreateSheet();
 
     // Build the row — columns match the existing "Sleep Data" sheet layout:
@@ -100,6 +106,38 @@ function doPost(e) {
       .createTextOutput(JSON.stringify({ status: 'error', message: err.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
   }
+}
+
+/**
+ * Saves registration data to a separate "Registrations" sheet
+ */
+function saveRegistration(data) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheetName = 'Registrations';
+  var sheet = ss.getSheetByName(sheetName);
+
+  if (!sheet) {
+    sheet = ss.insertSheet(sheetName);
+    sheet.appendRow([
+      'Timestamp', 'Name', 'Email', 'Phone', 'Device', 'Age', 'Goal'
+    ]);
+    sheet.getRange(1, 1, 1, 7).setFontWeight('bold');
+    sheet.setFrozenRows(1);
+  }
+
+  sheet.appendRow([
+    new Date(),
+    data.name || '',
+    data.email || '',
+    data.phone || '',
+    data.device || '',
+    data.age || '',
+    data.goal || ''
+  ]);
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'ok', message: 'Registration saved' }))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 /**

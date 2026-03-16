@@ -1058,16 +1058,17 @@ const goal = document.getElementById('signup-goal').value;
 if (age) localStorage.setItem('slc_age', age);
 if (goal) localStorage.setItem('slc_goal', goal);
 selectedDevice = signupSelectedDevice;
-// Push registration to Google Sheets so user appears even before uploading data
+// Push registration to separate Registrations sheet in Google Sheets
 if (SHEETS_URL) {
 fetch(SHEETS_URL, {
 method: 'POST',
 headers: { 'Content-Type': 'text/plain' },
 body: JSON.stringify({
+action: 'register',
 name, email, phone,
 device: signupSelectedDevice,
-day: '',
-notes: 'Registration only — no sleep data yet'
+age: age || '',
+goal: goal || ''
 })
 }).catch(() => {}); // silent fail
 }
@@ -1177,8 +1178,8 @@ return true;
 }
 let uploadedFiles = [];
 let selectedDay = 1;
-// Fixed challenge start date: April 18, 2025 (midnight IST)
-const CHALLENGE_START = new Date(2025, 3, 18); // month is 0-indexed: 3 = April
+// Fixed challenge start date: March 15, 2026 (midnight IST)
+const CHALLENGE_START = new Date(2026, 2, 15); // month is 0-indexed: 2 = March
 function getCurrentUnlockedDay() {
 const now = new Date();
 const msPerDay = 24 * 60 * 60 * 1000;
@@ -1205,8 +1206,7 @@ container.innerHTML = '';
 for (let i = 1; i <= 14; i++) {
 const pill = document.createElement('div');
 const submitted = isDaySubmitted(i);
-const isFuture = i > unlocked; // day hasn't happened yet
-const canEdit = submitted && i === unlocked; // can only edit today's submission
+const isFuture = i > unlocked; // day hasn't happened yet — LOCKED
 const isActive = i === selectedDay;
 let cls = 'day-pill';
 if (isActive && !isFuture) cls += ' active';
@@ -1215,28 +1215,21 @@ if (isFuture) cls += ' day-locked';
 pill.className = cls;
 pill.innerHTML = isFuture
 ? `Day ${i} 🔒`
-: canEdit
-? `Day ${i} ✏️`
 : submitted
-? `Day ${i} ✓`
+? `Day ${i} ✏️`
 : `Day ${i}`;
 pill.onclick = () => {
 if (isFuture) {
 showDayLockedMsg(i, unlocked, false);
 return;
 }
-if (submitted && !canEdit) {
-showDayLockedMsg(i, unlocked, true);
-return;
-}
-if (canEdit) {
+// All past/current days are always clickable — even if already submitted (for edits)
 uploadedFiles = [];
 renderThumbs();
 document.getElementById('drop-zone').style.display = '';
 document.getElementById('multi-preview-grid').style.display = 'none';
 const manualPanel = document.getElementById('manual-entry-panel');
 if (manualPanel) manualPanel.style.display = 'none';
-}
 document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active'));
 pill.classList.add('active');
 selectedDay = i;
@@ -1255,24 +1248,17 @@ document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active')
 activePill.classList.add('active');
 }
 }
-function showDayLockedMsg(day, unlocked, isSubmitted) {
+function showDayLockedMsg(day, unlocked) {
 const panel = document.getElementById('error-panel');
 const eTitle = document.getElementById('error-title');
 const eBody = document.getElementById('error-body');
 const eFix = document.getElementById('error-fix');
-if (isSubmitted) {
-eTitle.textContent = `Day ${day} is already submitted.`;
-eBody.textContent = 'Data for this day has been confirmed. Only today\'s submission can be edited before the day ends.';
-eFix.style.display = 'block';
-eFix.textContent = 'If you believe there is an error, please contact the challenge administrator.';
-} else {
 const dayDate = new Date(CHALLENGE_START.getTime() + (day - 1) * 86400000);
 const dateStr = dayDate.toLocaleDateString('en-IN', { weekday: 'short', month: 'short', day: 'numeric' });
 eTitle.textContent = `Day ${day} hasn't started yet.`;
 eBody.textContent = `This day unlocks on ${dateStr}. You can only enter data for days that have already occurred.`;
 eFix.style.display = 'block';
 eFix.textContent = 'Meanwhile, make sure you\'ve submitted data for all past days — missed days mean fewer leaderboard points!';
-}
 panel.style.display = 'block';
 panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
@@ -1866,12 +1852,17 @@ hist.innerHTML = '<div style="font-family:var(--font-mono);font-size:0.75rem;col
 }
 drawChart();
 renderLeaderboardOnDashboard();
-// Show Edit Day button if today's data has been submitted but day isn't over yet
+// Show Edit Day button — any submitted day can be edited
 const editBtn = document.getElementById('edit-day-btn');
 if (editBtn) {
 const unlocked = getCurrentUnlockedDay();
-editBtn.style.display = isDaySubmitted(unlocked) ? 'inline-flex' : 'none';
-editBtn.textContent = '✏️ Edit Day ' + unlocked;
+// Find the most recent submitted day for the edit button
+let editDay = 0;
+for (let d = Math.min(14, unlocked); d >= 1; d--) {
+if (isDaySubmitted(d)) { editDay = d; break; }
+}
+editBtn.style.display = editDay > 0 ? 'inline-flex' : 'none';
+editBtn.textContent = '✏️ Edit Day ' + editDay;
 }
 }
 function drawChart() {
@@ -1912,8 +1903,13 @@ svg.innerHTML = `<defs><linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1"
 }
 function editCurrentDay() {
 const unlocked = getCurrentUnlockedDay();
-if (isDaySubmitted(unlocked)) {
-selectedDay = unlocked;
+// Find the most recent submitted day
+let editDay = 0;
+for (let d = Math.min(14, unlocked); d >= 1; d--) {
+if (isDaySubmitted(d)) { editDay = d; break; }
+}
+if (editDay > 0) {
+selectedDay = editDay;
 uploadedFiles = [];
 renderThumbs();
 document.getElementById('drop-zone').style.display = '';
