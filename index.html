@@ -1029,8 +1029,30 @@ const errEl = document.getElementById('forgot-error');
 errEl.classList.remove('visible');
 if (!email) { errEl.textContent = 'Please enter your email address.'; errEl.classList.add('visible'); return; }
 if (!phone) { errEl.textContent = 'Please enter your phone number.'; errEl.classList.add('visible'); return; }
-const storedEmail = localStorage.getItem('slc_email');
-const storedPhone = (localStorage.getItem('slc_phone') || '').replace(/[\s\-()]/g, '');
+// Try localStorage first, then fall back to API lookup
+let storedEmail = localStorage.getItem('slc_email');
+let storedPhone = (localStorage.getItem('slc_phone') || '').replace(/[\s\-()]/g, '');
+if (!storedEmail || storedEmail.toLowerCase() !== email.toLowerCase()) {
+try {
+errEl.textContent = 'Verifying your account...'; errEl.style.color = 'var(--teal)'; errEl.classList.add('visible');
+const resp = await fetch('/api/lookup?email=' + encodeURIComponent(email));
+const data = await resp.json();
+errEl.classList.remove('visible'); errEl.style.color = '';
+if (data.found) {
+localStorage.setItem('slc_name', data.name || '');
+localStorage.setItem('slc_email', data.email || '');
+localStorage.setItem('slc_phone', (data.phone || '').toString());
+localStorage.setItem('slc_device', data.device || '');
+storedEmail = data.email;
+storedPhone = (data.phone || '').toString().replace(/[\s\-()]/g, '');
+} else {
+errEl.textContent = 'No account found with this email. Please register first.'; errEl.classList.add('visible');
+return;
+}
+} catch(e) {
+errEl.classList.remove('visible'); errEl.style.color = '';
+}
+}
 if (!storedEmail) { errEl.textContent = 'No account found. Please register first.'; errEl.classList.add('visible'); return; }
 if (email.toLowerCase() !== storedEmail.toLowerCase()) { errEl.textContent = 'Email does not match the registered account.'; errEl.classList.add('visible'); return; }
 // Normalize phone comparison — strip everything except digits, compare last 10
@@ -1069,8 +1091,45 @@ const pw = document.getElementById('login-password').value;
 const errEl = document.getElementById('login-error');
 errEl.classList.remove('visible');
 if (!email || !pw) { errEl.textContent = 'Please enter email and password.'; errEl.classList.add('visible'); return; }
-const storedEmail = localStorage.getItem('slc_email');
-const storedHash = localStorage.getItem('slc_password_hash');
+let storedEmail = localStorage.getItem('slc_email');
+let storedHash = localStorage.getItem('slc_password_hash');
+// If no local account, try recovering from server (different browser/device)
+if (!storedEmail || storedEmail.toLowerCase() !== email.toLowerCase()) {
+try {
+errEl.textContent = 'Looking up your account...'; errEl.style.color = 'var(--teal)'; errEl.classList.add('visible');
+const resp = await fetch('/api/lookup?email=' + encodeURIComponent(email));
+const data = await resp.json();
+errEl.classList.remove('visible'); errEl.style.color = '';
+if (data.found) {
+// Account found on server — restore profile locally
+localStorage.setItem('slc_name', data.name || '');
+localStorage.setItem('slc_email', data.email || '');
+localStorage.setItem('slc_phone', (data.phone || '').toString());
+localStorage.setItem('slc_device', data.device || '');
+storedEmail = data.email;
+// No password stored on server — if no local hash, let user set one now
+storedHash = localStorage.getItem('slc_password_hash');
+if (!storedHash) {
+// First login on this device — set the password they just entered as their password
+const hash = await hashPassword(pw);
+localStorage.setItem('slc_password_hash', hash);
+localStorage.setItem('slc_logged_in', 'true');
+loadHistories();
+updateNavForAuth();
+errEl.textContent = '✓ Account recovered! Welcome back, ' + (data.name || '') + '.';
+errEl.style.color = 'var(--teal)'; errEl.classList.add('visible');
+setTimeout(() => { errEl.classList.remove('visible'); errEl.style.color = ''; showPage('landing'); }, 1500);
+return;
+}
+} else {
+errEl.textContent = 'No account found with this email. Please register first.'; errEl.classList.add('visible');
+return;
+}
+} catch(e) {
+errEl.classList.remove('visible'); errEl.style.color = '';
+// API failed, fall through to local check
+}
+}
 if (!storedEmail || !storedHash) { errEl.textContent = 'No account found. Please register first.'; errEl.classList.add('visible'); return; }
 if (email.toLowerCase() !== storedEmail.toLowerCase()) { errEl.textContent = 'Email not found. Check your email or register.'; errEl.classList.add('visible'); return; }
 const hash = await hashPassword(pw);
