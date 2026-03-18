@@ -28,6 +28,10 @@ function doGet(e) {
     return getLeaderboard();
   }
 
+  if (action === 'lookup') {
+    return lookupRegistration(e.parameter.email || '');
+  }
+
   if (action === 'setup') {
     createScoringDocSheet();
     return ContentService
@@ -137,6 +141,51 @@ function saveRegistration(data) {
 
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok', message: 'Registration saved' }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+/**
+ * Looks up a registration by email (case-insensitive)
+ * Returns user profile if found, or { found: false }
+ */
+function lookupRegistration(email) {
+  var result = { found: false };
+
+  if (!email) {
+    return ContentService
+      .createTextOutput(JSON.stringify(result))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('Registrations');
+
+  if (!sheet || sheet.getLastRow() < 2) {
+    return ContentService
+      .createTextOutput(JSON.stringify(result))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  var data = sheet.getRange(2, 1, sheet.getLastRow() - 1, 7).getValues();
+  var emailLower = email.toLowerCase().trim();
+
+  // Columns: 0:Timestamp, 1:Name, 2:Email, 3:Phone, 4:Device, 5:Age, 6:Goal
+  for (var i = 0; i < data.length; i++) {
+    var rowEmail = (data[i][2] || '').toString().toLowerCase().trim();
+    if (rowEmail === emailLower) {
+      result = {
+        found: true,
+        name: data[i][1] || '',
+        email: data[i][2] || '',
+        phone: data[i][3] || '',
+        device: data[i][4] || ''
+      };
+      break;
+    }
+  }
+
+  return ContentService
+    .createTextOutput(JSON.stringify(result))
     .setMimeType(ContentService.MimeType.JSON);
 }
 
@@ -298,7 +347,7 @@ function createScoringDocSheet() {
     ['• Challenge runs for 14 days starting April 18, 2025', '', ''],
     ['• Participants can enter data for any past day (not just sequentially)', '', ''],
     ['• Future days are locked until they occur', '', ''],
-    ['• Only today\'s submission can be edited; past submissions are final', '', ''],
+    ['• Any past or current day submission can be edited/corrected at any time', '', ''],
     ['• Data can be entered via screenshot upload (AI-analysed) or manual entry', '', ''],
     ['', '', ''],
     ['Last updated: ' + new Date().toLocaleDateString('en-IN'), '', '']

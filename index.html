@@ -605,6 +605,12 @@
  <div class="section-label">Daily Data Entry</div>
  <h2>Upload Sleep<br><span class="text-teal">Screenshots</span></h2>
  <p class="subtitle">Upload one or more sleep screenshots — AI extracts all visible metrics automatically. Fill in anything missing manually below.</p>
+ <!-- Upload mode tabs -->
+ <div style="display:flex;gap:0;margin-bottom:2rem;border-radius:12px;overflow:hidden;border:var(--glass-border);background:var(--surface)">
+ <button class="login-tab active" id="tab-device" onclick="switchUploadTab('device')" style="flex:1;padding:0.85rem;text-align:center;font-family:var(--font-mono);font-size:0.8rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s;background:transparent;border:none">⌚ Device / App</button>
+ <button class="login-tab" id="tab-diary" onclick="switchUploadTab('diary')" style="flex:1;padding:0.85rem;text-align:center;font-family:var(--font-mono);font-size:0.8rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s;background:transparent;border:none">📓 Sleep Diary</button>
+ </div>
+ <div id="upload-device-panel">
  <div class="field-group">
  <label class="field-label">Day of Challenge</label>
  <div class="day-selector" id="day-pills"></div>
@@ -689,6 +695,49 @@
  <div style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);opacity:0.7">ⓘ Manual values are merged with AI-extracted data. Manual entries take priority.</div>
  </div>
  <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitUpload()" id="submit-upload-btn">◎ Analyse &amp; Build Dashboard</button>
+ </div><!-- end upload-device-panel -->
+ <div id="upload-diary-panel" style="display:none">
+ <div class="field-group">
+ <label class="field-label">Day of Challenge</label>
+ <div class="day-selector" id="day-pills-diary"></div>
+ </div>
+ <div style="background:var(--surface);border:var(--glass-border);border-radius:var(--glass-radius);padding:1.75rem;margin-bottom:1.5rem">
+ <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--teal);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem">📓 Sleep Diary — PSQI Based</div>
+ <p style="font-family:var(--font-mono);font-size:0.72rem;color:var(--muted);margin-bottom:1.5rem">Answer these questions about last night's sleep. Your responses are scored using the Pittsburgh Sleep Quality Index.</p>
+ <div style="display:flex;flex-direction:column;gap:1.25rem">
+ <div class="manual-field"><label class="manual-label">1. What time did you go to bed?</label><input class="manual-input" id="psqi_bedtime" placeholder="e.g. 10:30 PM" oninput="updatePSQIPreview()"/></div>
+ <div class="manual-field"><label class="manual-label">2. How long (in minutes) did it take you to fall asleep?</label><input class="manual-input" id="psqi_latency" placeholder="e.g. 15" type="number" oninput="updatePSQIPreview()"/></div>
+ <div class="manual-field"><label class="manual-label">3. What time did you wake up?</label><input class="manual-input" id="psqi_waketime" placeholder="e.g. 6:30 AM" oninput="updatePSQIPreview()"/></div>
+ <div class="manual-field"><label class="manual-label">4. How many hours did you actually sleep? (not just time in bed)</label><input class="manual-input" id="psqi_hours" placeholder="e.g. 7.5" type="number" step="0.5" oninput="updatePSQIPreview()"/></div>
+ <div class="manual-field"><label class="manual-label">5. How many times did you wake up during the night?</label>
+ <select class="manual-input" id="psqi_disturbances" onchange="updatePSQIPreview()">
+ <option value="">Select</option><option value="0">None</option><option value="1">1-2 times</option><option value="2">3-5 times</option><option value="3">More than 5 times</option>
+ </select></div>
+ <div class="manual-field"><label class="manual-label">6. How would you rate your overall sleep quality?</label>
+ <select class="manual-input" id="psqi_quality" onchange="updatePSQIPreview()">
+ <option value="">Select</option><option value="0">Very good</option><option value="1">Fairly good</option><option value="2">Fairly bad</option><option value="3">Very bad</option>
+ </select></div>
+ <div class="manual-field"><label class="manual-label">7. How was your daytime energy level?</label>
+ <select class="manual-input" id="psqi_energy" onchange="updatePSQIPreview()">
+ <option value="">Select</option><option value="0">Full of energy</option><option value="1">Mostly energetic</option><option value="2">Somewhat tired</option><option value="3">Very tired / exhausted</option>
+ </select></div>
+ <div class="manual-field"><label class="manual-label">8. Did you use any sleep medication?</label>
+ <select class="manual-input" id="psqi_medication" onchange="updatePSQIPreview()">
+ <option value="">Select</option><option value="0">No</option><option value="1">Less than once a week</option><option value="2">Once or twice a week</option><option value="3">Three or more times a week</option>
+ </select></div>
+ <div class="manual-field"><label class="manual-label">9. Additional notes (optional)</label><textarea class="manual-input" id="psqi_notes" style="height:70px;resize:vertical" placeholder="Stress, caffeine, travel, unusual bedtime..."></textarea></div>
+ </div>
+ <!-- PSQI Score Preview -->
+ <div id="psqi-preview" style="display:none;margin-top:1.5rem;padding:1rem;border:1px solid rgba(77,217,192,0.3);border-radius:10px;background:rgba(77,217,192,0.05)">
+ <div style="display:flex;justify-content:space-between;align-items:center">
+ <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--muted)">Estimated Longevity Score</span>
+ <span id="psqi-score-display" style="font-family:var(--font-display);font-size:1.8rem;color:var(--teal)">--</span>
+ </div>
+ <div id="psqi-quality-label" style="font-family:var(--font-mono);font-size:0.68rem;color:var(--muted);margin-top:0.25rem"></div>
+ </div>
+ </div>
+ <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitDiary()">📓 Submit Sleep Diary & Build Dashboard</button>
+ </div>
  </div>
 </div>
 <!-- ══════════════ PAGE 4: DASHBOARD ══════════════ -->
@@ -1089,7 +1138,6 @@ function showPage(id) {
 const loggedIn = isLoggedIn();
 // redirect logic
 if (!loggedIn && id !== 'login' && id !== 'landing') { id = 'login'; }
-if (id === 'register' && loggedIn) { id = 'upload'; }
 if (id === 'register' && !loggedIn) { id = 'login'; }
 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
 document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
@@ -1247,6 +1295,99 @@ if (activePill && !activePill.classList.contains('day-locked')) {
 document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active'));
 activePill.classList.add('active');
 }
+}
+function switchUploadTab(tab) {
+document.getElementById('tab-device').classList.toggle('active', tab === 'device');
+document.getElementById('tab-diary').classList.toggle('active', tab === 'diary');
+document.getElementById('upload-device-panel').style.display = tab === 'device' ? '' : 'none';
+document.getElementById('upload-diary-panel').style.display = tab === 'diary' ? '' : 'none';
+if (tab === 'diary') initDiaryDayPills();
+}
+function initDiaryDayPills() {
+const container = document.getElementById('day-pills-diary');
+if (!container) return;
+const unlocked = getCurrentUnlockedDay();
+container.innerHTML = '';
+for (let i = 1; i <= 14; i++) {
+const pill = document.createElement('div');
+const submitted = isDaySubmitted(i);
+const isFuture = i > unlocked;
+let cls = 'day-pill';
+if (i === selectedDay && !isFuture) cls += ' active';
+if (submitted) cls += ' day-submitted';
+if (isFuture) cls += ' day-locked';
+pill.className = cls;
+pill.innerHTML = isFuture ? `Day ${i} 🔒` : submitted ? `Day ${i} ✏️` : `Day ${i}`;
+pill.onclick = () => {
+if (isFuture) { showDayLockedMsg(i, unlocked); return; }
+document.querySelectorAll('#day-pills-diary .day-pill').forEach(p => p.classList.remove('active'));
+pill.classList.add('active');
+selectedDay = i;
+};
+container.appendChild(pill);
+}
+}
+function calculatePSQI() {
+const latency = parseInt(document.getElementById('psqi_latency')?.value) || 0;
+const hours = parseFloat(document.getElementById('psqi_hours')?.value) || 0;
+const disturbances = parseInt(document.getElementById('psqi_disturbances')?.value) || 0;
+const quality = parseInt(document.getElementById('psqi_quality')?.value) || 0;
+const energy = parseInt(document.getElementById('psqi_energy')?.value) || 0;
+const medication = parseInt(document.getElementById('psqi_medication')?.value) || 0;
+let c1 = quality;
+let c2 = latency <= 15 ? 0 : latency <= 30 ? 1 : latency <= 60 ? 2 : 3;
+let c3 = hours >= 7 ? 0 : hours >= 6 ? 1 : hours >= 5 ? 2 : 3;
+let c4 = hours > 0 ? (hours / (hours + (latency/60))) : 0;
+c4 = c4 >= 0.85 ? 0 : c4 >= 0.75 ? 1 : c4 >= 0.65 ? 2 : 3;
+let c5 = disturbances;
+let c6 = medication;
+let c7 = energy;
+const psqiTotal = c1 + c2 + c3 + c4 + c5 + c6 + c7;
+return Math.min(21, Math.max(0, psqiTotal));
+}
+function psqiToLongevityScore(psqi) {
+if (psqi <= 0) return 95;
+if (psqi >= 21) return 5;
+if (psqi <= 5) return Math.round(95 - (psqi * 4));
+if (psqi <= 10) return Math.round(75 - ((psqi - 5) * 5));
+return Math.round(50 - ((psqi - 10) * 4.09));
+}
+function updatePSQIPreview() {
+const psqi = calculatePSQI();
+const score = psqiToLongevityScore(psqi);
+const preview = document.getElementById('psqi-preview');
+const display = document.getElementById('psqi-score-display');
+const label = document.getElementById('psqi-quality-label');
+const filled = ['psqi_hours', 'psqi_quality', 'psqi_latency'].filter(id => document.getElementById(id)?.value).length;
+if (filled >= 2) {
+preview.style.display = 'block';
+display.textContent = score;
+label.textContent = psqi <= 5 ? 'Good sleeper' : psqi <= 10 ? 'Moderate sleep issues' : 'Poor sleep quality';
+} else {
+preview.style.display = 'none';
+}
+}
+async function submitDiary() {
+const psqi = calculatePSQI();
+const score = psqiToLongevityScore(psqi);
+const bedtime = document.getElementById('psqi_bedtime')?.value || '';
+const waketime = document.getElementById('psqi_waketime')?.value || '';
+const hours = document.getElementById('psqi_hours')?.value || '';
+const notes = document.getElementById('psqi_notes')?.value || '';
+if (!hours) { alert('Please fill in at least your sleep hours.'); return; }
+const data = {
+metrics: { duration: hours + 'h', bedtime, wake_time: waketime },
+score,
+device_detected: 'Sleep Diary (PSQI)',
+insights: [{ title: 'PSQI Score', body: 'Raw PSQI: ' + psqi + '/21. Longevity Index: ' + score + '/100' }]
+};
+markDaySubmitted(selectedDay);
+const key = getUserKey('score_day_' + selectedDay);
+localStorage.setItem(key, score);
+const durKey = getUserKey('dur_day_' + selectedDay);
+localStorage.setItem(durKey, hours + 'h');
+await saveToGoogleSheets(data);
+showPage('dashboard');
 }
 function showDayLockedMsg(day, unlocked) {
 const panel = document.getElementById('error-panel');
@@ -1441,7 +1582,7 @@ let leaderboardData = [];
 // Try fetching group leaderboard from Google Sheets
 if (SHEETS_URL) {
 try {
-const resp = await fetch(SHEETS_URL + '?action=leaderboard');
+const resp = await fetch('/api/leaderboard');
 if (resp.ok) {
 const json = await resp.json();
 if (json && json.leaderboard && json.leaderboard.length) {
