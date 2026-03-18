@@ -158,29 +158,49 @@ function lookupRegistration(email) {
   }
 
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName('Registrations');
-
-  if (!sheet || sheet.getLastRow() < 2) {
-    return ContentService
-      .createTextOutput(JSON.stringify(result))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-
-  var data = sheet.getRange(2, 1, sheet.getLastRow() - 1, 7).getValues();
   var emailLower = email.toLowerCase().trim();
 
-  // Columns: 0:Timestamp, 1:Name, 2:Email, 3:Phone, 4:Device, 5:Age, 6:Goal
-  for (var i = 0; i < data.length; i++) {
-    var rowEmail = (data[i][2] || '').toString().toLowerCase().trim();
-    if (rowEmail === emailLower) {
-      result = {
-        found: true,
-        name: data[i][1] || '',
-        email: data[i][2] || '',
-        phone: data[i][3] || '',
-        device: data[i][4] || ''
-      };
-      break;
+  // 1. Check Registrations sheet first
+  var regSheet = ss.getSheetByName('Registrations');
+  if (regSheet && regSheet.getLastRow() >= 2) {
+    var regData = regSheet.getRange(2, 1, regSheet.getLastRow() - 1, 7).getValues();
+    // Columns: 0:Timestamp, 1:Name, 2:Email, 3:Phone, 4:Device, 5:Age, 6:Goal
+    for (var i = 0; i < regData.length; i++) {
+      var rowEmail = (regData[i][2] || '').toString().toLowerCase().trim();
+      if (rowEmail === emailLower) {
+        result = {
+          found: true,
+          name: regData[i][1] || '',
+          email: regData[i][2] || '',
+          phone: regData[i][3] || '',
+          device: regData[i][4] || ''
+        };
+        return ContentService
+          .createTextOutput(JSON.stringify(result))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+    }
+  }
+
+  // 2. Fallback: check Sleep Data sheet (for users who registered before Registrations sheet existed)
+  var sleepSheet = ss.getSheetByName(SHEET_NAME);
+  if (sleepSheet && sleepSheet.getLastRow() >= 2) {
+    var sleepData = sleepSheet.getRange(2, 1, sleepSheet.getLastRow() - 1, 5).getValues();
+    // Columns: 0:Timestamp, 1:Name, 2:Email, 3:Phone, 4:Device
+    for (var j = 0; j < sleepData.length; j++) {
+      var sEmail = (sleepData[j][2] || '').toString().toLowerCase().trim();
+      if (sEmail === emailLower) {
+        result = {
+          found: true,
+          name: sleepData[j][1] || '',
+          email: sleepData[j][2] || '',
+          phone: sleepData[j][3] || '',
+          device: sleepData[j][4] || ''
+        };
+        return ContentService
+          .createTextOutput(JSON.stringify(result))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
     }
   }
 
