@@ -11,6 +11,10 @@
     "api/leaderboard.js": {
       "maxDuration": 30,
       "memory": 256
+    },
+    "api/user-scores.js": {
+      "maxDuration": 30,
+      "memory": 256
     }
   },
   "rewrites": [

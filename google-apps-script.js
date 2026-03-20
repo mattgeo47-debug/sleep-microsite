@@ -32,6 +32,10 @@ function doGet(e) {
     return lookupRegistration(e.parameter.email || '');
   }
 
+  if (action === 'user_scores') {
+    return getUserScores(e.parameter.email || '');
+  }
+
   if (action === 'setup') {
     createScoringDocSheet();
     return ContentService
@@ -213,6 +217,36 @@ function lookupRegistration(email) {
  * Builds the leaderboard from sheet data
  * Aggregates scores per participant, returns sorted JSON
  */
+/**
+ * Returns day-by-day scores for a specific user (by email)
+ */
+function getUserScores(email) {
+  var result = { scores: {} };
+  if (!email) {
+    return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
+  }
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(SHEET_NAME);
+  if (!sheet || sheet.getLastRow() < 2) {
+    return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
+  }
+  var emailLower = email.toLowerCase().trim();
+  var data = sheet.getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn()).getValues();
+  // Column indices: B=1 Name, C=2 Email, F=5 Day, G=6 Duration, S=18 Score
+  for (var i = 0; i < data.length; i++) {
+    var rowEmail = (data[i][2] || '').toString().toLowerCase().trim();
+    if (rowEmail === emailLower) {
+      var day = parseInt(data[i][5]) || 0;
+      var score = parseFloat(data[i][18]) || 0;
+      var duration = (data[i][6] || '').toString();
+      if (day > 0 && score > 0) {
+        result.scores[day] = { score: score, duration: duration };
+      }
+    }
+  }
+  return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
+}
+
 function getLeaderboard() {
   var sheet;
   try {
