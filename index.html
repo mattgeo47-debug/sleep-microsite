@@ -2174,13 +2174,6 @@ if (isDaySubmitted(d)) { editDay = d; break; }
 editBtn.style.display = editDay > 0 ? 'inline-flex' : 'none';
 editBtn.textContent = '✏️ Edit Day ' + editDay;
 }
-// If no local scores, try fetching from server and re-render
-const hasLocalScores = scoreHistory.some(s => s !== undefined && s !== null);
-if (!hasLocalScores && !d) {
-fetchServerScores().then(changed => {
-if (changed) initDashboard(); // re-render with server data
-});
-}
 }
 function drawChart() {
 const svg = document.getElementById('trend-chart');
