@@ -816,21 +816,8 @@
  <!-- AI INSIGHTS -->
  <div class="insights-section">
  <div class="insights-title">✦ AI Sleep Insights</div>
- <div class="insight-card" style="animation-delay:0.1s">
- <div class="insight-emoji">🎯</div>
- <div class="insight-text"><strong>Your bedtime consistency improved by 42%.</strong> This is strongly associated with improved metabolic health and longevity. Maintaining a consistent sleep-wake window is one of the most powerful interventions for circadian health.</div>
- </div>
- <div class="insight-card gold-accent" style="animation-delay:0.2s">
- <div class="insight-emoji">🧬</div>
- <div class="insight-text"><strong>Your HRV has increased 14ms since Day 1.</strong> Higher HRV is a key biomarker of autonomic nervous system resilience and is strongly correlated with reduced all-cause mortality risk. You're trending in an excellent direction.</div>
- </div>
- <div class="insight-card" style="animation-delay:0.3s">
- <div class="insight-emoji">🌊</div>
- <div class="insight-text"><strong>Deep sleep duration is up 22 minutes vs your baseline.</strong> Deep (slow-wave) sleep is when cellular repair, memory consolidation, and growth hormone secretion peak. This improvement translates directly to cognitive performance and immune resilience.</div>
- </div>
- <div class="insight-card gold-accent" style="animation-delay:0.4s">
- <div class="insight-emoji">💡</div>
- <div class="insight-text"><strong>Recommendation:</strong> Your data shows a pattern of later bedtimes on evenings with screen exposure. Consider a 30-minute digital wind-down to advance your sleep phase and capture an additional 15–20 minutes of slow-wave sleep.</div>
+ <div id="insights-placeholder" style="font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);text-align:center;padding:2rem 1rem;border:1px dashed var(--border);border-radius:12px;opacity:0.7">
+ Upload your sleep data to receive personalised AI-powered insights on your sleep quality, patterns, and longevity metrics.
  </div>
  </div>
  <!-- SCORE HISTORY -->
@@ -851,8 +838,22 @@
  </div>
  </div>
  </div>
+ <!-- SLEEP DIARY NOTE -->
+ <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem 2rem;margin-bottom:1.5rem">
+ <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:400;margin-bottom:0.75rem;color:var(--teal)">No Smart Device? No Problem.</div>
+ <div style="font-family:var(--font-body);font-size:0.85rem;color:var(--muted);line-height:1.7">
+ If you don't use a wearable or sleep-tracking app, you can still participate in the challenge using our <strong style="color:var(--text)">Sleep Diary</strong> method. Simply go to the Upload page and select the <strong style="color:var(--text)">Sleep Diary</strong> tab to log your sleep manually each day using a quick questionnaire based on the PSQI framework.
+ </div>
+ </div>
  <div style="text-align:center;margin-top:2rem">
  <button class="btn-primary" onclick="showPage('upload')">Upload Today's Sleep Data →</button>
+ </div>
+ <!-- PSQI NOTE -->
+ <div style="margin-top:2rem;padding:1.25rem 1.5rem;background:var(--surface2);border:1px solid var(--border);border-radius:12px">
+ <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);line-height:1.8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem">About PSQI Scoring</div>
+ <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);line-height:1.7">
+ The <strong style="color:var(--text)">Pittsburgh Sleep Quality Index (PSQI)</strong> is a clinically validated self-report questionnaire that measures sleep quality over a period of time. It evaluates seven components: subjective sleep quality, sleep latency, sleep duration, habitual sleep efficiency, sleep disturbances, use of sleep medication, and daytime dysfunction. A PSQI global score ranges from 0 to 21 — lower scores indicate better sleep quality (a score of 5 or below is considered good sleep). Our system converts your PSQI score into a <strong style="color:var(--teal)">Longevity Sleep Index (0–100)</strong> so it can be compared alongside device-based scores on the leaderboard.
+ </div>
  </div>
  </div>
 </div>
@@ -1672,7 +1673,7 @@ leaderboardData.sort((a, b) => (b.total || 0) - (a.total || 0));
 lbEmpty.style.display = 'none';
 const rankIcons = ['🥇', '🥈', '🥉'];
 const rankClasses = ['gold-rank', 'silver-rank', 'bronze-rank'];
-lbRows.innerHTML = leaderboardData.slice(0, 20).map((p, i) => {
+lbRows.innerHTML = leaderboardData.slice(0, 10).map((p, i) => {
 const isMe = p.isMe || (p.name && p.name.toLowerCase() === myName.toLowerCase());
 const highlightStyle = isMe ? 'background:rgba(77,217,192,0.04);border:1px solid rgba(77,217,192,0.15);border-radius:8px;' : '';
 const rankDisplay = i < 3 ? rankIcons[i] : (i + 1);
@@ -1946,6 +1947,21 @@ showErrorPanel(err);
 function loadHistories() {
 scoreHistory = JSON.parse(localStorage.getItem(getUserKey('scoreHistory')) || '[]');
 durationHistory = JSON.parse(localStorage.getItem(getUserKey('durationHistory')) || '[]');
+// Rebuild from individual day keys if the array is empty but day scores exist
+const hasAnyScore = scoreHistory.some(s => s !== undefined && s !== null);
+if (!hasAnyScore) {
+let rebuilt = false;
+for (let d = 1; d <= 14; d++) {
+const val = localStorage.getItem(getUserKey('score_day_' + d));
+if (val) {
+scoreHistory[d - 1] = parseFloat(val);
+const dur = localStorage.getItem(getUserKey('dur_day_' + d));
+if (dur) durationHistory[d - 1] = parseDurationToHours(dur) || 0;
+rebuilt = true;
+}
+}
+if (rebuilt) saveHistories();
+}
 }
 let scoreHistory = [];
 let durationHistory = [];
@@ -1973,9 +1989,6 @@ saveHistories();
 d._recorded = true;
 d._editMode = false;
 }
-const submittedDays = scoreHistory.filter(s => s !== undefined && s !== null).length;
-const dayBadge = document.querySelector('.day-badge');
-if (dayBadge) dayBadge.textContent = 'Day ' + submittedDays + ' of 14';
 const arc = document.getElementById('score-arc');
 const numEl = document.getElementById('score-num');
 const circumference = 408;
@@ -2034,8 +2047,53 @@ insightsContainer.innerHTML += `<div style="font-family:var(--font-mono);font-si
 }
 }
 } else {
+// No fresh analysis — show last submitted score if available
+const lastScore = scoreHistory.filter(s => s !== undefined && s !== null);
+if (lastScore.length) {
+const latest = lastScore[lastScore.length - 1];
+const arc = document.getElementById('score-arc');
+const numEl = document.getElementById('score-num');
+const circumference = 408;
+setTimeout(() => { arc.style.strokeDashoffset = circumference - (latest / 100) * circumference; }, 200);
+let n = 0;
+const countUp = setInterval(() => { n = Math.min(n + 2, latest); numEl.textContent = n; if (n >= latest) clearInterval(countUp); }, 20);
+const scoreLabel = document.querySelector('.score-label');
+if (scoreLabel) {
+const delta = scoreHistory.length > 1 && scoreHistory[0] !== undefined ? latest - scoreHistory[0] : null;
+scoreLabel.textContent = delta !== null ? (delta >= 0 ? '↑ +' : '↓ ') + delta + ' pts from Day 1' : 'Based on your uploaded sleep data';
+}
+} else {
 document.getElementById('score-num').textContent = '—';
 document.querySelector('.score-label').textContent = 'Upload a sleep screenshot to see your score';
+// Reset metric cards to blank for new users
+const cards = document.querySelectorAll('.metric-card');
+const blankMetrics = [
+{ icon:'🌙', label:'Sleep Duration', value:'—', delta:'Awaiting data' },
+{ icon:'🧠', label:'Deep Sleep', value:'—', delta:'Awaiting data' },
+{ icon:'💤', label:'REM Sleep', value:'—', delta:'Awaiting data' },
+{ icon:'💓', label:'HRV', value:'—', delta:'Awaiting data' }
+];
+cards.forEach((card, i) => {
+const def = blankMetrics[i];
+if (def) {
+card.querySelector('.metric-icon').textContent = def.icon;
+card.querySelector('.metric-value').textContent = def.value;
+card.querySelector('.metric-value').className = 'metric-value';
+card.querySelector('.metric-name').textContent = def.label;
+card.querySelector('.metric-delta').textContent = def.delta;
+}
+});
+const extraRow = document.getElementById('extra-metrics-row');
+if (extraRow) extraRow.innerHTML = '';
+}
+}
+// Dynamic day badge — show actual running challenge day
+const dayBadge = document.querySelector('.day-badge');
+if (dayBadge) {
+const now = new Date();
+const msPerDay = 24 * 60 * 60 * 1000;
+const challengeDay = Math.min(14, Math.max(1, Math.floor((now - CHALLENGE_START) / msPerDay) + 1));
+dayBadge.textContent = 'Day ' + challengeDay + ' of 14';
 }
 const hist = document.getElementById('score-history');
 hist.innerHTML = '';
