@@ -1446,6 +1446,9 @@ const key = getUserKey('score_day_' + selectedDay);
 localStorage.setItem(key, score);
 const durKey = getUserKey('dur_day_' + selectedDay);
 localStorage.setItem(durKey, hours + 'h');
+// Set aiSleepData so initDashboard records score into scoreHistory array
+aiSleepData = data;
+aiSleepData._recorded = false;
 await saveToGoogleSheets(data);
 showPage('dashboard');
 }
