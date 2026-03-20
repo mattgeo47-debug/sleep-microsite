@@ -1951,20 +1951,36 @@ showErrorPanel(err);
 function loadHistories() {
 scoreHistory = JSON.parse(localStorage.getItem(getUserKey('scoreHistory')) || '[]');
 durationHistory = JSON.parse(localStorage.getItem(getUserKey('durationHistory')) || '[]');
-// Rebuild from individual day keys if the array is empty but day scores exist
 const hasAnyScore = scoreHistory.some(s => s !== undefined && s !== null);
 if (!hasAnyScore) {
+// Migration: check old non-namespaced keys (before getUserKey was introduced)
+const oldScores = JSON.parse(localStorage.getItem('slc_scoreHistory') || '[]');
+const oldDurations = JSON.parse(localStorage.getItem('slc_durationHistory') || '[]');
+if (oldScores.some(s => s !== undefined && s !== null)) {
+scoreHistory = oldScores;
+durationHistory = oldDurations;
+saveHistories();
+// Also migrate submitted day flags
+for (let d = 1; d <= 14; d++) {
+if (localStorage.getItem('slc_submitted_day_' + d) === 'true') {
+markDaySubmitted(d);
+}
+}
+} else {
+// Rebuild from individual day keys (namespaced or old)
 let rebuilt = false;
 for (let d = 1; d <= 14; d++) {
-const val = localStorage.getItem(getUserKey('score_day_' + d));
+const val = localStorage.getItem(getUserKey('score_day_' + d)) || localStorage.getItem('slc_score_day_' + d);
 if (val) {
 scoreHistory[d - 1] = parseFloat(val);
-const dur = localStorage.getItem(getUserKey('dur_day_' + d));
+const dur = localStorage.getItem(getUserKey('dur_day_' + d)) || localStorage.getItem('slc_dur_day_' + d);
 if (dur) durationHistory[d - 1] = parseDurationToHours(dur) || 0;
+markDaySubmitted(d);
 rebuilt = true;
 }
 }
 if (rebuilt) saveHistories();
+}
 }
 }
 // Fetch user scores from server when local history is empty
@@ -2004,8 +2020,13 @@ const h = str.match(/(\d+)\s*h/);
 const m = str.match(/(\d+)\s*m/);
 return (h ? parseInt(h[1]) : 0) + (m ? parseInt(m[1]) / 60 : 0);
 }
-function initDashboard() {
+async function initDashboard() {
 loadHistories();
+// If local history is empty, try fetching from server (handles cross-browser login)
+const hasLocalScores = scoreHistory.some(s => s !== undefined && s !== null);
+if (!hasLocalScores) {
+await fetchServerScores();
+}
 const d = aiSleepData;
 if (d) {
 const score = d.score || 0;
@@ -2030,9 +2051,11 @@ if (n >= score) clearInterval(countUp);
 }, 20);
 const scoreLabel = document.querySelector('.score-label');
 if (scoreLabel) {
-const delta = scoreHistory.length > 1 ? score - scoreHistory[0] : null;
+const firstScore = scoreHistory.find(s => s !== undefined && s !== null);
+const scoredDays = scoreHistory.filter(s => s !== undefined && s !== null);
+const delta = scoredDays.length > 1 && firstScore !== undefined ? score - firstScore : null;
 scoreLabel.textContent = delta !== null
-? (delta >= 0 ? '↑ +' : '↓ ') + delta + ' pts from Day 1'
+? (delta >= 0 ? '↑ +' : '↓ ') + Math.round(delta) + ' pts from Day 1'
 : 'Based on your uploaded sleep data';
 }
 const cards = document.querySelectorAll('.metric-card');
