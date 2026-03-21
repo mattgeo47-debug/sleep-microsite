@@ -712,8 +712,8 @@
  <div class="manual-field"><label class="manual-label">Resting Heart Rate</label><input class="manual-input" id="m_resting_hr" placeholder="e.g. 58 bpm" /></div>
  <div class="manual-field"><label class="manual-label">SpO2</label><input class="manual-input" id="m_spo2" placeholder="e.g. 97%" /></div>
  <div class="manual-field"><label class="manual-label">Respiratory Rate</label><input class="manual-input" id="m_respiratory_rate" placeholder="e.g. 15 rpm" /></div>
- <div class="manual-field"><label class="manual-label">Bedtime</label><input class="manual-input" id="m_bedtime" placeholder="e.g. 10:30 PM" /></div>
- <div class="manual-field"><label class="manual-label">Wake Time</label><input class="manual-input" id="m_wake_time" placeholder="e.g. 6:15 AM" /></div>
+ <div class="manual-field"><label class="manual-label">Bedtime</label><div style="display:flex;gap:0.5rem;align-items:center"><input class="manual-input" id="m_bedtime" placeholder="e.g. 10:30" style="flex:1" /><select class="manual-input" id="m_bedtime_ampm" style="width:75px;flex:none"><option value="PM">PM</option><option value="AM">AM</option></select></div></div>
+ <div class="manual-field"><label class="manual-label">Wake Time</label><div style="display:flex;gap:0.5rem;align-items:center"><input class="manual-input" id="m_wake_time" placeholder="e.g. 6:15" style="flex:1" /><select class="manual-input" id="m_wake_time_ampm" style="width:75px;flex:none"><option value="AM">AM</option><option value="PM">PM</option></select></div></div>
  </div>
  <div style="margin-top:1rem;"><label class="manual-label">Notes</label><textarea class="manual-input" id="m_notes" style="height:70px;resize:vertical" placeholder="Stress, caffeine, travel, unusual bedtime, alcohol..."></textarea></div>
  <div style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);opacity:0.7">ⓘ Manual values are merged with AI-extracted data. Manual entries take priority.</div>
@@ -1231,7 +1231,7 @@ const navEl = document.getElementById('nav-' + id);
 if (navEl) navEl.classList.add('active');
 window.scrollTo({ top: 0, behavior: 'smooth' });
 if (id === 'dashboard') initDashboard();
-if (id === 'upload') { clearDiaryForm(); initDayPills(); }
+if (id === 'upload') { clearDiaryForm(); clearManualEntryForm(); initDayPills(); }
 }
 let selectedDevice = '';
 function selectDevice(el, val) {
@@ -1365,6 +1365,11 @@ document.getElementById('multi-preview-grid').style.display = 'none';
 const manualPanel = document.getElementById('manual-entry-panel');
 if (manualPanel) manualPanel.style.display = 'none';
 clearDiaryForm();
+clearManualEntryForm();
+const manualForm = document.getElementById('manual-entry-form');
+if (manualForm) manualForm.style.display = 'none';
+const manualArrow = document.getElementById('manual-toggle-arrow');
+if (manualArrow) manualArrow.textContent = '▼';
 document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active'));
 pill.classList.add('active');
 selectedDay = i;
@@ -1392,6 +1397,15 @@ const wakeAmpm = document.getElementById('psqi_waketime_ampm');
 if (wakeAmpm) wakeAmpm.value = 'AM';
 const preview = document.getElementById('psqi-preview');
 if (preview) preview.style.display = 'none';
+}
+function clearManualEntryForm() {
+const ids = ['m_duration','m_deep_sleep','m_rem_sleep','m_light_sleep','m_awake_time',
+'m_efficiency','m_hrv','m_resting_hr','m_spo2','m_respiratory_rate','m_bedtime','m_wake_time','m_notes'];
+ids.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+const mBedAmpm = document.getElementById('m_bedtime_ampm');
+if (mBedAmpm) mBedAmpm.value = 'PM';
+const mWakeAmpm = document.getElementById('m_wake_time_ampm');
+if (mWakeAmpm) mWakeAmpm.value = 'AM';
 }
 function switchUploadTab(tab) {
 const deviceBtn = document.getElementById('tab-device');
@@ -1598,7 +1612,13 @@ const ids = ['duration','deep_sleep','rem_sleep','light_sleep','awake_time',
 const vals = {};
 ids.forEach(id => {
 const el = document.getElementById('m_' + id);
-if (el && el.value.trim()) vals[id === 'efficiency' ? 'sleep_efficiency' : id] = el.value.trim();
+if (el && el.value.trim()) {
+let val = el.value.trim();
+// Append AM/PM for bedtime and wake_time
+if (id === 'bedtime') { const ampm = document.getElementById('m_bedtime_ampm'); if (ampm) val += ' ' + ampm.value; }
+if (id === 'wake_time') { const ampm = document.getElementById('m_wake_time_ampm'); if (ampm) val += ' ' + ampm.value; }
+vals[id === 'efficiency' ? 'sleep_efficiency' : id] = val;
+}
 });
 const notes = document.getElementById('m_notes');
 if (notes && notes.value.trim()) vals._notes = notes.value.trim();
@@ -1744,6 +1764,13 @@ return `<div class="leaderboard-item" style="${highlightStyle}">
 </div>`;
 }).join('');
 lbRows.innerHTML += `<div style="margin-top:1rem;padding:0.75rem;background:var(--surface2);border-radius:10px;font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);line-height:1.8;text-align:center">
+<div style="display:flex;justify-content:center;gap:1.5rem;margin-bottom:0.5rem">
+<span>⭐ You</span>
+<span>🌙 Other Participants</span>
+<span>🥇 1st</span>
+<span>🥈 2nd</span>
+<span>🥉 3rd</span>
+</div>
 Leaderboard updates in real-time as participants submit their sleep data.
 </div>`;
 }
