@@ -1168,7 +1168,8 @@ async function registerUser() {
 const name = document.getElementById('signup-name').value.trim();
 const email = document.getElementById('signup-email').value.trim();
 const signupCountryCode = document.getElementById('signup-country-code')?.value || '+91';
-const phone = signupCountryCode + ' ' + document.getElementById('signup-phone').value.trim();
+const phoneRaw = document.getElementById('signup-phone').value.trim();
+const phone = signupCountryCode + ' ' + phoneRaw;
 const pw = document.getElementById('signup-password').value;
 const confirm = document.getElementById('signup-confirm').value;
 const errEl = document.getElementById('signup-error');
@@ -1199,7 +1200,7 @@ method: 'POST',
 headers: { 'Content-Type': 'text/plain' },
 body: JSON.stringify({
 action: 'register',
-name, email, phone,
+name, email, phone: sanitizePhoneForSheets(phone),
 device: signupSelectedDevice,
 age: age || '',
 goal: goal || ''
@@ -1247,6 +1248,7 @@ function isValidPhone(v) {
 const digits = v.replace(/\D/g, '');
 return digits.length >= 8 && digits.length <= 15;
 }
+function sanitizePhoneForSheets(p) { return (p || '').replace(/^\+/, ''); }
 function isValidName(v) { return v.trim().length >= 2; }
 function validateEmail(el) {
 const err = document.getElementById('err-email');
@@ -1788,7 +1790,7 @@ const name = localStorage.getItem('slc_name') || document.getElementById('reg-na
 const email = localStorage.getItem('slc_email') || document.getElementById('reg-email')?.value || '';
 const phone = localStorage.getItem('slc_phone') || document.getElementById('reg-phone')?.value || '';
 const payload = {
-name, email, phone,
+name, email, phone: sanitizePhoneForSheets(phone),
 device: selectedDevice || '',
 day: selectedDay || 1,
 duration: m.duration || '',

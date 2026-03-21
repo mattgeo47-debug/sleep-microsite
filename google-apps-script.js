@@ -103,7 +103,10 @@ function doPost(e) {
       data.insights || ''                  // V: AI Insights
     ];
 
+    var lastRow = sheet.getLastRow() + 1;
     sheet.appendRow(row);
+    // Force phone column (D) to plain text to prevent formula interpretation
+    sheet.getRange(lastRow, 4).setNumberFormat('@');
 
     return ContentService
       .createTextOutput(JSON.stringify({ status: 'ok' }))
@@ -133,15 +136,19 @@ function saveRegistration(data) {
     sheet.setFrozenRows(1);
   }
 
+  // Force phone column to plain text to prevent formula interpretation
+  var phone = (data.phone || '').toString();
+  var lastRow = sheet.getLastRow() + 1;
   sheet.appendRow([
     new Date(),
     data.name || '',
     data.email || '',
-    data.phone || '',
+    phone,
     data.device || '',
     data.age || '',
     data.goal || ''
   ]);
+  sheet.getRange(lastRow, 4).setNumberFormat('@');
 
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok', message: 'Registration saved' }))
