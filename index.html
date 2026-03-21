@@ -144,7 +144,12 @@
  </div>
  <div class="field-group">
  <label class="field-label">Phone Number <span>*</span></label>
- <input type="tel" id="signup-phone" placeholder="+91 98765 43210" />
+ <div style="display:flex;gap:0.5rem;align-items:center">
+ <select id="signup-country-code" style="width:110px;flex:none;padding:0.75rem 0.5rem;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:var(--font-mono);font-size:0.8rem">
+ <option value="+91">+91 IN</option><option value="+1">+1 US</option><option value="+44">+44 UK</option><option value="+971">+971 UAE</option><option value="+65">+65 SG</option><option value="+61">+61 AU</option><option value="+49">+49 DE</option><option value="+33">+33 FR</option><option value="+81">+81 JP</option><option value="+86">+86 CN</option><option value="+966">+966 SA</option><option value="+974">+974 QA</option><option value="+968">+968 OM</option><option value="+973">+973 BH</option><option value="+965">+965 KW</option>
+ </select>
+ <input type="tel" id="signup-phone" placeholder="98765 43210" style="flex:1" />
+ </div>
  </div>
  <div class="field-group">
  <label class="field-label">Password <span>*</span></label>
@@ -245,7 +250,7 @@
  <p style="font-size:0.85rem;color:var(--teal);margin-bottom:1.2rem;font-family:var(--font-mono);letter-spacing:0.15em;opacity:0;animation:fadeUp 0.8s 0.5s forwards">— 18 APRIL —</p>
  <p class="hero-subtitle" style="opacity:0;animation:fadeUp 0.8s 0.6s forwards;text-align:center;margin-left:auto;margin-right:auto;max-width:640px">Led by India's foremost Sleep Diplomat, <strong style="color:var(--text)">Satvik Jaitly</strong> — unlock the science of restorative sleep and discover how optimizing your nightly recovery can add years to your life, starting tonight.</p>
  <div style="opacity:0;animation:fadeUp 0.8s 0.8s forwards;display:flex;flex-wrap:wrap;gap:1rem;justify-content:center">
- <button class="btn-primary" onclick="showPage('register')">
+ <button class="btn-primary" onclick="showPage(isLoggedIn() ? 'upload' : 'register')">
  ◯ Join the 14-Day Sleep Code Challenge
  </button>
  <button class="btn-secondary" onclick="document.getElementById('speaker-anchor').scrollIntoView({behavior:'smooth'})">
@@ -476,7 +481,7 @@
  <div class="section-label">Begin Your Journey</div>
  <h2 class="section-title" style="margin-bottom:1rem">Ready to Decode Your Sleep?</h2>
  <p style="color:var(--muted);margin-bottom:2.5rem;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7">Join 2,400+ participants transforming their longevity through the science of sleep.</p>
- <button class="btn-primary" onclick="showPage('register')">
+ <button class="btn-primary" onclick="showPage(isLoggedIn() ? 'upload' : 'register')">
  ◯ Join the 14-Day Sleep Code Challenge
  </button>
  </div>
@@ -505,8 +510,27 @@
  </div>
  <div class="field-group">
  <label class="field-label">Phone Number <span>*</span></label>
- <input type="tel" id="reg-phone" placeholder="+91 98765 43210" oninput="validatePhone(this)" onblur="validatePhone(this)" />
- <span class="field-error" id="err-phone">Please enter a valid phone number (8–15 digits, optional + prefix)</span>
+ <div style="display:flex;gap:0.5rem;align-items:center">
+ <select id="reg-country-code" style="width:110px;flex:none;padding:0.75rem 0.5rem;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:var(--font-mono);font-size:0.8rem">
+ <option value="+91">+91 IN</option>
+ <option value="+1">+1 US</option>
+ <option value="+44">+44 UK</option>
+ <option value="+971">+971 UAE</option>
+ <option value="+65">+65 SG</option>
+ <option value="+61">+61 AU</option>
+ <option value="+49">+49 DE</option>
+ <option value="+33">+33 FR</option>
+ <option value="+81">+81 JP</option>
+ <option value="+86">+86 CN</option>
+ <option value="+966">+966 SA</option>
+ <option value="+974">+974 QA</option>
+ <option value="+968">+968 OM</option>
+ <option value="+973">+973 BH</option>
+ <option value="+965">+965 KW</option>
+ </select>
+ <input type="tel" id="reg-phone" placeholder="98765 43210" style="flex:1" oninput="validatePhone(this)" onblur="validatePhone(this)" />
+ </div>
+ <span class="field-error" id="err-phone">Please enter a valid phone number (10 digits)</span>
  </div>
  <!-- DEVICE SELECTOR -->
  <div class="field-group">
@@ -606,9 +630,9 @@
  <h2>Upload Sleep<br><span class="text-teal">Screenshots</span></h2>
  <p class="subtitle">Upload one or more sleep screenshots — AI extracts all visible metrics automatically. Fill in anything missing manually below.</p>
  <!-- Upload mode tabs -->
- <div style="display:flex;gap:0;margin-bottom:2rem;border-radius:12px;overflow:hidden;border:var(--glass-border);background:var(--surface)">
- <button class="login-tab active" id="tab-device" onclick="switchUploadTab('device')" style="flex:1;padding:0.85rem;text-align:center;font-family:var(--font-mono);font-size:0.8rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s;background:transparent;border:none">⌚ Device / App</button>
- <button class="login-tab" id="tab-diary" onclick="switchUploadTab('diary')" style="flex:1;padding:0.85rem;text-align:center;font-family:var(--font-mono);font-size:0.8rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s;background:transparent;border:none">📓 Sleep Diary</button>
+ <div style="display:flex;gap:1rem;margin-bottom:2rem">
+ <button class="btn-primary" id="tab-device" onclick="switchUploadTab('device')" style="flex:1;padding:1rem;text-align:center;font-family:var(--font-mono);font-size:0.85rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border-radius:12px;cursor:pointer;transition:all 0.3s">⌚ Device / App</button>
+ <button class="btn-secondary" id="tab-diary" onclick="switchUploadTab('diary')" style="flex:1;padding:1rem;text-align:center;font-family:var(--font-mono);font-size:0.85rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border-radius:12px;cursor:pointer;transition:all 0.3s">📓 Sleep Diary</button>
  </div>
  <div id="upload-device-panel">
  <div class="field-group">
@@ -705,9 +729,9 @@
  <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--teal);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem">📓 Sleep Diary — PSQI Based</div>
  <p style="font-family:var(--font-mono);font-size:0.72rem;color:var(--muted);margin-bottom:1.5rem">Answer these questions about last night's sleep. Your responses are scored using the Pittsburgh Sleep Quality Index.</p>
  <div style="display:flex;flex-direction:column;gap:1.25rem">
- <div class="manual-field"><label class="manual-label">1. What time did you go to bed?</label><input class="manual-input" id="psqi_bedtime" placeholder="e.g. 10:30 PM" oninput="updatePSQIPreview()"/></div>
+ <div class="manual-field"><label class="manual-label">1. What time did you go to bed?</label><div style="display:flex;gap:0.5rem;align-items:center"><input class="manual-input" id="psqi_bedtime" placeholder="e.g. 10:30" style="flex:1" oninput="updatePSQIPreview()"/><select class="manual-input" id="psqi_bedtime_ampm" style="width:80px;flex:none" onchange="updatePSQIPreview()"><option value="PM">PM</option><option value="AM">AM</option></select></div></div>
  <div class="manual-field"><label class="manual-label">2. How long (in minutes) did it take you to fall asleep?</label><input class="manual-input" id="psqi_latency" placeholder="e.g. 15" type="number" oninput="updatePSQIPreview()"/></div>
- <div class="manual-field"><label class="manual-label">3. What time did you wake up?</label><input class="manual-input" id="psqi_waketime" placeholder="e.g. 6:30 AM" oninput="updatePSQIPreview()"/></div>
+ <div class="manual-field"><label class="manual-label">3. What time did you wake up?</label><div style="display:flex;gap:0.5rem;align-items:center"><input class="manual-input" id="psqi_waketime" placeholder="e.g. 6:30" style="flex:1" oninput="updatePSQIPreview()"/><select class="manual-input" id="psqi_waketime_ampm" style="width:80px;flex:none" onchange="updatePSQIPreview()"><option value="AM">AM</option><option value="PM">PM</option></select></div></div>
  <div class="manual-field"><label class="manual-label">4. How many hours did you actually sleep? (not just time in bed)</label><input class="manual-input" id="psqi_hours" placeholder="e.g. 7.5" type="number" step="0.5" oninput="updatePSQIPreview()"/></div>
  <div class="manual-field"><label class="manual-label">5. How many times did you wake up during the night?</label>
  <select class="manual-input" id="psqi_disturbances" onchange="updatePSQIPreview()">
@@ -1143,7 +1167,8 @@ showPage('landing');
 async function registerUser() {
 const name = document.getElementById('signup-name').value.trim();
 const email = document.getElementById('signup-email').value.trim();
-const phone = document.getElementById('signup-phone').value.trim();
+const signupCountryCode = document.getElementById('signup-country-code')?.value || '+91';
+const phone = signupCountryCode + ' ' + document.getElementById('signup-phone').value.trim();
 const pw = document.getElementById('signup-password').value;
 const confirm = document.getElementById('signup-confirm').value;
 const errEl = document.getElementById('signup-error');
@@ -1206,7 +1231,7 @@ const navEl = document.getElementById('nav-' + id);
 if (navEl) navEl.classList.add('active');
 window.scrollTo({ top: 0, behavior: 'smooth' });
 if (id === 'dashboard') initDashboard();
-if (id === 'upload') initDayPills();
+if (id === 'upload') { clearDiaryForm(); initDayPills(); }
 }
 let selectedDevice = '';
 function selectDevice(el, val) {
@@ -1259,7 +1284,8 @@ return;
 }
 localStorage.setItem('slc_name', nameEl.value.trim());
 localStorage.setItem('slc_email', emailEl.value.trim());
-localStorage.setItem('slc_phone', phoneEl.value.trim());
+const countryCode = document.getElementById('reg-country-code')?.value || '+91';
+localStorage.setItem('slc_phone', countryCode + ' ' + phoneEl.value.trim());
 localStorage.setItem('slc_device', selectedDevice);
 document.getElementById('reg-form').style.display = 'none';
 document.getElementById('reg-success').style.display = 'block';
@@ -1338,6 +1364,7 @@ document.getElementById('drop-zone').style.display = '';
 document.getElementById('multi-preview-grid').style.display = 'none';
 const manualPanel = document.getElementById('manual-entry-panel');
 if (manualPanel) manualPanel.style.display = 'none';
+clearDiaryForm();
 document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active'));
 pill.classList.add('active');
 selectedDay = i;
@@ -1356,9 +1383,24 @@ document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active')
 activePill.classList.add('active');
 }
 }
+function clearDiaryForm() {
+const fields = ['psqi_bedtime','psqi_latency','psqi_waketime','psqi_hours','psqi_disturbances','psqi_quality','psqi_energy','psqi_medication','psqi_notes'];
+fields.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+const bedAmpm = document.getElementById('psqi_bedtime_ampm');
+if (bedAmpm) bedAmpm.value = 'PM';
+const wakeAmpm = document.getElementById('psqi_waketime_ampm');
+if (wakeAmpm) wakeAmpm.value = 'AM';
+const preview = document.getElementById('psqi-preview');
+if (preview) preview.style.display = 'none';
+}
 function switchUploadTab(tab) {
-document.getElementById('tab-device').classList.toggle('active', tab === 'device');
-document.getElementById('tab-diary').classList.toggle('active', tab === 'diary');
+const deviceBtn = document.getElementById('tab-device');
+const diaryBtn = document.getElementById('tab-diary');
+if (tab === 'device') {
+deviceBtn.className = 'btn-primary'; diaryBtn.className = 'btn-secondary';
+} else {
+deviceBtn.className = 'btn-secondary'; diaryBtn.className = 'btn-primary';
+}
 document.getElementById('upload-device-panel').style.display = tab === 'device' ? '' : 'none';
 document.getElementById('upload-diary-panel').style.display = tab === 'diary' ? '' : 'none';
 if (tab === 'diary') initDiaryDayPills();
@@ -1430,8 +1472,12 @@ preview.style.display = 'none';
 async function submitDiary() {
 const psqi = calculatePSQI();
 const score = psqiToLongevityScore(psqi);
-const bedtime = document.getElementById('psqi_bedtime')?.value || '';
-const waketime = document.getElementById('psqi_waketime')?.value || '';
+const bedtimeRaw = document.getElementById('psqi_bedtime')?.value || '';
+const bedtimeAmpm = document.getElementById('psqi_bedtime_ampm')?.value || 'PM';
+const bedtime = bedtimeRaw ? bedtimeRaw + ' ' + bedtimeAmpm : '';
+const waketimeRaw = document.getElementById('psqi_waketime')?.value || '';
+const waketimeAmpm = document.getElementById('psqi_waketime_ampm')?.value || 'AM';
+const waketime = waketimeRaw ? waketimeRaw + ' ' + waketimeAmpm : '';
 const hours = document.getElementById('psqi_hours')?.value || '';
 const notes = document.getElementById('psqi_notes')?.value || '';
 if (!hours) { alert('Please fill in at least your sleep hours.'); return; }
@@ -1439,7 +1485,10 @@ const data = {
 metrics: { duration: hours + 'h', bedtime, wake_time: waketime },
 score,
 device_detected: 'Sleep Diary (PSQI)',
-insights: [{ title: 'PSQI Score', body: 'Raw PSQI: ' + psqi + '/21. Longevity Index: ' + score + '/100' }]
+insights: [
+{ emoji: '📊', title: 'PSQI Sleep Score', body: 'Your Pittsburgh Sleep Quality Index score is ' + psqi + ' out of 21 (lower is better). This converts to a Longevity Index of ' + score + '/100.', accent: false },
+{ emoji: score >= 75 ? '🌟' : score >= 50 ? '💪' : '🔄', title: score >= 75 ? 'Great sleep quality' : score >= 50 ? 'Room for improvement' : 'Focus on sleep habits', body: score >= 75 ? 'Your sleep patterns indicate good restorative sleep. Keep maintaining your current routine for optimal longevity benefits.' : score >= 50 ? 'Your sleep is adequate but could be improved. Try maintaining a consistent bedtime and reducing screen time before sleep.' : 'Your sleep quality needs attention. Consider improving sleep hygiene: consistent schedule, cool dark room, and limiting caffeine after noon.', accent: true }
+]
 };
 markDaySubmitted(selectedDay);
 const key = getUserKey('score_day_' + selectedDay);
