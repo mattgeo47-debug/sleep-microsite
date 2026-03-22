@@ -3,6 +3,18 @@
     "api/proxy.js": {
       "maxDuration": 60,
       "memory": 1024
+    },
+    "api/lookup.js": {
+      "maxDuration": 30,
+      "memory": 256
+    },
+    "api/leaderboard.js": {
+      "maxDuration": 30,
+      "memory": 256
+    },
+    "api/user-scores.js": {
+      "maxDuration": 30,
+      "memory": 256
     }
   },
   "rewrites": [

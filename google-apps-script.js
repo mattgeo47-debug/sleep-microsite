@@ -28,6 +28,21 @@ function doGet(e) {
     return getLeaderboard();
   }
 
+  if (action === 'lookup') {
+    return lookupRegistration(e.parameter.email || '');
+  }
+
+  if (action === 'user_scores') {
+    return getUserScores(e.parameter.email || '');
+  }
+
+  if (action === 'setup') {
+    createScoringDocSheet();
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'ok', message: 'Scoring Logic sheet created' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
   // Default response
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok', message: 'Sleep Challenge API' }))
@@ -35,7 +50,7 @@ function doGet(e) {
 }
 
 /**
- * Handles POST requests — saves sleep data to the sheet
+ * Handles POST requests — routes to sleep data or registration
  */
 function doPost(e) {
   try {
@@ -50,6 +65,12 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
 
+    // Route: registration data goes to "Registrations" sheet
+    if (data.action === 'register') {
+      return saveRegistration(data);
+    }
+
+    // Default: sleep data goes to "Sleep Data" sheet
     var sheet = getOrCreateSheet();
 
     // Build the row — columns match the existing "Sleep Data" sheet layout:
@@ -82,7 +103,10 @@ function doPost(e) {
       data.insights || ''                  // V: AI Insights
     ];
 
+    var lastRow = sheet.getLastRow() + 1;
     sheet.appendRow(row);
+    // Force phone column (D) to plain text to prevent formula interpretation
+    sheet.getRange(lastRow, 4).setNumberFormat('@');
 
     return ContentService
       .createTextOutput(JSON.stringify({ status: 'ok' }))
@@ -96,9 +120,140 @@ function doPost(e) {
 }
 
 /**
+ * Saves registration data to a separate "Registrations" sheet
+ */
+function saveRegistration(data) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheetName = 'Registrations';
+  var sheet = ss.getSheetByName(sheetName);
+
+  if (!sheet) {
+    sheet = ss.insertSheet(sheetName);
+    sheet.appendRow([
+      'Timestamp', 'Name', 'Email', 'Phone', 'Device', 'Age', 'Goal'
+    ]);
+    sheet.getRange(1, 1, 1, 7).setFontWeight('bold');
+    sheet.setFrozenRows(1);
+  }
+
+  // Force phone column to plain text to prevent formula interpretation
+  var phone = (data.phone || '').toString();
+  var lastRow = sheet.getLastRow() + 1;
+  sheet.appendRow([
+    new Date(),
+    data.name || '',
+    data.email || '',
+    phone,
+    data.device || '',
+    data.age || '',
+    data.goal || ''
+  ]);
+  sheet.getRange(lastRow, 4).setNumberFormat('@');
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'ok', message: 'Registration saved' }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+/**
+ * Looks up a registration by email (case-insensitive)
+ * Returns user profile if found, or { found: false }
+ */
+function lookupRegistration(email) {
+  var result = { found: false };
+
+  if (!email) {
+    return ContentService
+      .createTextOutput(JSON.stringify(result))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var emailLower = email.toLowerCase().trim();
+
+  // 1. Check Registrations sheet first
+  var regSheet = ss.getSheetByName('Registrations');
+  if (regSheet && regSheet.getLastRow() >= 2) {
+    var regData = regSheet.getRange(2, 1, regSheet.getLastRow() - 1, 7).getValues();
+    // Columns: 0:Timestamp, 1:Name, 2:Email, 3:Phone, 4:Device, 5:Age, 6:Goal
+    for (var i = 0; i < regData.length; i++) {
+      var rowEmail = (regData[i][2] || '').toString().toLowerCase().trim();
+      if (rowEmail === emailLower) {
+        result = {
+          found: true,
+          name: regData[i][1] || '',
+          email: regData[i][2] || '',
+          phone: regData[i][3] || '',
+          device: regData[i][4] || ''
+        };
+        return ContentService
+          .createTextOutput(JSON.stringify(result))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+    }
+  }
+
+  // 2. Fallback: check Sleep Data sheet (for users who registered before Registrations sheet existed)
+  var sleepSheet = ss.getSheetByName(SHEET_NAME);
+  if (sleepSheet && sleepSheet.getLastRow() >= 2) {
+    var sleepData = sleepSheet.getRange(2, 1, sleepSheet.getLastRow() - 1, 5).getValues();
+    // Columns: 0:Timestamp, 1:Name, 2:Email, 3:Phone, 4:Device
+    for (var j = 0; j < sleepData.length; j++) {
+      var sEmail = (sleepData[j][2] || '').toString().toLowerCase().trim();
+      if (sEmail === emailLower) {
+        result = {
+          found: true,
+          name: sleepData[j][1] || '',
+          email: sleepData[j][2] || '',
+          phone: sleepData[j][3] || '',
+          device: sleepData[j][4] || ''
+        };
+        return ContentService
+          .createTextOutput(JSON.stringify(result))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+    }
+  }
+
+  return ContentService
+    .createTextOutput(JSON.stringify(result))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+/**
  * Builds the leaderboard from sheet data
  * Aggregates scores per participant, returns sorted JSON
  */
+/**
+ * Returns day-by-day scores for a specific user (by email)
+ */
+function getUserScores(email) {
+  var result = { scores: {} };
+  if (!email) {
+    return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
+  }
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(SHEET_NAME);
+  if (!sheet || sheet.getLastRow() < 2) {
+    return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
+  }
+  var emailLower = email.toLowerCase().trim();
+  var data = sheet.getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn()).getValues();
+  // Column indices: B=1 Name, C=2 Email, F=5 Day, G=6 Duration, S=18 Score
+  for (var i = 0; i < data.length; i++) {
+    var rowEmail = (data[i][2] || '').toString().toLowerCase().trim();
+    if (rowEmail === emailLower) {
+      var day = parseInt(data[i][5]) || 0;
+      var score = parseFloat(data[i][18]) || 0;
+      var duration = (data[i][6] || '').toString();
+      if (day > 0 && score > 0) {
+        result.scores[day] = { score: score, duration: duration };
+      }
+    }
+  }
+  return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
+}
+
 function getLeaderboard() {
   var sheet;
   try {
@@ -253,7 +408,7 @@ function createScoringDocSheet() {
     ['• Challenge runs for 14 days starting April 18, 2025', '', ''],
     ['• Participants can enter data for any past day (not just sequentially)', '', ''],
     ['• Future days are locked until they occur', '', ''],
-    ['• Only today\'s submission can be edited; past submissions are final', '', ''],
+    ['• Any past or current day submission can be edited/corrected at any time', '', ''],
     ['• Data can be entered via screenshot upload (AI-analysed) or manual entry', '', ''],
     ['', '', ''],
     ['Last updated: ' + new Date().toLocaleDateString('en-IN'), '', '']
