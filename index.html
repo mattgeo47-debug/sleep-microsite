@@ -1088,6 +1088,12 @@ if (newPw.length < 6) { errEl.textContent = 'New password must be at least 6 cha
 if (newPw !== confirmPw) { errEl.textContent = 'Passwords do not match.'; errEl.classList.add('visible'); return; }
 const hash = await hashPassword(newPw);
 localStorage.setItem('slc_password_hash', hash);
+// Sync new password hash to server for cross-device login
+if (SHEETS_URL) {
+fetch(SHEETS_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain' },
+body: JSON.stringify({ action: 'register', name: localStorage.getItem('slc_name') || '', email: storedEmail, phone: sanitizePhoneForSheets(localStorage.getItem('slc_phone') || ''), device: localStorage.getItem('slc_device') || '', password_hash: hash })
+}).catch(() => {});
+}
 document.getElementById('forgot-pw-panel').style.display = 'none';
 document.getElementById('login-password').value = '';
 const errLogin = document.getElementById('login-error');
@@ -1132,20 +1138,36 @@ localStorage.setItem('slc_email', data.email || '');
 localStorage.setItem('slc_phone', (data.phone || '').toString());
 localStorage.setItem('slc_device', data.device || '');
 storedEmail = data.email;
-// No password stored on server — if no local hash, let user set one now
+// Use server-stored password hash if available
+if (data.password_hash) {
+storedHash = data.password_hash;
+localStorage.setItem('slc_password_hash', storedHash);
+} else {
 storedHash = localStorage.getItem('slc_password_hash');
+}
 if (!storedHash) {
-// First login on this device — set the password they just entered as their password
+// No password on server or locally — first-time recovery, accept entered password
 const hash = await hashPassword(pw);
 localStorage.setItem('slc_password_hash', hash);
+storedHash = hash;
+// Push hash to server for future cross-device logins
+fetch(SHEETS_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain' },
+body: JSON.stringify({ action: 'register', name: data.name || '', email: data.email || '', phone: sanitizePhoneForSheets((data.phone || '').toString()), device: data.device || '', password_hash: hash })
+}).catch(() => {});
+}
+// Verify password against server hash
+const inputHash = await hashPassword(pw);
+if (inputHash !== storedHash) {
+errEl.textContent = 'Incorrect password. Please try again.'; errEl.classList.add('visible');
+return;
+}
 localStorage.setItem('slc_logged_in', 'true');
 loadHistories();
 updateNavForAuth();
-errEl.textContent = '✓ Account recovered! Welcome back, ' + (data.name || '') + '.';
+errEl.textContent = '✓ Welcome back, ' + (data.name || '') + '!';
 errEl.style.color = 'var(--teal)'; errEl.classList.add('visible');
 setTimeout(() => { errEl.classList.remove('visible'); errEl.style.color = ''; showPage('landing'); }, 1500);
 return;
-}
 } else {
 errEl.textContent = 'No account found with this email. Please register first.'; errEl.classList.add('visible');
 return;
@@ -1203,7 +1225,8 @@ action: 'register',
 name, email, phone: sanitizePhoneForSheets(phone),
 device: signupSelectedDevice,
 age: age || '',
-goal: goal || ''
+goal: goal || '',
+password_hash: hash
 })
 }).catch(() => {}); // silent fail
 }

@@ -130,25 +130,48 @@ function saveRegistration(data) {
   if (!sheet) {
     sheet = ss.insertSheet(sheetName);
     sheet.appendRow([
-      'Timestamp', 'Name', 'Email', 'Phone', 'Device', 'Age', 'Goal'
+      'Timestamp', 'Name', 'Email', 'Phone', 'Device', 'Age', 'Goal', 'Password Hash'
     ]);
-    sheet.getRange(1, 1, 1, 7).setFontWeight('bold');
+    sheet.getRange(1, 1, 1, 8).setFontWeight('bold');
     sheet.setFrozenRows(1);
   }
 
   // Force phone column to plain text to prevent formula interpretation
   var phone = (data.phone || '').toString();
-  var lastRow = sheet.getLastRow() + 1;
-  sheet.appendRow([
-    new Date(),
-    data.name || '',
-    data.email || '',
-    phone,
-    data.device || '',
-    data.age || '',
-    data.goal || ''
-  ]);
-  sheet.getRange(lastRow, 4).setNumberFormat('@');
+  var passwordHash = (data.password_hash || '').toString();
+
+  // Check if user already exists (update their hash if so)
+  var emailLower = (data.email || '').toString().toLowerCase().trim();
+  var existing = false;
+  if (sheet.getLastRow() >= 2) {
+    var regData = sheet.getRange(2, 1, sheet.getLastRow() - 1, 8).getValues();
+    for (var i = 0; i < regData.length; i++) {
+      var rowEmail = (regData[i][2] || '').toString().toLowerCase().trim();
+      if (rowEmail === emailLower) {
+        // Update password hash for existing user
+        if (passwordHash) {
+          sheet.getRange(i + 2, 8).setValue(passwordHash);
+        }
+        existing = true;
+        break;
+      }
+    }
+  }
+
+  if (!existing) {
+    var lastRow = sheet.getLastRow() + 1;
+    sheet.appendRow([
+      new Date(),
+      data.name || '',
+      data.email || '',
+      phone,
+      data.device || '',
+      data.age || '',
+      data.goal || '',
+      passwordHash
+    ]);
+    sheet.getRange(lastRow, 4).setNumberFormat('@');
+  }
 
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok', message: 'Registration saved' }))
@@ -174,8 +197,9 @@ function lookupRegistration(email) {
   // 1. Check Registrations sheet first
   var regSheet = ss.getSheetByName('Registrations');
   if (regSheet && regSheet.getLastRow() >= 2) {
-    var regData = regSheet.getRange(2, 1, regSheet.getLastRow() - 1, 7).getValues();
-    // Columns: 0:Timestamp, 1:Name, 2:Email, 3:Phone, 4:Device, 5:Age, 6:Goal
+    var cols = regSheet.getLastColumn();
+    var regData = regSheet.getRange(2, 1, regSheet.getLastRow() - 1, Math.max(cols, 8)).getValues();
+    // Columns: 0:Timestamp, 1:Name, 2:Email, 3:Phone, 4:Device, 5:Age, 6:Goal, 7:Password Hash
     for (var i = 0; i < regData.length; i++) {
       var rowEmail = (regData[i][2] || '').toString().toLowerCase().trim();
       if (rowEmail === emailLower) {
@@ -184,7 +208,8 @@ function lookupRegistration(email) {
           name: regData[i][1] || '',
           email: regData[i][2] || '',
           phone: regData[i][3] || '',
-          device: regData[i][4] || ''
+          device: regData[i][4] || '',
+          password_hash: (regData[i][7] || '').toString()
         };
         return ContentService
           .createTextOutput(JSON.stringify(result))
