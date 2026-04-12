@@ -1337,8 +1337,8 @@ return true;
 }
 let uploadedFiles = [];
 let selectedDay = 1;
-// Fixed challenge start date: March 15, 2026 (midnight IST)
-const CHALLENGE_START = new Date(2026, 2, 15); // month is 0-indexed: 2 = March
+// Fixed challenge start date: April 19, 2026 — day after event (April 18)
+const CHALLENGE_START = new Date(2026, 3, 19); // month is 0-indexed: 3 = April
 function getCurrentUnlockedDay() {
 const now = new Date();
 const msPerDay = 24 * 60 * 60 * 1000;
