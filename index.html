@@ -68,6 +68,57 @@
  <a id="mob-login" onclick="showPage('login');closeMobileNav()" style="font-family:var(--font-mono);font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;cursor:pointer;padding:0.75rem 0;border-bottom:1px solid var(--border)">Login</a>
  <a id="mob-logout" onclick="logoutUser();closeMobileNav()" style="font-family:var(--font-mono);font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--danger);text-decoration:none;cursor:pointer;padding:0.75rem 0;border-bottom:1px solid var(--border);display:none">Logout</a>
 </div>
+<!-- ══════════════ PRE-EVENT PAGE ══════════════ -->
+<div class="page" id="page-preevent">
+ <div class="hero" style="display:flex;flex-direction:column;align-items:center;max-width:900px;margin:0 auto;padding:8rem 3rem 4rem;text-align:center">
+ <div style="position:relative;width:100%;text-align:center">
+ <div class="glow-orb orb1"></div>
+ <div class="glow-orb orb2"></div>
+ <p class="hero-eyebrow" style="text-align:center">✦ YPO Kerala × Eureka ✦</p>
+ <h1 class="hero-title" style="text-align:center">Sleep: <em>The Code</em><br>to Longevity</h1>
+ <p style="font-size:0.85rem;color:var(--teal);margin-bottom:1.2rem;font-family:var(--font-mono);letter-spacing:0.15em;opacity:0;animation:fadeUp 0.8s 0.5s forwards">— 18 APRIL 2026 —</p>
+ <p class="hero-subtitle" style="opacity:0;animation:fadeUp 0.8s 0.6s forwards;display:inline-block;text-align:left;max-width:560px">An exclusive wellness session led by India's foremost Sleep Diplomat, <strong style="color:var(--text)">Satvik Jaitly</strong> — exploring how optimizing your nightly recovery can add years to your life.</p>
+ <div style="opacity:0;animation:fadeUp 0.8s 0.8s forwards;display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:1.5rem">
+ <a href="https://snooozebysj-psqi-epss.netlify.app/" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none">
+ ◯ Complete the Pre-Event Questionnaire
+ </a>
+ <button class="btn-secondary" onclick="document.getElementById('preevent-speaker').scrollIntoView({behavior:'smooth'})">
+ Meet the Speaker
+ </button>
+ </div>
+ </div>
+ </div>
+ <!-- STATS -->
+ <div class="stats-bar">
+ <div class="stat"><span class="stat-num">18/04</span><span class="stat-label">Event Date</span></div>
+ <div class="stat"><span class="stat-num">YPO Kerala</span><span class="stat-label">× Eureka</span></div>
+ <div class="stat"><span class="stat-num">SnoOoze</span><span class="stat-label">bySJ</span></div>
+ </div>
+ <!-- SPEAKER INTRO -->
+ <div id="preevent-speaker" style="max-width:860px;margin:2rem auto;padding:0 1.25rem;opacity:0;animation:fadeUp 0.8s 1s forwards">
+ <div style="border:var(--glass-border);border-radius:var(--glass-radius);padding:2.5rem 2rem;background:var(--surface);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));box-shadow:var(--glass-shadow);text-align:center">
+ <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem">Your Speaker</div>
+ <h2 style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--text);margin-bottom:0.5rem">Satvik Jaitly</h2>
+ <p style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.15em;color:var(--gold);margin-bottom:1.5rem">SLEEP DIPLOMAT · FOUNDER, SnoOozebySJ</p>
+ <p style="color:var(--muted);line-height:1.8;max-width:600px;margin:0 auto 1.5rem;font-size:0.95rem">M.Sc. Psychology & Biology · ASA-WSS Registered · 20+ Patents in Sleep Science · Architect of ITC Hotels' sleep wellness initiative · Creator of the World's First Sleep Lab experience.</p>
+ <p style="color:var(--muted);line-height:1.8;max-width:600px;margin:0 auto;font-size:0.95rem">Satvik has dedicated his career to transforming how people understand and optimize sleep — bridging cutting-edge research with practical, life-changing protocols.</p>
+ </div>
+ </div>
+ <!-- TEASER -->
+ <div style="max-width:860px;margin:2rem auto 1rem;padding:0 1.25rem;opacity:0;animation:fadeUp 0.8s 1.2s forwards">
+ <div style="border:var(--glass-border);border-radius:var(--glass-radius);padding:2rem 1.5rem;background:var(--surface);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));box-shadow:var(--glass-shadow);text-align:center">
+ <p style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem">Coming Soon</p>
+ <p style="color:var(--text);font-size:1.1rem;font-family:var(--font-display);line-height:1.6">Something exciting is being prepared for after the event...</p>
+ <p style="color:var(--muted);font-size:0.85rem;margin-top:0.5rem">Stay tuned.</p>
+ </div>
+ </div>
+ <!-- PRE-EVENT CTA -->
+ <div style="text-align:center;margin:2rem auto 4rem;opacity:0;animation:fadeUp 0.8s 1.4s forwards">
+ <a href="https://snooozebysj-psqi-epss.netlify.app/" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none">
+ ◯ Complete the Pre-Event Questionnaire
+ </a>
+ </div>
+</div>
 <!-- ══════════════ PAGE 0: LOGIN ══════════════ -->
 <div class="page" id="page-login">
  <div class="login-page">
@@ -240,7 +291,7 @@
  </div>
 </div>
 <!-- ══════════════ PAGE 1: LANDING ══════════════ -->
-<div class="page active" id="page-landing">
+<div class="page" id="page-landing">
  <div class="hero" style="display:flex;flex-direction:column;align-items:center;max-width:900px;margin:0 auto;padding:8rem 3rem 4rem;text-align:center">
  <div style="position:relative;width:100%;text-align:center">
  <div class="glow-orb orb1"></div>
@@ -995,8 +1046,32 @@ return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).
 function isLoggedIn() { return localStorage.getItem('slc_logged_in') === 'true'; }
 function updateNavForAuth() {
 const loggedIn = isLoggedIn();
+const challengeOpen = isChallengeActive();
 const name = localStorage.getItem('slc_name') || '';
-// desktop nav
+// Pre-event: hide all challenge nav items
+if (!challengeOpen) {
+document.getElementById('nav-li-register').style.display = 'none';
+document.getElementById('nav-li-upload').style.display = 'none';
+document.getElementById('nav-li-dashboard').style.display = 'none';
+document.getElementById('nav-li-login').style.display = 'none';
+document.getElementById('nav-user-area').style.display = 'none';
+// Update nav text for pre-event
+const landingNav = document.getElementById('nav-landing');
+if (landingNav) landingNav.textContent = 'The Event';
+// mobile nav
+const mobReg = document.getElementById('mob-register');
+const mobUp = document.getElementById('mob-upload');
+const mobDash = document.getElementById('mob-dashboard');
+const mobLogin = document.getElementById('mob-login');
+const mobLogout = document.getElementById('mob-logout');
+if (mobReg) mobReg.style.display = 'none';
+if (mobUp) mobUp.style.display = 'none';
+if (mobDash) mobDash.style.display = 'none';
+if (mobLogin) mobLogin.style.display = 'none';
+if (mobLogout) mobLogout.style.display = 'none';
+return;
+}
+// desktop nav (challenge is active)
 document.getElementById('nav-li-register').style.display = loggedIn ? 'none' : 'none';
 document.getElementById('nav-li-upload').style.display = loggedIn ? '' : 'none';
 document.getElementById('nav-li-dashboard').style.display = loggedIn ? '' : 'none';
@@ -1245,7 +1320,18 @@ showPage('login');
 }
 function showPage(id) {
 const loggedIn = isLoggedIn();
-// redirect logic
+const challengeOpen = isChallengeActive();
+// Pre-event gate: before challenge starts, only allow preevent page
+if (!challengeOpen) {
+id = 'preevent';
+document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+document.getElementById('page-preevent').classList.add('active');
+document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+window.scrollTo({ top: 0, behavior: 'smooth' });
+return;
+}
+// redirect logic (challenge is active)
+if (id === 'preevent') { id = 'landing'; } // after challenge starts, redirect preevent to landing
 if (!loggedIn && id !== 'login' && id !== 'landing') { id = 'login'; }
 if (id === 'register' && !loggedIn) { id = 'login'; }
 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1339,6 +1425,9 @@ let uploadedFiles = [];
 let selectedDay = 1;
 // Fixed challenge start date: April 19, 2026 — day after event (April 18)
 const CHALLENGE_START = new Date(2026, 3, 19); // month is 0-indexed: 3 = April
+function isChallengeActive() {
+return new Date() >= CHALLENGE_START;
+}
 function getCurrentUnlockedDay() {
 const now = new Date();
 const msPerDay = 24 * 60 * 60 * 1000;
@@ -2324,7 +2413,11 @@ loadHistories();
 loadSavedRegistration();
 // ── AUTH INIT ──
 updateNavForAuth();
-if (!isLoggedIn()) {
+if (!isChallengeActive()) {
+// Pre-event mode: show pre-event landing
+document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+document.getElementById('page-preevent').classList.add('active');
+} else if (!isLoggedIn()) {
 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
 document.getElementById('page-login').classList.add('active');
 }
