@@ -1423,10 +1423,12 @@ return true;
 }
 let uploadedFiles = [];
 let selectedDay = 1;
-// Fixed challenge start date: April 19, 2026 — day after event (April 18)
+// Site unlock: April 17, 2026 at 10:30 PM — during the event walkthrough
+const SITE_UNLOCK = new Date(2026, 3, 17, 22, 30, 0); // Apr 17, 10:30 PM
+// Challenge Day 1 starts: April 19, 2026 — day after event (April 18)
 const CHALLENGE_START = new Date(2026, 3, 19); // month is 0-indexed: 3 = April
 function isChallengeActive() {
-return new Date() >= CHALLENGE_START;
+return new Date() >= SITE_UNLOCK;
 }
 function getCurrentUnlockedDay() {
 const now = new Date();
