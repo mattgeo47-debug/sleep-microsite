@@ -1897,9 +1897,7 @@ const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwvgqwj498e4QbBEhg6o
 async function saveToGoogleSheets(data) {
 if (!SHEETS_URL) return;
 const m = data.metrics || {};
-const insights = data.insights
-? data.insights.map(i => i.title + ': ' + i.body).join(' | ')
-: '';
+const insights = data.insights ? JSON.stringify(data.insights) : '';
 const name = localStorage.getItem('slc_name') || document.getElementById('reg-name')?.value || '';
 const email = localStorage.getItem('slc_email') || document.getElementById('reg-email')?.value || '';
 const phone = localStorage.getItem('slc_phone') || document.getElementById('reg-phone')?.value || '';
@@ -2173,18 +2171,53 @@ if (!resp.ok) return false;
 const data = await resp.json();
 if (!data.scores || !Object.keys(data.scores).length) return false;
 let changed = false;
+let latestDay = 0;
+let latestInfo = null;
 for (const [day, info] of Object.entries(data.scores)) {
-const idx = parseInt(day) - 1;
+const dayNum = parseInt(day);
+const idx = dayNum - 1;
 if (idx >= 0 && idx < 14) {
 scoreHistory[idx] = info.score;
 if (info.duration) durationHistory[idx] = parseDurationToHours(info.duration) || 0;
 localStorage.setItem(getUserKey('score_day_' + day), info.score);
 if (info.duration) localStorage.setItem(getUserKey('dur_day_' + day), info.duration);
-markDaySubmitted(parseInt(day));
+markDaySubmitted(dayNum);
+// Store full metrics for this day
+const metrics = {
+duration: info.duration || '', deep_sleep: info.deep_sleep || '',
+rem_sleep: info.rem_sleep || '', light_sleep: info.light_sleep || '',
+awake_time: info.awake_time || '', sleep_efficiency: info.sleep_efficiency || '',
+hrv: info.hrv || '', resting_hr: info.resting_hr || '',
+spo2: info.spo2 || '', respiratory_rate: info.respiratory_rate || '',
+bedtime: info.bedtime || '', wake_time: info.wake_time || ''
+};
+localStorage.setItem(getUserKey('metrics_day_' + day), JSON.stringify(metrics));
+if (info.insights) localStorage.setItem(getUserKey('insights_day_' + day), info.insights);
+if (dayNum > latestDay) { latestDay = dayNum; latestInfo = info; }
 changed = true;
 }
 }
-if (changed) saveHistories();
+if (changed) {
+saveHistories();
+// Rebuild aiSleepData from most recent day so dashboard renders full metrics + insights
+if (latestInfo && !aiSleepData) {
+const metrics = JSON.parse(localStorage.getItem(getUserKey('metrics_day_' + latestDay)) || '{}');
+let insights = [];
+const raw = localStorage.getItem(getUserKey('insights_day_' + latestDay)) || '';
+if (raw) {
+try {
+insights = JSON.parse(raw); // new JSON format
+} catch(e) {
+// Legacy pipe-separated text: "Title: Body | Title2: Body2"
+insights = raw.split(' | ').map((seg, i) => {
+const colon = seg.indexOf(':');
+return { emoji: '📊', title: colon > -1 ? seg.slice(0, colon).trim() : 'Insight', body: colon > -1 ? seg.slice(colon + 1).trim() : seg.trim(), accent: i === 1 };
+}).filter(ins => ins.body);
+}
+}
+aiSleepData = { score: latestInfo.score, metrics, device_detected: latestInfo.device_detected || '', insights, _recorded: true, _fromServer: true };
+}
+}
 return changed;
 } catch(e) { return false; }
 }
@@ -2202,9 +2235,15 @@ return (h ? parseInt(h[1]) : 0) + (m ? parseInt(m[1]) / 60 : 0);
 }
 async function initDashboard() {
 loadHistories();
-// If local history is empty, try fetching from server (handles cross-browser login)
+// Fetch from server if: no local scores at all (new device), OR scores exist but no metrics stored (partial sync)
 const hasLocalScores = scoreHistory.some(s => s !== undefined && s !== null);
-if (!hasLocalScores) {
+const hasLocalMetrics = hasLocalScores && (() => {
+for (let d = 1; d <= 14; d++) {
+if (localStorage.getItem(getUserKey('metrics_day_' + d))) return true;
+}
+return false;
+})();
+if (!hasLocalScores || (!aiSleepData && !hasLocalMetrics)) {
 await fetchServerScores();
 }
 const d = aiSleepData;
@@ -2279,10 +2318,11 @@ insightsContainer.innerHTML += `<div style="font-family:var(--font-mono);font-si
 }
 }
 } else {
-// No fresh analysis — show last submitted score if available
-const lastScore = scoreHistory.filter(s => s !== undefined && s !== null);
-if (lastScore.length) {
-const latest = lastScore[lastScore.length - 1];
+// No fresh analysis — restore from localStorage if available
+const validScores = scoreHistory.map((s, i) => s !== undefined && s !== null ? { score: s, day: i + 1 } : null).filter(Boolean);
+if (validScores.length) {
+const latestEntry = validScores[validScores.length - 1];
+const latest = latestEntry.score;
 const arc = document.getElementById('score-arc');
 const numEl = document.getElementById('score-num');
 const circumference = 408;
@@ -2291,8 +2331,64 @@ let n = 0;
 const countUp = setInterval(() => { n = Math.min(n + 2, latest); numEl.textContent = n; if (n >= latest) clearInterval(countUp); }, 20);
 const scoreLabel = document.querySelector('.score-label');
 if (scoreLabel) {
-const delta = scoreHistory.length > 1 && scoreHistory[0] !== undefined ? latest - scoreHistory[0] : null;
-scoreLabel.textContent = delta !== null ? (delta >= 0 ? '↑ +' : '↓ ') + delta + ' pts from Day 1' : 'Based on your uploaded sleep data';
+const firstScore = validScores[0].score;
+const delta = validScores.length > 1 ? latest - firstScore : null;
+scoreLabel.textContent = delta !== null ? (delta >= 0 ? '↑ +' : '↓ ') + Math.round(delta) + ' pts from Day 1' : 'Based on your uploaded sleep data';
+}
+// Restore metrics and insights from the most recent submitted day
+const latestDay = latestEntry.day;
+const storedMetrics = JSON.parse(localStorage.getItem(getUserKey('metrics_day_' + latestDay)) || 'null');
+if (storedMetrics) {
+const m = storedMetrics;
+const cards = document.querySelectorAll('.metric-card');
+const metricDefs = [
+{ icon:'🌙', label:'Sleep Duration', value: m.duration || '—', delta: m.sleep_efficiency ? 'Efficiency: ' + m.sleep_efficiency : '—', good: parseDurationToHours(m.duration) >= 7 },
+{ icon:'🧠', label:'Deep Sleep', value: m.deep_sleep || '—', delta: parseDurationToHours(m.deep_sleep) >= 1 ? '↑ Optimal range' : '→ Below optimal', good: parseDurationToHours(m.deep_sleep) >= 1 },
+{ icon:'💤', label:'REM Sleep', value: m.rem_sleep || '—', delta: parseDurationToHours(m.rem_sleep) >= 1.5 ? '↑ Excellent' : '→ Building toward goal', good: parseDurationToHours(m.rem_sleep) >= 1.5 },
+{ icon:'💓', label:'HRV', value: m.hrv || m.resting_hr || '—', delta: m.hrv ? 'Heart Rate Variability' : (m.resting_hr ? 'Resting Heart Rate' : '—'), good: true }
+];
+cards.forEach((card, i) => {
+const def = metricDefs[i];
+card.querySelector('.metric-icon').textContent = def.icon;
+card.querySelector('.metric-value').textContent = def.value;
+card.querySelector('.metric-value').className = 'metric-value ' + (def.good ? 'good' : 'warn');
+card.querySelector('.metric-name').textContent = def.label;
+card.querySelector('.metric-delta').textContent = def.delta;
+});
+const extraRow = document.getElementById('extra-metrics-row');
+if (extraRow) {
+extraRow.innerHTML = '';
+const extras = [
+{ icon:'🛏️', label:'Bedtime', value: m.bedtime || '—' },
+{ icon:'⏰', label:'Wake Time', value: m.wake_time || '—' },
+{ icon:'🫁', label:'SpO2', value: m.spo2 || '—' },
+{ icon:'❤️', label:'Resting HR', value: m.resting_hr || '—' },
+{ icon:'💨', label:'Resp. Rate', value: m.respiratory_rate || '—' }
+].filter(e => e.value !== '—');
+extras.forEach(e => {
+extraRow.innerHTML += `<div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center;min-width:100px"><div style="font-size:1.4rem;margin-bottom:0.4rem">${e.icon}</div><div style="font-family:var(--font-display);font-size:1rem;color:var(--teal)">${e.value}</div><div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);margin-top:0.2rem">${e.label}</div></div>`;
+});
+}
+}
+// Restore insights
+const rawInsights = localStorage.getItem(getUserKey('insights_day_' + latestDay));
+if (rawInsights) {
+let insights = [];
+try { insights = JSON.parse(rawInsights); } catch(e) {
+insights = rawInsights.split(' | ').map((seg, i) => {
+const colon = seg.indexOf(':');
+return { emoji: '📊', title: colon > -1 ? seg.slice(0, colon).trim() : 'Insight', body: colon > -1 ? seg.slice(colon + 1).trim() : seg.trim(), accent: i === 1 };
+}).filter(ins => ins.body);
+}
+if (insights.length) {
+const insightsContainer = document.querySelector('.insights-section');
+if (insightsContainer) {
+insightsContainer.innerHTML = '<div class="insights-title">✦ AI Sleep Insights</div>';
+insights.forEach((ins, i) => {
+insightsContainer.innerHTML += `<div class="insight-card ${ins.accent ? 'gold-accent' : ''}" style="animation-delay:${i * 0.1}s"><div class="insight-emoji">${ins.emoji || '📊'}</div><div class="insight-text"><strong>${ins.title}.</strong> ${ins.body}</div></div>`;
+});
+}
+}
 }
 } else {
 document.getElementById('score-num').textContent = '—';

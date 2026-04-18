@@ -264,15 +264,31 @@ function getUserScores(email) {
   }
   var emailLower = email.toLowerCase().trim();
   var data = sheet.getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn()).getValues();
-  // Column indices: B=1 Name, C=2 Email, F=5 Day, G=6 Duration, S=18 Score
+  // Column indices (0-based): A=0 B=1 C=2 D=3 E=4 F=5 G=6 H=7 I=8 J=9 K=10 L=11
+  //   M=12 N=13 O=14 P=15 Q=16 R=17 S=18 T=19 U=20 V=21
   for (var i = 0; i < data.length; i++) {
     var rowEmail = (data[i][2] || '').toString().toLowerCase().trim();
     if (rowEmail === emailLower) {
       var day = parseInt(data[i][5]) || 0;
       var score = parseFloat(data[i][18]) || 0;
-      var duration = (data[i][6] || '').toString();
       if (day > 0 && score > 0) {
-        result.scores[day] = { score: score, duration: duration };
+        result.scores[day] = {
+          score:              score,
+          duration:           (data[i][6]  || '').toString(),   // G
+          deep_sleep:         (data[i][7]  || '').toString(),   // H
+          rem_sleep:          (data[i][8]  || '').toString(),   // I
+          light_sleep:        (data[i][9]  || '').toString(),   // J
+          awake_time:         (data[i][10] || '').toString(),   // K
+          sleep_efficiency:   (data[i][11] || '').toString(),   // L
+          hrv:                (data[i][12] || '').toString(),   // M
+          resting_hr:         (data[i][13] || '').toString(),   // N
+          spo2:               (data[i][14] || '').toString(),   // O
+          respiratory_rate:   (data[i][15] || '').toString(),   // P
+          bedtime:            (data[i][16] || '').toString(),   // Q
+          wake_time:          (data[i][17] || '').toString(),   // R
+          device_detected:    (data[i][19] || '').toString(),   // T
+          insights:           (data[i][21] || '').toString()    // V
+        };
       }
     }
   }
